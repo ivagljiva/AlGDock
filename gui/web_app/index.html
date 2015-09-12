@@ -68,6 +68,106 @@
 	      </ul>
 	    </div> <!--/.dropdown-->
 
+	    <div class="dropdown">
+	      <button class="btn btn-default dropdown-toggle" type="button" id="protocolDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Protocol</button>
+	      <ul id="protocolScript" class="dropdown-menu" aria-labelledby="protocolDropdownBtn">
+	      </ul>
+	    </div> <!--/.dropdown-->
+
+		<div class="form-group">
+			<label for="coolThermSpeed">Cool Therm Speed:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="coolThermSpeed" placeholder="1.5">
+		</div>
+
+		<div class="form-group">
+			<label for="dockThermSpeedLbl">Dock Therm Speed:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="dockThermSpeed" placeholder="1.5">
+		</div>
+
+		<div class="dropdown">
+	      <button class="btn btn-default dropdown-toggle" type="button" id="samplerDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Sampler</button>
+	      <ul id="samplerScript" class="dropdown-menu" aria-labelledby="samplerDropdownBtn">
+	      </ul>
+	    </div> <!--/.dropdown-->
+
+	    <div class="form-group">
+			<label for="mcmcMoves">MCMC Moves:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="mcmcMoves" placeholder="1">
+		</div>
+
+		<div class="form-group">
+			<label for="seedsPerState">Seeds Per State:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="seedsPerState" placeholder="10">
+		</div>
+
+		<div class="form-group">
+			<label for="stepsPerSeed">Steps Per Seed:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="stepsPerSeed" placeholder="200">
+		</div>
+
+		<div class="form-group">
+			<label for="sweepsPerCycle">Sweeps Per Cycle:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="sweepsPerCycle" placeholder="10">
+		</div>
+
+		<div class="form-group">
+			<label for="attemptsPerSweep">Attempts Per Sweep:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="attemptsPerSweep" placeholder="100">
+		</div>
+
+		<div class="form-group">
+			<label for="stepsPerSweep">Steps Per Sweep:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="stepsPerSweep" placeholder="50">
+		</div>
+
+		<div class="form-group">
+			<label for="coolRepXCycles">Cool RepX Cycles:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="coolRepXCycles" placeholder="2">
+		</div>
+
+		<div class="form-group">
+			<label for="dockRepXCycles">Dock RepX Cycles:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="dockRepXCycles" placeholder="3">
+		</div>
+
+    	<div class="dropdown">
+	      <button class="btn btn-default dropdown-toggle" type="button" id="siteDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Site</button>
+	      <ul id="siteScript" class="dropdown-menu" aria-labelledby="siteDropdownBtn">
+	      </ul>
+	    </div> <!--/.dropdown-->
+
+	    <div class="form-group">
+			<label for="siteCenter">Site Center:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="siteCenterX" placeholder="X">
+			<input type="text" class="input input-sm" style="text-align: center" id="siteCenterY" placeholder="Y">
+			<input type="text" class="input input-sm" style="text-align: center" id="siteCenterZ" placeholder="Z">
+		</div>
+
+		<div class="form-group">
+			<label for="siteMaxRadius">Site Max Radius:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="siteMaxRadius" placeholder="0.01">
+		</div>
+
+    	<div class="form-group">
+			<label for="siteDensity">Site Density:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="siteDensity" placeholder="10">
+		</div>
+
+    	<div class="dropdown">
+	      <button class="multiselect btn btn-default dropdown-toggle" type="button" id="phasesDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Phases</button>
+	      <ul id="phasesScript" class="multiselect-container dropdown-menu" aria-labelledby="phasesDropdownBtn">
+	      </ul>
+	    </div> <!--/.dropdown-->
+
+	    <div class="form-group">
+			<label for="cores">Cores:</label>
+			<input type="text" class="input input-sm" style="text-align: center" id="cores" placeholder="-1">
+		</div>
+
+		<div class="checkbox">
+		  <label><input type="checkbox" value="" checked="checked">RMSD</label>
+		</div>
+
 	  </div>
 	  <div class="modal-footer">
             <button id="runBtn" type="button" class="btn btn-default" data-dismiss="modal">Run</button>

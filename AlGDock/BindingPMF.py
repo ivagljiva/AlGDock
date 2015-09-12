@@ -476,9 +476,11 @@ last modified {2}
         return None
 
     if kwargs['frcmodList'] is not None:
+      if isinstance(kwargs['frcmodList'],str):
+        kwargs['frcmodList'] = [kwargs['frcmodList']]
       kwargs['frcmodList'] = [cdir_or_dir_dock(FN) \
         for FN in kwargs['frcmodList']]
-
+  
     FNs['new'] = {
       'ligand_database':cdir_or_dir_dock(kwargs['ligand_database']),
       'forcefield':a.findPath([kwargs['forcefield'],'../Data/gaff.dat'] + \
@@ -540,7 +542,7 @@ last modified {2}
                             os.path.abspath(join(dir_lig,'ligand.frcmod'))])
         frcmod = a.findPath(frcmodpaths)
         self._FNs['frcmodList'] = [frcmod]
-    elif isinstance(self._FNs['frcmodList'],str):
+    elif not isinstance(self._FNs['frcmodList'],list):
       self._FNs['frcmodList'] = [self._FNs['frcmodList']]
 
     # Check for existence of required files
@@ -1928,7 +1930,7 @@ last modified {2}
       lowest_e_ind[phase] = linear_index_to_pair(np.argmin(un))
     return (pose_ind, lowest_e_ind)
 
-  def pose_energies(self, minimize=False, grids=False):
+  def pose_energies(self, minimize=False):
     """
     Calculates the energy for poses from self._FNs['score']
     """
@@ -1939,7 +1941,7 @@ last modified {2}
       self._set_universe_evaluator(lambda_o)
 
     # Load the poses
-    (confs, Es) = self._get_confs_to_rescore(site=True, minimize=minimize)
+    (confs, Es) = self._get_confs_to_rescore(minimize=minimize)
 
     # Calculate MM energies
     prefix = 'xtal' if self._FNs['score']=='default' else \
@@ -1954,24 +1956,28 @@ last modified {2}
         self.confs['rmsd'])**2).sum()/self.molecule.nhatoms) \
           for c in range(len(confs))])
 
-    # Try different grid transformations
-    if grids:
-      # TODO: Try different transforms
-      from AlGDock.ForceFields.Grid.TrilinearTransformGrid \
-        import TrilinearTransformGridForceField
-      for type in ['LJa','LJr']:
-        Es[type+'_transformed'] = np.zeros((12,len(confs)),dtype=np.float)
+    # Grid interpolation energies
+    from AlGDock.ForceFields.Grid.Interpolation import InterpolationForceField
+    for grid_type in ['LJa','LJr']:
+      for interpolation_type in ['Trilinear','BSpline']:
+        key = '%s_%sTransform'%(grid_type,interpolation_type)
+        Es[key] = np.zeros((12,len(confs)),dtype=np.float)
         for p in range(12):
-          FF = TrilinearTransformGridForceField(self._FNs['grids'][type], 1.0, \
-            'scaling_factor_'+type, grid_name='%f'%(p+1), \
-            inv_power=-float(p+1), max_val=-1)
+          print interpolation_type + ' interpolation of the ' + \
+            grid_type + ' grid with an inverse power of %d'%(p+1)
+          FF = InterpolationForceField(self._FNs['grids'][grid_type], \
+            name='%f'%(p+1),
+            interpolation_type=interpolation_type, strength=1.0,
+            scaling_property='scaling_factor_'+grid_type, \
+            inv_power=-float(p+1))
           self.universe.setForceField(FF)
           for c in range(len(confs)):
             self.universe.setConfiguration(Configuration(self.universe,confs[c]))
-            Es[type+'_transformed'][p,c] = self.universe.energy()
+            Es[key][p,c] = self.universe.energy()
 
     # Store the data
     self._write_pkl_gz(join(self.dir['dock'],prefix+'.pkl.gz'),(confs,Es))
+    return (confs,Es)
 
   ######################
   # Internal Functions #
@@ -2077,14 +2083,12 @@ last modified {2}
           grid_scaling_factor = 'scaling_factor_' + \
             {'sLJr':'LJr','sLJa':'LJa','sELE':'electrostatic', \
              'LJr':'LJr','LJa':'LJa','ELE':'electrostatic'}[scalable]
-          if scalable=='LJr':
-            from AlGDock.ForceFields.Grid.TrilinearISqrtGrid import TrilinearISqrtGridForceField
-            self._forceFields[scalable] = TrilinearISqrtGridForceField(grid_FN,
-              lambda_n[scalable], grid_scaling_factor,
-              grid_name=scalable, max_val=-1)
-          else:
+
+          # Determine the grid threshold
+          grid_thresh = -1
+          if scalable!='LJr':
             if scalable=='sLJr':
-              max_val = 10.0
+              grid_thresh = 10.0
             elif scalable=='sELE':
               # The maximum value is set so that the electrostatic energy
               # less than or equal to the Lennard-Jones repulsive energy
@@ -2097,14 +2101,15 @@ last modified {2}
                   for a in self.molecule.atomList()],dtype=float)
               scaling_factors_ELE = scaling_factors_ELE[scaling_factors_LJr>10]
               scaling_factors_LJr = scaling_factors_LJr[scaling_factors_LJr>10]
-              max_val = min(abs(scaling_factors_LJr*10.0/scaling_factors_ELE))
-            else:
-              max_val = -1
-              
-            from AlGDock.ForceFields.Grid.TrilinearGrid import TrilinearGridForceField
-            self._forceFields[scalable] = TrilinearGridForceField(grid_FN,
-              lambda_n[scalable], grid_scaling_factor,
-              grid_name=scalable, max_val=max_val)
+              grid_thresh = min(abs(scaling_factors_LJr*10.0/scaling_factors_ELE))
+
+          from AlGDock.ForceFields.Grid.Interpolation \
+            import InterpolationForceField
+          self._forceFields[scalable] = InterpolationForceField(grid_FN, \
+            name=scalable, interpolation_type='Trilinear', \
+            strength=lambda_n[scalable], scaling_property=grid_scaling_factor,
+            inv_power=-2 if scalable=='LJr' else None, \
+            grid_thresh=grid_thresh)
           self.tee('  %s grid loaded from %s in %s'%(scalable, grid_FN, \
             HMStime(time.time()-loading_start_time)))
 
@@ -2992,6 +2997,20 @@ last modified {2}
 
     return lambda_n
 
+  def _load_programs(self, phases):
+    # Find the necessary programs, downloading them if necessary
+    programs = []
+    for phase in phases:
+      if phase in ['Gas','GBSA','PBSA'] and not 'sander' in programs:
+        programs.append('sander')
+      elif phase in ['NAMD_Gas','NAMD_GBSA'] and not 'namd' in programs:
+        programs.append('namd')
+      elif phase in ['APBS'] and not 'apbs' in programs:
+        programs.extend(['apbs','ambpdb','molsurf'])
+    for program in programs:
+      self._FNs[program] = a.findPaths([program])[program]
+    a.loadModules(programs)
+
   def _postprocess(self,
       conditions=[('original',0, 0,'R'), ('cool',-1,-1,'L'), \
                   ('dock',   -1,-1,'L'), ('dock',-1,-1,'RL')],
@@ -3060,18 +3079,7 @@ last modified {2}
     
     del p, state, c, moiety, phase, cycles, label
     
-    # Find the necessary programs, downloading them if necessary
-    programs = []
-    for (p, state, c, moiety, phase) in incomplete:
-      if phase in ['Gas','GBSA','PBSA'] and not 'sander' in programs:
-        programs.append('sander')
-      elif phase in ['NAMD_Gas','NAMD_GBSA'] and not 'namd' in programs:
-        programs.append('namd')
-      elif phase in ['APBS'] and not 'apbs' in programs:
-        programs.extend(['apbs','ambpdb','molsurf'])
-
-    for program in programs:
-      self._FNs[program] = a.findPaths([program])[program]
+    self._load_programs([val[-1] for val in incomplete])
 
     # Write trajectories and queue calculations
     m = multiprocessing.Manager()
@@ -3295,7 +3303,7 @@ last modified {2}
               updated_processes.append(p)
     return updated_processes
 
-  def _calc_E(self, confs, E=None, type='sampling', prefix='confs'):
+  def _calc_E(self, confs, E=None, type='sampling', prefix='confs', debug=False):
     """
     Calculates energies for a series of configurations
     Units are the MMTK standard, kJ/mol
@@ -3319,6 +3327,7 @@ last modified {2}
           E[term_map[key]][c] += value
 
     if type=='all':
+      self._load_programs(self.params['dock']['phases'])
       toClear = []
       for phase in self.params['dock']['phases']:
         E['R'+phase] = self.params['dock']['receptor_'+phase]
@@ -3327,14 +3336,14 @@ last modified {2}
           if phase in ['NAMD_Gas','NAMD_GBSA']:
             traj_FN = join(self.dir['dock'],'%s.%s.dcd'%(prefix,moiety))
             self._write_traj(traj_FN, confs, moiety)
-            E[moiety+phase] = self._NAMD_Energy(confs, moiety, phase, traj_FN, outputname)
+            E[moiety+phase] = self._NAMD_Energy(confs, moiety, phase, traj_FN, outputname, debug=debug)
           elif phase in ['Gas','GBSA','PBSA']:
             traj_FN = join(self.dir['dock'],'%s.%s.mdcrd'%(prefix,moiety))
             self._write_traj(traj_FN, confs, moiety)
-            E[moiety+phase] = self._sander_Energy(confs, moiety, phase, traj_FN, outputname)
+            E[moiety+phase] = self._sander_Energy(confs, moiety, phase, traj_FN, outputname, debug=debug)
           elif phase in ['APBS']:
             traj_FN = join(self.dir['dock'],'%s.%s.pqr'%(prefix,moiety))
-            E[moiety+phase] = self._APBS_Energy(confs, moiety, phase, traj_FN, outputname)
+            E[moiety+phase] = self._APBS_Energy(confs, moiety, phase, traj_FN, outputname, debug=debug)
           else:
             raise Exception('Unknown phase!')
           if not traj_FN in toClear:
