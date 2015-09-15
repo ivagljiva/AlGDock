@@ -5,15 +5,25 @@ from cross_domain import *
 
 app = Flask(__name__)
 
-DATA = 'data'
+try:
+    TARGET = os.environ['TARGET']
+except Exception:
+    print 'export TARGET=<path to data>'
+    exit(1)
 
-@app.route('/api/v1.0/data/<data_type>', methods=['GET', 'OPTIONS'])
+@app.route('/api/v1.0/proteins', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-def get_data(data_type):
-    data_subdirs = os.listdir(DATA)
-    if data_type in data_subdirs:
-        fl_lst = [{"filename": fl} for fl in sorted(os.listdir(os.path.join(DATA, data_type)))]
-        return jsonify({"data_type": data_type, "files": fl_lst})
+def get_protein_names():
+    proteins = os.walk(TARGET).next()[1]
+    protein_lst = [{"filename": protein} for protein in sorted(proteins)]
+    return jsonify({"files": protein_lst})
+
+@app.route('/api/v1.0/ligands/<protein>', methods=['GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def get_ligand_names(protein):
+    ligands = os.walk(os.path.join(TARGET, protein, "ligand")).next()[2]
+    ligand_lst = [{"filename": ligand} for ligand in sorted(ligands)]
+    return jsonify({"files": ligand_lst})
 
 @app.route('/api/v1.0/run/<protein>/<ligand>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')

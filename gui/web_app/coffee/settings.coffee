@@ -7,6 +7,7 @@
     $("#proteinScript li a").click () ->
       selectedProtein = $(this).html()
       $("#proteinDropdownBtn").html selectedProtein
+      httpGet("http://127.0.0.1:5000/api/v1.0/ligands/#{selectedProtein}", populateLigands)
       return
     return
 
@@ -21,8 +22,7 @@
     return
 
   ### Main ###
-  httpGet("http://127.0.0.1:5000/api/v1.0/data/protein", populateProteins)
-  httpGet("http://127.0.0.1:5000/api/v1.0/data/ligand", populateLigands)
+  httpGet("http://127.0.0.1:5000/api/v1.0/proteins", populateProteins)
 
   return
 
