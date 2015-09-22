@@ -22,6 +22,12 @@
       $("#ligandDropdownBtn").html(selectedLigand);
     });
   };
+  populateProtocols = function(protocolJson) {
+    protocolJson = JSON.parse(protocolJson);
+    renderList("protocolScript", {
+      "protocolList": protocolJson.files
+    });
+  }
 
   /* Main */
   httpGet("http://127.0.0.1:5000/api/v1.0/data/protein", populateProteins);

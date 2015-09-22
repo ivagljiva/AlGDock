@@ -56,6 +56,12 @@
             <h4 class="modal-title">Settings</h4>
 	  </div>
 	  <div class="modal-body">
+	   <div class="dropdown display-inline">
+	      <button class="btn btn-default dropdown-toggle" type="button" id="runTypeDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Run Type</button>
+	      <ul id="runTypeScript" class="dropdown-menu" aria-labelledby="runTypeDropdownBtn">
+	      </ul>
+	    </div> <!--/.dropdown-->
+
 	    <div class="dropdown display-inline">
 	      <button class="btn btn-default dropdown-toggle" type="button" id="proteinDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Protein</button>
 	      <ul id="proteinScript" class="dropdown-menu" aria-labelledby="proteinDropdownBtn">
@@ -165,7 +171,7 @@
 		</div>
 
 		<div class="checkbox">
-		  <label><input type="checkbox" value="" checked="checked">RMSD</label>
+		  <label><input type="checkbox" value="" id="RMSD" checked="checked">RMSD</label>
 		</div>
 
 	  </div>
