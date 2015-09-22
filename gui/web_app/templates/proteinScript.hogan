@@ -1,0 +1,1 @@
+{{#proteinList}}<li><a href="#">{{filename}}</a></li>{{/proteinList}}

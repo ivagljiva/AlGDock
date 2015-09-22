@@ -37,7 +37,3 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
-
-# Gui
-gui/web_app/resources
-gui/web_app/templates
