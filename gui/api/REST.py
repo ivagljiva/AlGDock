@@ -1,12 +1,15 @@
 from flask import Flask, jsonify
 
 import os
+import AlGDock as a
+from AlGDock.BindingPMF_arguments import *
 from cross_domain import *
 
 app = Flask(__name__)
 
 try:
     TARGET = os.environ['TARGET']
+    AlGDock = os.environ['AlGDock']
 except Exception:
     print 'export TARGET=<path to data>'
     exit(1)
@@ -24,6 +27,9 @@ def get_ligand_names(protein):
     ligands = os.walk(os.path.join(TARGET, protein, "ligand")).next()[2]
     ligand_lst = [{"filename": ligand} for ligand in sorted(ligands)]
     return jsonify({"files": ligand_lst})
+
+def get_protocols():
+    return jsonify({"protocols": a['protocol']['choices']})
 
 @app.route('/api/v1.0/run/<protein>/<ligand>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
