@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 
-# TODO: Save tarballs in/load tarballs from progress pickle file
-# TODO: Integrate Smart Darting
-# TODO: OpenMM GBSA
-
 import os # Miscellaneous operating system interfaces
 from os.path import join
 import cPickle as pickle
@@ -25,6 +21,9 @@ except:
   from Scientific.Geometry.VectorModule import Vector
   
 import AlGDock as a
+# Define allowed_phases list and arguments dictionary
+from AlGDock.BindingPMF_arguments import *
+
 import pymbar.timeseries
 
 import multiprocessing
@@ -55,128 +54,6 @@ term_map = {
   'LJa':'LJa',
   'ELE':'ELE',
   'electrostatic':'misc'}
-
-allowed_phases = ['Gas','GBSA','PBSA','NAMD_Gas','NAMD_GBSA','APBS']
-
-#############
-# Arguments #
-#############
-
-arguments = {
-  'dir_dock':{'help':'Directory where docking results are stored'},
-  'dir_cool':{'help':'Directory where cooling results are stored'},
-  'namd':{'help':'Location of Not Another Molecular Dynamics (NAMD)'},
-  'vmd':{'help':'Location of Visual Molecular Dynamics (VMD)'},
-  'sander':{'help':'Location of sander (from AMBER)'},
-  'convert':{'help':'Location of convert (from ImageMagick)'},
-  'font':{'help':'Location of font file (readable by PIL)'},
-  #   Stored in both dir_cool and dir_dock
-  'ligand_tarball':{'help':'tar file that contains database, prmtop, and inpcrd for ligand'},
-  'ligand_database':{'help':'MMTK molecule definition for ligand'},
-  'forcefield':{'help':'AMBER force field file'},
-  'frcmodList':{'help':'AMBER force field modifications file(s)', 'nargs':'+'},
-  'ligand_prmtop':{'help':'AMBER prmtop for the ligand'},
-  'ligand_inpcrd':{'help':'AMBER coordinates for the ligand'},
-  #   Stored in dir_dock
-  'receptor_tarball':{'help':'tar file that contains prmtop, inpcrd, and fixed_atoms files for the receptor'},
-  'receptor_prmtop':{'help':'AMBER prmtop for the receptor'},
-  'receptor_inpcrd':{'help':'AMBER coordinates for the receptor'},
-  'receptor_fixed_atoms':{'help':'PDB file with fixed atoms labeled by 1 in the occupancy column'},
-  'complex_tarball':{'help':'tar file that contains prmtop, inpcrd, and fixed_atoms files for the complex'},
-  'complex_prmtop':{'help':'AMBER prmtop file for the complex'},
-  'complex_inpcrd':{'help':'AMBER coordinates for the complex'},
-  'complex_fixed_atoms':{'help':'PDB file with fixed atoms labeled by 1 in the occupancy column'},
-  'dir_grid':{'help':'Directory containing potential energy grids'},
-  'grid_LJr':{'help':'DX file for Lennard-Jones repulsive grid'},
-  'grid_LJa':{'help':'DX file for Lennard-Jones attractive grid'},
-  'grid_ELE':{'help':'DX file for electrostatic grid'},
-  'score':{'help':"Starting configuration(s) for replica exchange. Can be a mol2 file, .pkl.gz file, or 'default'"},
-  # Simulation settings and constants
-  #   Run-dependent 
-  'cool_repX_cycles':{'type':int,
-    'help':'Number of replica exchange cycles for cooling'},
-  'dock_repX_cycles':{'type':int,
-    'help':'Number of replica exchange cycles for docking'},
-  'run_type':{'choices':['pose_energies','minimized_pose_energies',
-              'store_params', 'cool', \
-              'dock','timed','postprocess',\
-              'redo_postprocess','free_energies','redo_free_energies', 'all', \
-              'render_docked', 'render_intermediates', \
-              'clear_intermediates', None],
-    'help':'Type of calculation to run'},
-  'max_time':{'type':int, 'default':180, \
-    'help':'For timed calculations, the maximum amount of wall clock time, in minutes'},
-  'cores':{'type':int, \
-    'help':'Number of CPU cores to use'},
-  'rotate_matrix':{'help':'Rotation matrix for viewing'},
-  #   Defaults
-  'protocol':{'choices':['Adaptive','Set'],
-    'help':'Approach to determining series of thermodynamic states'},
-  'therm_speed':{'type':float,
-    'help':'Thermodynamic speed during adaptive simulation'},
-  'sampler':{
-    'choices':['HMC','NUTS','VV','TDHMC'],
-    'help':'Sampling method'},
-  'MCMC_moves':{'type':int,
-    'help':'Types of MCMC moves to use'},
-  'T_HIGH':{'type':float, 'default':600.0,
-    'help':'High temperature'},
-  'T_TARGET':{'type':float, 'default':300.0,
-    'help':'Target temperature'},
-  # For initialization
-  'seeds_per_state':{'type':int,
-    'help':'Number of starting configurations in each state during initialization'},
-  'steps_per_seed':{'type':int,
-    'help':'Number of MD steps per state during initialization'},
-  # For replica exchange
-  'repX_cycles':{'type':int,
-    'help':'Number of replica exchange cycles for docking and cooling'},
-  'sweeps_per_cycle':{'type':int,
-    'help':'Number of replica exchange sweeps per cycle'},
-  'attempts_per_sweep':{'type':int,
-    'help':'Number of replica exchange attempts per sweep'},
-  'steps_per_sweep':{'type':int,
-    'help':'Number of MD steps per replica exchange sweep'},
-  'snaps_per_independent':{'type':int,
-    'help':'Number of snapshots per independent sample'},
-  'keep_intermediate':{'action':'store_true',
-    'help':'Keep configurations for intermediate states?'},
-  'min_repX_acc':{'type':float,
-    'help':'Minimum value for replica exchange acceptance rate'},
-  # for GMC
-  'GMC_attempts':{'type':int, 'default': 0,
-                  'help': 'Number of attempts is K * GMC_attempts. Zero means not to do GMC' },
-  'GMC_tors_threshold': {'type':float, 'default': 0.0,
-                  'help': 'The torsion threshold (in radian) below which no crossover will be attempted' },
-  # For postprocessing
-  'phases':{'nargs':'+', 'help':'Phases to use in postprocessing'},
-  'rmsd':{'nargs':'?', 'const':True, 'default':False,
-    'help':'Calculate rmsd between snapshots and a configuration or set of configurations, which may be passed as an argument. The default configuration is from the ligand_inpcrd argument.'},
-  # Binding site
-  'site':{'choices':['Sphere','Cylinder','Measure'], 'default':'Sphere', \
-    'help':'Type of binding site. "Measure" means that parameters' + \
-           ' for a sphere will be measured from docked poses.'},
-  'site_center':{'nargs':3, 'type':float,
-    'help':'Position of binding site center'},
-  'site_direction':{'nargs':3, 'type':float,
-    'help':'Principal axis of a cylindrical binding site'},
-  'site_max_X':{'type':float,
-    'help':'Maximum position along principal axis in a cylindrical binding site'},
-  'site_max_R':{'type':float,
-    'help':'Maximum radial position for a spherical or cylindrical binding site'},
-  'site_density':{'type':float,
-    'help':'Density of center-of-mass points in the first docking state'}}
-
-for process in ['cool','dock']:
-  for key in ['protocol', 'therm_speed', 'sampler',
-      'seeds_per_state', 'steps_per_seed',
-      'sweeps_per_cycle', 'attempts_per_sweep', 'steps_per_sweep',
-      'snaps_per_independent', 'keep_intermediate']:
-    arguments[process+'_'+key] = copy.deepcopy(arguments[key])
-
-for phase in allowed_phases:
-  arguments['receptor_'+phase] = {'type':float, 'nargs':'+',
-    'help':'Receptor potential energy in %s (kJ/mol)'%phase}
 
 ########################
 # Auxilliary functions #
@@ -682,6 +559,7 @@ last modified {2}
     self.universe = MMTK.Universe.InfiniteUniverse()
     self.universe.addObject(self.molecule)
     self._evaluators = {} # Store evaluators
+    self._OpenMM_sims = {} # Store OpenMM simulations
     self._ligand_natoms = self.universe.numberOfAtoms()
 
     # Force fields
@@ -697,10 +575,17 @@ last modified {2}
     # delta_t - MD time step
     # normalize - normalizes configurations
     # adapt - uses an adaptive time step
-    from NUTS import NUTSIntegrator  # @UnresolvedImport
 
     self.sampler = {}
+    from NUTS import NUTSIntegrator # @UnresolvedImport
     self.sampler['init'] = NUTSIntegrator(self.universe)
+    from AlGDock.Integrators.SmartDarting.SmartDarting \
+      import SmartDartingIntegrator # @UnresolvedImport
+    self.sampler['cool_SmartDarting'] = SmartDartingIntegrator(self.universe, \
+      self.molecule, extended=False)
+    self.sampler['dock_SmartDarting'] = SmartDartingIntegrator(self.universe, \
+      self.molecule, extended=True)
+
     for p in ['cool', 'dock']:
       if self.params[p]['sampler'] == 'NUTS':
         self.sampler[p] = NUTSIntegrator(self.universe)
@@ -813,7 +698,7 @@ last modified {2}
         'spacing':[full_spacing, focus_spacing]}
 
     # If poses are being rescored, start with a docked structure
-    (confs,Es) = self._get_confs_to_rescore(energies=False)
+    (confs,Es) = self._get_confs_to_rescore(site=False, minimize=False)
     if len(confs)>0:
       self.universe.setConfiguration(Configuration(self.universe,confs[-1]))
 
@@ -922,19 +807,15 @@ last modified {2}
                             'delta_t':1.5*MMTK.Units.fs,
                             'a':0.0, 'crossed':False}]
       self._set_universe_evaluator(self.cool_protocol[-1])
+      
+      # Get starting configurations
+      seeds = self._get_confs_to_rescore(site=False, minimize=True)[0]
+      seeds = [s for s in reversed(seeds)]
+      self.confs['cool']['starting_poses'] = seeds
+      self.sampler['cool_SmartDarting'].set_confs(seeds)
+      self.universe.setConfiguration(Configuration(self.universe,seeds[0]))
 
-      # Minimize and ramp the temperature from 0 to the desired starting temperature
-      from MMTK.Minimization import ConjugateGradientMinimizer # @UnresolvedImport
-      minimizer = ConjugateGradientMinimizer(self.universe)
-      for rep in range(50):
-        x_o = np.copy(self.universe.configuration().array)
-        e_o = self.universe.energy()
-        minimizer(steps = 10)
-        e_n = self.universe.energy()
-        if np.isnan(e_n) or (e_o-e_n)<1000:
-          self.universe.configuration().array = x_o
-          break
-
+      # Ramp the temperature from 0 to the desired starting temperature
       T_LOW = 20.
       T_SERIES = T_LOW*(T_START/T_LOW)**(np.arange(30)/29.)
       for T in T_SERIES:
@@ -992,6 +873,8 @@ last modified {2}
       self.cool_protocol.append(\
         {'T':T, 'a':(self.T_HIGH-T)/(self.T_HIGH-self.T_TARGET), 'MM':True, 'crossed':crossed})
 
+      # TODO: Add seeds to SmartDarting integrator
+
       # Randomly select seeds for new trajectory
       logweight = Es_MM/R*(1/T-1/To)
       weights = np.exp(-logweight+min(logweight))
@@ -1003,6 +886,7 @@ last modified {2}
       Es_MM_o = Es_MM
       
       self._set_universe_evaluator(self.cool_protocol[-1])
+      self.sampler['cool_SmartDarting'].set_confs(confs, append=True)
       
       state_start_time = time.time()
       (confs, Es_MM, self.cool_protocol[-1]['delta_t'], Ht) = \
@@ -1349,22 +1233,6 @@ last modified {2}
 
     return (cool0_confs, E)
 
-  def FFT_dock(self):
-    """
-      Systemically places the ligand into the receptor grids 
-      along grid points using a Fast Fourier Transform
-    """
-
-    # TODO: Write this function
-    # UNDER CONSTRUCTION
-    # Loop over conformers
-    #   Loop over rotations
-    #     Generate ligand grids
-    #     Compute the cross-correlation with FFT
-    #     Accumulate results into the running BPMF estimator
-    #     Keep the lowest-energy conformers
-    # Estimate the BPMF
-
   def initial_dock(self, randomOnly=False, undock=True):
     """
       Docks the ligand into the receptor
@@ -1387,27 +1255,29 @@ last modified {2}
         lambda_o = self._lambda(1.0, 'dock', MM=True, site=True, crossed=False)
         self.dock_protocol = [lambda_o]
         self._set_universe_evaluator(lambda_o)
-        seed = self._get_confs_to_rescore(nconfs=1, site=True)[0]
-        if seed==[]:
+        seeds = [s for s in reversed(self._get_confs_to_rescore(site=True, minimize=True)[0])]
+
+        if seeds==[]:
           undock = False
         else:
-          self.confs['dock']['starting_pose'] = seed
-
+          self.confs['dock']['starting_poses'] = seeds
+          self.sampler['dock_SmartDarting'].set_confs(seeds)
+          self.universe.setConfiguration(Configuration(self.universe,seeds[0]))
+          
           # Ramp up the temperature
           T_LOW = 20.
           T_SERIES = T_LOW*(self.T_TARGET/T_LOW)**(np.arange(30)/29.)
-          self.universe.setConfiguration(Configuration(self.universe,seed[0]))
           for T in T_SERIES:
             self.sampler['init'](steps = 500, T=T,\
               delta_t=self.delta_t, steps_per_trial = 100, \
               seed=int(time.time()+T))
-          seed = [self.universe.configuration().array]
+          seeds = [self.universe.configuration().array]
 
           # Simulate
           sim_start_time = time.time()
           (confs, Es_tot, lambda_o['delta_t'], Ht) = \
             self._initial_sim_state(\
-              seed*self.params['dock']['seeds_per_state'], 'dock', lambda_o)
+              seeds*self.params['dock']['seeds_per_state'], 'dock', lambda_o)
 
           # Get state energies
           E = self._calc_E(confs)
@@ -1457,6 +1327,8 @@ last modified {2}
         self._save('dock')
         self._store_infinite_f_RL()
         raise Exception('Too many consecutive rejected stages!')
+
+      # TODO: Add seeds to SmartDarting integrator
 
       # Randomly select seeds for new trajectory
       u_o = self._u_kln([E],[lambda_o])
@@ -1934,14 +1806,11 @@ last modified {2}
     """
     Calculates the energy for poses from self._FNs['score']
     """
-    # Set up universe for minimization
-    if minimize:
-      lambda_o = self._lambda(1.0, 'dock', MM=True, site=True, crossed=False)
-      self.dock_protocol = [lambda_o]
-      self._set_universe_evaluator(lambda_o)
+    lambda_o = self._lambda(1.0, 'dock', MM=True, site=True, crossed=False)
+    self._set_universe_evaluator(lambda_o)
 
     # Load the poses
-    (confs, Es) = self._get_confs_to_rescore(minimize=minimize)
+    (confs, Es) = self._get_confs_to_rescore(site=False, minimize=minimize)
 
     # Calculate MM energies
     prefix = 'xtal' if self._FNs['score']=='default' else \
@@ -2027,7 +1896,9 @@ last modified {2}
               self.params['dock']['site_measured']
           else:
             print '\n*** Measuring the binding site ***'
-            (confs, Es) = self._get_confs_to_rescore()
+            self._set_universe_evaluator(\
+              self._lambda(1.0, 'dock', MM=True, site=False, crossed=False))
+            (confs, Es) = self._get_confs_to_rescore(site=False, minimize=True)
             if len(confs)>0:
               # Use the center of mass for configurations
               # within 20 RT of the lowest energy
@@ -2168,9 +2039,6 @@ last modified {2}
     Initializes a state, returning the configurations and potential energy.
     """
     
-    doMC = (process == 'dock') and (self.params['dock']['MCMC_moves']>0) \
-      and (lambda_k['a'] > 0.0) and (lambda_k['a'] < 0.01)
-
     results = []
     if self._cores>1:
       # Multiprocessing code
@@ -2178,7 +2046,7 @@ last modified {2}
       task_queue = m.Queue()
       done_queue = m.Queue()
       for k in range(len(seeds)):
-        task_queue.put((seeds[k], process, lambda_k, doMC, True, k))
+        task_queue.put((seeds[k], process, lambda_k, True, k))
       processes = [multiprocessing.Process(target=self._sim_one_state_worker, \
           args=(task_queue, done_queue)) for p in range(self._cores)]
       for p in range(self._cores):
@@ -2193,7 +2061,7 @@ last modified {2}
     else:
       # Single process code
       results = [self._sim_one_state(\
-        seeds[k], process, lambda_k, doMC, True, k) for k in range(len(seeds))]
+        seeds[k], process, lambda_k, True, k) for k in range(len(seeds))]
 
     confs = [result['confs'] for result in results]
     potEs = [result['E_MM'] for result in results]
@@ -2387,12 +2255,9 @@ last modified {2}
         E['acc_MC'] = np.zeros(K, dtype=float)
       Ht = np.zeros(K, dtype=float)
       # Sample within each state
-      doMC = [(process == 'dock') and (self.params['dock']['MCMC_moves']>0) \
-        and (lambdas[state_inds[k]]['a'] > 0.0) \
-        and (lambdas[state_inds[k]]['a'] < 0.01) for k in range(K)]
       if self._cores>1:
         for k in range(K):
-          task_queue.put((confs[k], process, lambdas[state_inds[k]], doMC[k], False, k))
+          task_queue.put((confs[k], process, lambdas[state_inds[k]], False, k))
         for p in range(self._cores):
           task_queue.put('STOP')
         processes = [multiprocessing.Process(target=self._sim_one_state_worker, \
@@ -2408,7 +2273,7 @@ last modified {2}
       else:
         # Single process code
         results = [self._sim_one_state(confs[k], process, \
-            lambdas[state_inds[k]], doMC[k], False, k) for k in range(K)]
+            lambdas[state_inds[k]], False, k) for k in range(K)]
       # GMC
       if whether_do_gMC:
         gMC_start_time = time.time()
@@ -2531,6 +2396,8 @@ last modified {2}
       else:
         self.confs[process]['samples'][state].append([])
 
+    # TODO: Change seeds to SmartDarting integrator
+
     setattr(self,'_%s_cycle'%process,cycle + 1)
     self._save(process)
     self._clear_lock(process)
@@ -2543,7 +2410,7 @@ last modified {2}
       result = self._sim_one_state(*args)
       output.put(result)
 
-  def _sim_one_state(self, seed, process, lambda_k, doMC,
+  def _sim_one_state(self, seed, process, lambda_k, \
       initialize=False, reference=None):
     self.universe.setConfiguration(Configuration(self.universe, seed))
     
@@ -2559,10 +2426,14 @@ last modified {2}
       delta_t = 1.5*MMTK.Units.fs
     
     # Perform MCMC moves
-    if doMC:
+    if (process == 'dock') and (self.params['dock']['MCMC_moves']>0) \
+        and (lambda_k['a'] > 0.0) and (lambda_k['a'] < 0.01):
       MC_start_time = time.time()
       results['acc_MC'] = self._MC_translate_rotate(lambda_k, trials=20)/20.
       results['MC_time'] = (time.time() - MC_start_time)
+    
+    # Performs Smart Darting
+    self.sampler[process+'_SmartDarting'](ntrials=10, T=lambda_k['T'])
     
     # Execute sampler
     if initialize:
@@ -2615,7 +2486,7 @@ last modified {2}
         self._set_lock('dock')
         self.tee(">>> Reinitializing replica exchange configurations")
         confs = self._get_confs_to_rescore(\
-          nconfs=len(self.dock_protocol), site=True)[0]
+          nconfs=len(self.dock_protocol), site=True, minimize=True)[0]
         self._clear_lock('dock')
         if len(confs)>0:
           self.confs['dock']['replicas'] = confs
@@ -2669,8 +2540,7 @@ last modified {2}
 
     return True # The process has completed
 
-  def _get_confs_to_rescore(self, nconfs=None, site=False, \
-      energies=True, minimize=True):
+  def _get_confs_to_rescore(self, nconfs=None, site=False, minimize=True):
     """
     Returns configurations to rescore and their corresponding energies 
     as a tuple of lists, ordered by DECREASING energy.
@@ -2696,7 +2566,10 @@ last modified {2}
       Es = {}
     elif self._FNs['score'].endswith('.mol2') or \
          self._FNs['score'].endswith('.mol2.gz'):
-      (confs,Es) = self._read_dock6(self._FNs['score'], site=site)
+      import AlGDock.IO
+      IO_dock6_mol2 = AlGDock.IO.dock6_mol2()
+      (confs, Es) = IO_dock6_mol2.read(self._FNs['score'], \
+        reorder=self.molecule.inv_prmtop_atom_order)
       count['dock6'] = len(confs)
     elif self._FNs['score'].endswith('.nc'):
       from netCDF4 import Dataset
@@ -2721,19 +2594,41 @@ last modified {2}
       count['initial_dock'] = len(self.confs['dock']['seeds'])
 
     if len(confs)==0:
-      return ([],[])
-    
-    if not energies:
-      return (confs,[])
-    
-    # Minimize each configuration
-    self._set_universe_evaluator(\
-      self._lambda(1.0, 'dock', MM=True, site=site, crossed=False))
+      return ([],{})
+
+    if site:
+      # Filters out configurations not in the binding site
+      confs_in_site = []
+      Es_in_site = dict([(label,[]) for label in Es.keys()])
+      old_eval = self.universe._evaluator[(None,None,None)]
+      self._set_universe_evaluator({'site':True,'T':self.T_TARGET})
+      for n in range(len(confs)):
+        self.universe.setConfiguration(Configuration(self.universe, confs[n]))
+        if self.universe.energy()<1.:
+          confs_in_site.append(confs[n])
+          for label in Es.keys():
+            Es_in_site[label].append(Es[label][n])
+      self.universe._evaluator[(None,None,None)] = old_eval
+      confs = confs_in_site
+      Es = Es_in_site
+
+    try:
+      self.universe.energy()
+    except ValueError:
+      return (confs,{})
 
     if minimize:
       Es = {}
       from MMTK.Minimization import SteepestDescentMinimizer # @UnresolvedImport
       minimizer = SteepestDescentMinimizer(self.universe)
+      for rep in range(5):
+        x_o = np.copy(self.universe.configuration().array)
+        e_o = self.universe.energy()
+        minimizer(steps = 50)
+        e_n = self.universe.energy()
+        if np.isnan(e_n) or (e_o-e_n)<1000:
+          self.universe.configuration().array = x_o
+          break
 
       minimized_confs = []
       min_start_time = time.time()
@@ -2797,7 +2692,7 @@ last modified {2}
     f_k_BAR = np.cumsum(f_k_BAR)
     try:
       f_k_MBAR = pymbar.MBAR(u_kln, N_k,
-        verbose = False, method = 'adaptive',
+        verbose = False,
         initial_f_k = f_k_BAR,
         maximum_iterations = 20).f_k
     except:
@@ -3003,12 +2898,14 @@ last modified {2}
     for phase in phases:
       if phase in ['Gas','GBSA','PBSA'] and not 'sander' in programs:
         programs.append('sander')
-      elif phase in ['NAMD_Gas','NAMD_GBSA'] and not 'namd' in programs:
+      elif phase.startswith('NAMD') and not 'namd' in programs:
         programs.append('namd')
       elif phase in ['APBS'] and not 'apbs' in programs:
         programs.extend(['apbs','ambpdb','molsurf'])
     for program in programs:
       self._FNs[program] = a.findPaths([program])[program]
+    # TODO: This does not seem to keep the environment variables
+    # for sander in subprocess.
     a.loadModules(programs)
 
   def _postprocess(self,
@@ -3124,15 +3021,17 @@ last modified {2}
       
       if phase in ['Gas','GBSA','PBSA']:
         traj_FN = join(p_dir,'%s.%s.mdcrd'%(prefix,moiety))
-      elif phase in ['NAMD_Gas','NAMD_GBSA']:
+      elif phase.startswith('NAMD'):
         traj_FN = join(p_dir,'%s.%s.dcd'%(prefix,moiety))
+      elif phase.startswith('OpenMM'):
+        traj_FN = None
       elif phase in ['APBS']:
         traj_FN = join(p_dir,'%s.%s.pqr'%(prefix,moiety))
       outputname = join(p_dir,'%s.%s%s'%(prefix,moiety,phase))
 
       # Writes trajectory
       self._write_traj(traj_FN, confs, moiety)
-      if not traj_FN in toClean:
+      if (traj_FN is not None) and (not traj_FN in toClean):
         toClean.append(traj_FN)
 
       # Queues the calculations
@@ -3244,8 +3143,10 @@ last modified {2}
       start_time = time.time()
       if phase in ['Gas','GBSA','PBSA']:
         E = self._sander_Energy(*args)
-      elif phase in ['NAMD_Gas','NAMD_GBSA']:
+      elif phase.startswith('NAMD'):
         E = self._NAMD_Energy(*args)
+      elif phase.startswith('OpenMM'):
+        E = self._OpenMM_Energy(*args)
       elif phase in ['APBS']:
         E = self._APBS_Energy(*args)
       wall_time = time.time() - start_time
@@ -3333,17 +3234,24 @@ last modified {2}
         E['R'+phase] = self.params['dock']['receptor_'+phase]
         for moiety in ['L','RL']:
           outputname = join(self.dir['dock'],'%s.%s%s'%(prefix,moiety,phase))
-          if phase in ['NAMD_Gas','NAMD_GBSA']:
-            traj_FN = join(self.dir['dock'],'%s.%s.dcd'%(prefix,moiety))
-            self._write_traj(traj_FN, confs, moiety)
-            E[moiety+phase] = self._NAMD_Energy(confs, moiety, phase, traj_FN, outputname, debug=debug)
-          elif phase in ['Gas','GBSA','PBSA']:
+          if phase in ['Gas','GBSA','PBSA']:
             traj_FN = join(self.dir['dock'],'%s.%s.mdcrd'%(prefix,moiety))
             self._write_traj(traj_FN, confs, moiety)
-            E[moiety+phase] = self._sander_Energy(confs, moiety, phase, traj_FN, outputname, debug=debug)
+            E[moiety+phase] = self._sander_Energy(confs, moiety, phase, \
+              traj_FN, outputname, debug=debug)
+          elif phase.startswith('NAMD'):
+            traj_FN = join(self.dir['dock'],'%s.%s.dcd'%(prefix,moiety))
+            self._write_traj(traj_FN, confs, moiety)
+            E[moiety+phase] = self._NAMD_Energy(confs, moiety, phase, \
+              traj_FN, outputname, debug=debug)
+          elif phase.startswith('OpenMM'):
+            traj_FN = None
+            E[moiety+phase] = self._OpenMM_Energy(confs, moiety, phase, \
+              traj_FN, outputname, debug=debug)
           elif phase in ['APBS']:
             traj_FN = join(self.dir['dock'],'%s.%s.pqr'%(prefix,moiety))
-            E[moiety+phase] = self._APBS_Energy(confs, moiety, phase, traj_FN, outputname, debug=debug)
+            E[moiety+phase] = self._APBS_Energy(confs, moiety, phase, \
+              traj_FN, outputname, debug=debug)
           else:
             raise Exception('Unknown phase!')
           if not traj_FN in toClear:
@@ -3353,7 +3261,7 @@ last modified {2}
           os.remove(FN)
     return E
 
-  def _sander_Energy(self, confs, moiety, phase, AMBER_mdcrd_FN,
+  def _sander_Energy(self, confs, moiety, phase, AMBER_mdcrd_FN, \
       outputname=None, debug=False, reference=None):
     self.dir['out'] = os.path.dirname(os.path.abspath(AMBER_mdcrd_FN))
     script_FN = '%s%s.in'%('.'.join(AMBER_mdcrd_FN.split('.')[:-1]),phase)
@@ -3480,12 +3388,60 @@ last modified {2}
 
     return np.array(E, dtype=float)*MMTK.Units.kcal/MMTK.Units.mol
 
+  def _OpenMM_Energy(self, confs, moiety, phase, traj_FN=None, \
+      outputname=None, debug=False, reference=None):
+    import simtk.openmm
+    import simtk.openmm.app as OpenMM_app
+    # Set up the simulation
+    key = moiety+phase
+    if not key in self._OpenMM_sims.keys():
+      prmtop = OpenMM_app.AmberPrmtopFile(self._FNs['prmtop'][moiety])
+      inpcrd = OpenMM_app.AmberInpcrdFile(self._FNs['inpcrd'][moiety])
+      OMM_system = prmtop.createSystem(nonbondedMethod=OpenMM_app.NoCutoff, \
+        constraints=None, implicitSolvent={
+          'OpenMM_Gas':None,
+          'OpenMM_GBn':OpenMM_app.GBn,
+          'OpenMM_GBn2':OpenMM_app.GBn2,
+          'OpenMM_HCT':OpenMM_app.HCT,
+          'OpenMM_OBC1':OpenMM_app.OBC1,
+          'OpenMM_OBC2':OpenMM_app.OBC2}[phase])
+      dummy_integrator = simtk.openmm.LangevinIntegrator(300*simtk.unit.kelvin, \
+        1/simtk.unit.picosecond, 0.002*simtk.unit.picoseconds)
+      # platform = simtk.openmm.Platform.getPlatformByName('CPU')
+      self._OpenMM_sims[key] = OpenMM_app.Simulation(prmtop.topology, \
+        OMM_system, dummy_integrator)
+
+    # Prepare the conformations by combining with the receptor if necessary
+    if (moiety.find('R')>-1):
+      receptor_0 = self.confs['receptor'][:self._ligand_first_atom,:]
+      receptor_1 = self.confs['receptor'][self._ligand_first_atom:,:]
+    if not isinstance(confs,list):
+      confs = [confs]
+    if (moiety.find('R')>-1):
+      if (moiety.find('L')>-1):
+        confs = [np.vstack((receptor_0, \
+          conf[self.molecule.prmtop_atom_order,:], \
+          receptor_1)) for conf in confs]
+      else:
+        confs = [self.confs['receptor']]
+    else:
+      confs = [conf[self.molecule.prmtop_atom_order,:] for conf in confs]
+    
+    # Calculate the energies
+    E = []
+    for conf in confs:
+      self._OpenMM_sims[key].context.setPositions(conf)
+      s = self._OpenMM_sims[key].context.getState(getEnergy=True)
+      E.append([0., s.getPotentialEnergy()/simtk.unit.kilojoule*simtk.unit.mole])
+    return np.array(E, dtype=float)*MMTK.Units.kJ/MMTK.Units.mol
+
   def _APBS_Energy(self, confs, moiety, phase, pqr_FN, outputname,
       debug=False, reference=None, factor=1.0/MMTK.Units.Ang):
     """
     Uses NAMD to calculate the energy of a set of configurations
     Units are the MMTK standard, kJ/mol
     """
+    # TODO: Include internal energy
     # Prepare configurations for writing to crd file
     if (moiety.find('R')>-1):
       receptor_0 = factor*self.confs['receptor'][:self._ligand_first_atom,:]
@@ -3682,35 +3638,6 @@ END
       self.tee("  wrote %d configurations to %s"%(len(confs), traj_FN))
     else:
       raise Exception('Unknown trajectory type')
-      
-  def _read_dock6(self, pose_FN, site=False):
-    """
-    Read output from UCSF DOCK 6.
-    site, if true, will only keep conformations inside the site
-    The units of the DOCK suite of programs are 
-      lengths in angstroms, 
-      masses in atomic mass units, 
-      charges in electron charges units, and 
-      energies in kcal/mol
-    """
-    import AlGDock.IO
-    IO_dock6_mol2 = AlGDock.IO.dock6_mol2()
-    (crds_o, E_o) = IO_dock6_mol2.read(pose_FN, \
-      reorder=self.molecule.inv_prmtop_atom_order)
-
-    if site:
-      crds = []
-      E = dict([(label,[]) for label in E_o.keys()])
-      self._set_universe_evaluator({'site':True,'T':self.T_TARGET})
-      for n in range(len(crds_o)):
-        self.universe.setConfiguration(Configuration(self.universe, crds_o[n]))
-        if self.universe.energy()<1.:
-          crds.append(crds_o[n])
-          for label in E_o.keys():
-            E[label].append(E_o[label][n])
-      return (crds, E)
-    else:
-      return (crds_o, E_o)
 
   def _load_pkl_gz(self, FN):
     if os.path.isfile(FN) and os.path.getsize(FN)>0:
@@ -3890,7 +3817,6 @@ if __name__ == '__main__':
   
   for key in arguments.keys():
     parser.add_argument('--'+key, **arguments[key])
-  
   args = parser.parse_args()
 
   if args.run_type in ['render_docked', 'render_intermediates']:
