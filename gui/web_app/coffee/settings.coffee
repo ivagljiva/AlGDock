@@ -21,8 +21,14 @@
       return
     return
 
+  populateProtocols = (protocolJson) ->
+    protocolJson = JSON.parse protocolJson
+    renderList "protocolScript", {"protocolList": protocolJson.protocol}
+    return
+
   ### Main ###
   httpGet("http://127.0.0.1:5000/api/v1.0/proteins", populateProteins)
+  httpGet("http://127.0.0.1:5000/api/v1.0/protocols", populateProtocols)
 
   return
 
