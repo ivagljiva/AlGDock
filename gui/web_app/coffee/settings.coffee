@@ -24,6 +24,11 @@
   populateProtocols = (protocolJson) ->
     protocolJson = JSON.parse protocolJson
     renderList "protocolScript", {"protocolList": protocolJson.protocol}
+
+    $("#protocolScript li a").click () ->
+      selectedProtocol = $(this).html()
+      $("#protocolDropdownBtn").html selectedProtocol
+      return
     return
 
   ### Main ###

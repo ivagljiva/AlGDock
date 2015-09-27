@@ -28,6 +28,11 @@
     renderList("protocolScript", {
       "protocolList": protocolJson.protocol
     });
+    $("#protocolScript li a").click(function() {
+      var selectedProtocol;
+      selectedProtocol = $(this).html();
+      $("#protocolDropdownBtn").html(selectedProtocol);
+    });
   };
 
   /* Main */
