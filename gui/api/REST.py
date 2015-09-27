@@ -32,7 +32,7 @@ def get_ligand_names(protein):
 
 @app.route('/api/v1.0/protocols', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-def get_protocols(parameter):
+def get_protocols():
     choices = arguments['protocol']['choices']
     choice_lst = [{"choice": choice} for choice in choices]
     return jsonify({"protocol": choice_lst})
