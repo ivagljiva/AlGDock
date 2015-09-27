@@ -25,12 +25,12 @@
   };
   populateProtocols = function(protocolJson) {
     protocolJson = JSON.parse(protocolJson);
-    renderlist("protocolScript", {
-      "protocolList": protocolJson.protocols
+    renderList("protocolScript", {
+      "protocolList": protocolJson.protocol
     });
   };
 
   /* Main */
   httpGet("http://127.0.0.1:5000/api/v1.0/proteins", populateProteins);
-  populateProtocols;
+  httpGet("http://127.0.0.1:5000/api/v1.0/protocols", populateProtocols);
 })(window);
