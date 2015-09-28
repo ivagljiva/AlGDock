@@ -60,7 +60,7 @@ def get_phases():
 
 @app.route('/api/v1.0/runtypes', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-def get_phases():
+def get_runtype():
     choices = arguments['run_type']['choices']
     choice_lst = [{"choice": choice} for choice in choices]
     return jsonify({"runtype": choice_lst})
