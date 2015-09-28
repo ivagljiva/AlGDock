@@ -43,7 +43,7 @@
 
   populateSites = (siteJson) ->
     siteJson = JSON.parse siteJson
-    renderList "siteScript", {"siteList": siteJson.sampler}
+    renderList "siteScript", {"siteList": siteJson.site}
 
     $("#siteScript li a").click () ->
       selectedsite = $(this).html()

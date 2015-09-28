@@ -48,7 +48,7 @@
   populateSites = function(siteJson) {
     siteJson = JSON.parse(siteJson);
     renderList("siteScript", {
-      "siteList": siteJson.sampler
+      "siteList": siteJson.site
     });
     $("#siteScript li a").click(function() {
       var selectedsite;
