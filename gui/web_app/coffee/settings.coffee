@@ -47,11 +47,11 @@
 
     $("#siteScript li a").click () ->
       selectedsite = $(this).html()
-      $("#siteDropdownBtn").html sitesampler
+      $("#siteDropdownBtn").html selectedsite
       return
     return
 
-  populatePhase = (phaseJson) ->
+  populatePhases = (phaseJson) ->
     phaseJson = JSON.parse phaseJson
     renderList "phaseScript", {"phaseList": phaseJson.phase}
 
@@ -61,12 +61,23 @@
       return
     return
 
+  populateRuntypes = (runtypeJson) ->
+    runtypeJson = JSON.parse runtypeJson
+    renderList "runtypeScript", {"runtypeList": runtypeJson.runtype}
+
+    $("#runtypeScript li a").click () ->
+      selectedruntype = $(this).html()
+      $("#runtypeDropdownBtn").html selectedruntype
+      return
+    return
+
   ### Main ###
   httpGet("http://127.0.0.1:5000/api/v1.0/proteins", populateProteins)
   httpGet("http://127.0.0.1:5000/api/v1.0/protocols", populateProtocols)
   httpGet("http://127.0.0.1:5000/api/v1.0/samplers", populateSamplers)
   httpGet("http://127.0.0.1:5000/api/v1.0/sites", populateSites)
-  httpGet("http://127.0.0.1:5000/api/v1.0/phases", populatePhase)
+  httpGet("http://127.0.0.1:5000/api/v1.0/phases", populatePhases)
+  httpGet("http://127.0.0.1:5000/api/v1.0/phases", populateRuntypes)
 
   return
 

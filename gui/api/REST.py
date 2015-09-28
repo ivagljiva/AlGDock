@@ -58,10 +58,17 @@ def get_phases():
     choice_lst = [{"choice": choice} for choice in choices]
     return jsonify({"phase": choice_lst})
 
-@app.route('/api/v1.0/run/<protein>/<ligand>', methods=['GET', 'OPTIONS'])
+@app.route('/api/v1.0/runtypes', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-def run(protein, ligand):
-    return "Protein selected: %s; Ligand selected: %s" % (protein, ligand)
+def get_phases():
+    choices = arguments['run_type']['choices']
+    choice_lst = [{"choice": choice} for choice in choices]
+    return jsonify({"runtype": choice_lst})
+
+@app.route('/api/v1.0/run/<protein>/<ligand>/<protocol>/<runtype>/<cthermspeed>/<dthermspeed>/<sampler>/<mcmc>/<seedperstate>/<stepsperseed>/<sweepspercycle>/<attemptspersweep>/<stepspersweep>/<crepxcycles>/<drepxcycles>/<site>/<sxcenter>/<sycenter>/<szcenter>/<sradius>/<sdensity>/<phase>/<cores>/<rmsd>/', methods=['GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def run(protein, ligand, protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd):
+    return "Protein selected: %s; Ligand selected: %s; Protocol selected: %s; Run Type selected: %s; cthermspeed selected: %s; dthermspeed selected: %s; sampler selected: %s; mcmc selected: %s; seedperstate selected: %s; stepsperseed selected: %s; sweepspercycle selected: %s; attemptspersweep selected: %s; stepspersweep selected: %s; crepxcycles selected: %s; drepxcycles selected: %s; site selected: %s; Site center: X: %s Y: %s Z: %s; sradius selected: %s; sdensity selected: %s; phase selected: %s; cores selected: %s; rmsd selected: %s;)" % (protein, ligand, protocol, cthermspeed, dthermspeed, sampler, mcmc, seedperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd)
 
 if __name__ == '__main__':
     app.run(debug=True)
