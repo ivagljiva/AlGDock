@@ -85,5 +85,5 @@
   httpGet("http://127.0.0.1:5000/api/v1.0/samplers", populateSamplers);
   httpGet("http://127.0.0.1:5000/api/v1.0/sites", populateSites);
   httpGet("http://127.0.0.1:5000/api/v1.0/phases", populatePhases);
-  httpGet("http://127.0.0.1:5000/api/v1.0/runtype", populateRuntypes);
+  httpGet("http://127.0.0.1:5000/api/v1.0/runtypes", populateRuntypes);
 })(window);
