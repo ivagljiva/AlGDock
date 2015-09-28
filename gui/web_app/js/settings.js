@@ -1,5 +1,5 @@
 (function(window) {
-  var populateLigands, populateProteins, populateProtocols;
+  var populateLigands, populatePhase, populateProteins, populateProtocols, populateSamplers, populateSites;
   populateProteins = function(proteinJson) {
     proteinJson = JSON.parse(proteinJson);
     renderList("proteinScript", {
@@ -34,8 +34,44 @@
       $("#protocolDropdownBtn").html(selectedProtocol);
     });
   };
+  populateSamplers = function(samplerJson) {
+    samplerJson = JSON.parse(samplerJson);
+    renderList("samplerScript", {
+      "samplerList": samplerJson.sampler
+    });
+    $("#samplerScript li a").click(function() {
+      var selectedsampler;
+      selectedsampler = $(this).html();
+      $("#samplerDropdownBtn").html(selectedsampler);
+    });
+  };
+  populateSites = function(siteJson) {
+    siteJson = JSON.parse(siteJson);
+    renderList("siteScript", {
+      "siteList": siteJson.sampler
+    });
+    $("#siteScript li a").click(function() {
+      var selectedsite;
+      selectedsite = $(this).html();
+      $("#siteDropdownBtn").html(sitesampler);
+    });
+  };
+  populatePhase = function(phaseJson) {
+    phaseJson = JSON.parse(phaseJson);
+    renderList("phaseScript", {
+      "phaseList": phaseJson.phase
+    });
+    $("#phaseScript li a").click(function() {
+      var selectedphase;
+      selectedphase = $(this).html();
+      $("#phaseDropdownBtn").html(selectedphase);
+    });
+  };
 
   /* Main */
   httpGet("http://127.0.0.1:5000/api/v1.0/proteins", populateProteins);
   httpGet("http://127.0.0.1:5000/api/v1.0/protocols", populateProtocols);
+  httpGet("http://127.0.0.1:5000/api/v1.0/samplers", populateSamplers);
+  httpGet("http://127.0.0.1:5000/api/v1.0/sites", populateSites);
+  httpGet("http://127.0.0.1:5000/api/v1.0/phases", populatePhase);
 })(window);

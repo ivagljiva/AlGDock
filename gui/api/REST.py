@@ -37,6 +37,27 @@ def get_protocols():
     choice_lst = [{"choice": choice} for choice in choices]
     return jsonify({"protocol": choice_lst})
 
+@app.route('/api/v1.0/samplers', methods=['GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def get_samplers():
+    choices = arguments['sampler']['choices']
+    choice_lst = [{"choice": choice} for choice in choices]
+    return jsonify({"sampler": choice_lst})
+
+@app.route('/api/v1.0/sites', methods=['GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def get_sites():
+    choices = arguments['site']['choices']
+    choice_lst = [{"choice": choice} for choice in choices]
+    return jsonify({"site": choice_lst})
+
+@app.route('/api/v1.0/phases', methods=['GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def get_phases():
+    choices = allowed_phases
+    choice_lst = [{"choice": choice} for choice in choices]
+    return jsonify({"phase": choice_lst})
+
 @app.route('/api/v1.0/run/<protein>/<ligand>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def run(protein, ligand):
