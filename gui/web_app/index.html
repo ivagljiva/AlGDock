@@ -45,6 +45,19 @@
       </div>
     </nav>
 
+    <!-- Dropdown for Protein Selection -->
+    <div class="dropdown display-inline">
+      <button class="btn btn-default dropdown-toggle" type="button" id="proteinDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Protein</button>
+      <ul id="proteinScript" class="dropdown-menu" aria-labelledby="proteinDropdownBtn">
+      </ul>
+    </div> <!--/.dropdown-->
+
+    <div class="dropdown display-inline">
+      <button class="btn btn-default dropdown-toggle" type="button" id="ligandDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Ligand(s)</button>
+      <ul id="ligandScript" class="dropdown-menu" aria-labelledby="ligandDropdownBtn">
+      </ul>
+    </div> <!--/.dropdown-->
+
     <!-- Modal -->
     <div id="settingsModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -56,17 +69,6 @@
             <h4 class="modal-title">Settings</h4>
 	  </div>
 	  <div class="modal-body">
-	    <div class="dropdown display-inline">
-	      <button class="btn btn-default dropdown-toggle" type="button" id="proteinDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Protein</button>
-	      <ul id="proteinScript" class="dropdown-menu" aria-labelledby="proteinDropdownBtn">
-	      </ul>
-	    </div> <!--/.dropdown-->
-
-	    <div class="dropdown display-inline">
-	      <button class="btn btn-default dropdown-toggle" type="button" id="ligandDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Ligand(s)</button>
-	      <ul id="ligandScript" class="dropdown-menu" aria-labelledby="ligandDropdownBtn">
-	      </ul>
-	    </div> <!--/.dropdown-->
 
 	    <div class="dropdown">
 	      <button class="btn btn-default dropdown-toggle" type="button" id="protocolDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Protocol</button>
@@ -181,7 +183,7 @@
     </div>
 
     <!-- Molview -->
-    <iframe style="width: 1000px; height: 1300px;" frameborder="0" src="http://molview.org/?cid=12766473"></iframe>
+    <!-- <iframe style="width: 1000px; height: 1300px;" frameborder="0" src="http://molview.org/?cid=12766473"></iframe> -->
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
