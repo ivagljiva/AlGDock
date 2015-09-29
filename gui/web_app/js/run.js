@@ -30,7 +30,7 @@
     selectedSiteDensity = $("#siteDensityTxtBox").val();
     selectedPhase = $("#phaseDropdownBtn").html();
     selectedCores = $("#coresTxtBox").val();
-    selectedRmsd = $("#rmsdChkBox").val();
+    selectedRmsd = $("#rmsdChkBox").is(':checked');
     if (selectedProtein !== "Select Protein" && selectedLigand !== "Select Ligand(s)") {
       httpGet("http://127.0.0.1:5000/api/v1.0/run/" + selectedProtein + "/" + selectedLigand + "/" + selectedProtocol + "/" + selectedRuntype + "/" + selectedCThermSpeed + "/" + selectedDThermSpeed + "/" + selectedSampler + "/" + selectedMcmc + "/" + selectedSeedsPerState + "/" + selectedStepsPerSeed + "/" + selectedSweepsPerCycle + "/" + selectedAttemptsPerSweep + "/" + selectedStepsPerSweep + "/" + selectedCRepXCycles + "/" + selectedDRepXCycles + "/" + selectedSite + "/" + selectedSiteCenterX + "/" + selectedSiteCenterY + "/" + selectedSiteCenterZ + "/" + selectedSiteMaxRadius + "/" + selectedSiteDensity + "/" + selectedPhase + "/" + selectedCores + "/" + selectedRmsd, displayMessage);
     }
