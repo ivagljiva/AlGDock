@@ -1,5 +1,16 @@
 ((window) ->
 
+  this.toggleEltDisabled = (elt, newState) ->
+    $("#{elt}").prop('disabled', newState)
+    return
+
+  this.toggleEltDisplay = (elt, state) ->
+    if state == 'show'
+      $("#{elt}").slideDown('slow')
+    else
+      $("#{elt}").slideUp('slow')
+    return
+
   this.renderList = (htmlID, data) ->
     compiledTemplate = TEMPLATES[htmlID]
     renderedTemplate = compiledTemplate.render(data)

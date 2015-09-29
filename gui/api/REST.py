@@ -21,7 +21,7 @@ from BindingPMF_arguments import *
 @crossdomain(origin='*')
 def get_protein_names():
     proteins = os.walk(TARGET).next()[1]
-    protein_lst = [{"filename": protein} for protein in sorted(proteins)]
+    protein_lst = [{"filename": protein} for protein in sorted(proteins) if protein != "scripts"]
     return jsonify({"files": protein_lst})
 
 
@@ -53,8 +53,18 @@ def upload_file():
 @crossdomain(origin='*')
 def get_ligand_names(protein):
     ligands = os.walk(os.path.join(TARGET, protein, "ligand")).next()[2]
-    ligand_lst = [{"filename": ligand} for ligand in sorted(ligands)]
+    ligand_lst = [{"filename": ligand} for ligand in sorted(ligands) if ".ism" in ligand]
     return jsonify({"files": ligand_lst})
+
+@app.route('/api/v1.0/ligandSelection/<protein>/<library>', methods=['GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def get_ligand_selections(protein, library):
+    trimmed_library = library.split(".ism")[0] + ".A__"
+    try:
+        ligand_selections = sorted(os.walk(os.path.join(TARGET, protein, "AlGDock/cool", trimmed_library)).next()[1])
+    except Exception:
+        ligand_selections = None
+    return jsonify({"ligandSelections": ligand_selections})
 
 @app.route('/api/v1.0/protocols', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
