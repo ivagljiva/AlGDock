@@ -1,5 +1,8 @@
 ((window) ->
 
+  selectedProtein = null
+  selectedLigand = null
+
   populateProteins = (proteinJson) ->
     proteinJson = JSON.parse proteinJson
     renderList "proteinScript", {"proteinList": proteinJson.files}
@@ -18,7 +21,32 @@
     $("#ligandScript li a").click () ->
       selectedLigand = $(this).html()
       $("#ligandDropdownBtn").html selectedLigand
+      httpGet("http://127.0.0.1:5000/api/v1.0/ligandSelection/#{selectedProtein}/#{selectedLigand}", ligandSearch)
       return
+    return
+
+  ligandSearch = (ligandJson) ->
+    ligandJson = JSON.parse ligandJson
+    ligandSelections = ligandJson.ligandSelections
+    if ligandSelections?
+      toggleEltDisabled "#ligandSearch", false
+
+      $( "#ligandSearch" ).keyup () ->
+        enteredText = $(this).val()
+        matchedLigandIds = ({"ligand": ligandId} for ligandId in ligandSelections when ligandId.startsWith(enteredText))
+
+        if matchedLigandIds.length > 0
+          renderList "ligandSelectionScript", {"ligandRegex": matchedLigandIds}
+          toggleEltDisplay("#ligandSelectionPanel", 'show')
+        else
+          $("#ligandSelectionScript").html('')
+          toggleEltDisplay("#ligandSelectionPanel", 'hide')
+
+
+        return
+
+    else
+      toggleEltDisabled "#ligandSearch", true
     return
 
   populateProtocols = (protocolJson) ->
