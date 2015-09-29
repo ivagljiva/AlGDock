@@ -53,11 +53,19 @@
     </div> <!--/.dropdown-->
 
     <div class="dropdown display-inline">
-      <button class="btn btn-default dropdown-toggle" type="button" id="ligandDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Ligand(s)</button>
+      <button class="btn btn-default dropdown-toggle" type="button" id="ligandDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Ligand Library</button>
       <ul id="ligandScript" class="dropdown-menu" aria-labelledby="ligandDropdownBtn">
       </ul>
     </div> <!--/.dropdown-->
 
+    <input id="ligandSearch" type="text" class="form-control" placeholder="Ligand ID" disabled>
+    <span class="input-group-btn">
+      <!-- <button class="ligandSearch btn btn-default" type="button" disabled>Search</button> -->
+    </span>
+    <div id="ligandSelectionPanel" class="panel panel-default" style="display: none">
+      <div id="ligandSelectionScript" class="panel-body">
+      </div>
+    </div>
     <!-- Modal -->
     <div id="settingsModal" class="modal fade" role="dialog">
       <div class="modal-dialog">

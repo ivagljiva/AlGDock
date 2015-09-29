@@ -1,12 +1,13 @@
 (function(window) {
-  var populateLigands, populatePhases, populateProteins, populateProtocols, populateRuntypes, populateSamplers, populateSites;
+  var ligandSearch, populateLigands, populatePhases, populateProteins, populateProtocols, populateRuntypes, populateSamplers, populateSites, selectedLigand, selectedProtein;
+  selectedProtein = null;
+  selectedLigand = null;
   populateProteins = function(proteinJson) {
     proteinJson = JSON.parse(proteinJson);
     renderList("proteinScript", {
       "proteinList": proteinJson.files
     });
     $("#proteinScript li a").click(function() {
-      var selectedProtein;
       selectedProtein = $(this).html();
       $("#proteinDropdownBtn").html(selectedProtein);
       httpGet("http://127.0.0.1:5000/api/v1.0/ligands/" + selectedProtein, populateLigands);
@@ -18,10 +19,46 @@
       "ligandList": ligandJson.files
     });
     $("#ligandScript li a").click(function() {
-      var selectedLigand;
       selectedLigand = $(this).html();
       $("#ligandDropdownBtn").html(selectedLigand);
+      httpGet("http://127.0.0.1:5000/api/v1.0/ligandSelection/" + selectedProtein + "/" + selectedLigand, ligandSearch);
     });
+  };
+  ligandSearch = function(ligandJson) {
+    var ligandSelections;
+    ligandJson = JSON.parse(ligandJson);
+    ligandSelections = ligandJson.ligandSelections;
+    if (ligandSelections != null) {
+      toggleEltDisabled("#ligandSearch", false);
+      $("#ligandSearch").keyup(function() {
+        var enteredText, ligandId, matchedLigandIds;
+        enteredText = $(this).val();
+        matchedLigandIds = (function() {
+          var i, len, results;
+          results = [];
+          for (i = 0, len = ligandSelections.length; i < len; i++) {
+            ligandId = ligandSelections[i];
+            if (ligandId.startsWith(enteredText)) {
+              results.push({
+                "ligand": ligandId
+              });
+            }
+          }
+          return results;
+        })();
+        if (matchedLigandIds.length > 0) {
+          renderList("ligandSelectionScript", {
+            "ligandRegex": matchedLigandIds
+          });
+          toggleEltDisplay("#ligandSelectionPanel", 'show');
+        } else {
+          $("#ligandSelectionScript").html('');
+          toggleEltDisplay("#ligandSelectionPanel", 'hide');
+        }
+      });
+    } else {
+      toggleEltDisabled("#ligandSearch", true);
+    }
   };
   populateProtocols = function(protocolJson) {
     protocolJson = JSON.parse(protocolJson);
