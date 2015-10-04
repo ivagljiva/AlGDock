@@ -1,4 +1,5 @@
 (function(window) {
+  var key;
   this.toggleEltDisabled = function(elt, newState) {
     $("" + elt).prop('disabled', newState);
   };
@@ -15,7 +16,7 @@
     renderedTemplate = compiledTemplate.render(data);
     $("#" + htmlID).html(renderedTemplate);
   };
-  return this.httpGet = function(url, callback) {
+  this.httpGet = function(url, callback) {
     var xmlHttp;
     xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
@@ -25,5 +26,18 @@
     };
     xmlHttp.open("GET", url, true);
     xmlHttp.send(null);
+  };
+
+  /* Ligand Id Conversions */
+  key = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+  /* Returns a 3-letter code corresponding to a base-10 number */
+  this.code = function(val) {
+    return key[Math.floor(val / 36 / 36) % 36] + key[Math.floor(val / 36) % 36] + key[val % 36];
+  };
+
+  /* Returns a base-10 number corresponding to a 3-letter code */
+  return this.base10val = function(code) {
+    return key.indexOf(code[0]) * 36 * 36 + key.indexOf(code[1]) * 36 + key.indexOf(code[2]);
   };
 })(window);
