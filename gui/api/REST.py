@@ -4,7 +4,7 @@ import os
 from cross_domain import *
 
 app = Flask(__name__)
-ALLOWED_EXTENSIONS = set(['mol'])
+ALLOWED_EXTENSIONS = set(['mol', 'smi'])
 
 try:
     TARGET = os.environ['TARGET']
@@ -23,31 +23,6 @@ def get_protein_names():
     proteins = os.walk(TARGET).next()[1]
     protein_lst = [{"filename": protein} for protein in sorted(proteins) if protein != "scripts"]
     return jsonify({"files": protein_lst})
-
-
-def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
-@app.route('/api/v1.0/molselect', methods=['GET', 'POST'])
-@crossdomain(origin='*')
-def upload_file():
-    if request.method == 'POST':
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
 
 @app.route('/api/v1.0/ligands/<protein>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
