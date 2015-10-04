@@ -38,9 +38,9 @@
           results = [];
           for (i = 0, len = ligandSelections.length; i < len; i++) {
             ligandId = ligandSelections[i];
-            if (ligandId.startsWith(enteredText)) {
+            if (ligandId.indexOf(enteredText) > -1) {
               results.push({
-                "ligand": ligandId
+                "ligand": ligandId + " - " + (base10val(ligandId.substring(0, 3)))
               });
             }
           }

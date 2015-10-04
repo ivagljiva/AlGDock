@@ -33,7 +33,7 @@
 
       $( "#ligandSearch" ).keyup () ->
         enteredText = $(this).val()
-        matchedLigandIds = ({"ligand": ligandId} for ligandId in ligandSelections when ligandId.startsWith(enteredText))
+        matchedLigandIds = ({"ligand": "#{ligandId} - #{base10val(ligandId.substring(0, 3))}"} for ligandId in ligandSelections when ligandId.indexOf(enteredText) > -1)
 
         if matchedLigandIds.length > 0
           renderList "ligandSelectionScript", {"ligandRegex": matchedLigandIds}
