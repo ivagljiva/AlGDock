@@ -1,7 +1,7 @@
 ((window) ->
 
   displayMessage = (message) ->
-  fs = require "fs"
+  preferencesFile = require 'fs'
   preferencesFile.writeFile "BindingPMF_preferences.py", message, (error) -> 
     alert "Error occurred while writing preferences file" if error
   return
