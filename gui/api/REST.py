@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 
 import os
+import json
 from cross_domain import *
 
 app = Flask(__name__)
@@ -39,6 +40,31 @@ def get_ligand_selections(protein, library):
     except Exception:
         ligand_selections = None
     return jsonify({"ligandSelections": ligand_selections})
+
+@app.route('/api/v1.0/ligandLine/<protein>/<library>/<lineNumber>', methods=['GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def get_ligand_line(protein, library, lineNumber):
+    try:
+        path = os.path.join(TARGET, protein, "ligand", library)
+        library_f = open(path, 'r')
+        for i, line in enumerate(library_f):
+            if i == int(lineNumber) - 1:
+                return line.split()[0]
+        library_f.close()
+    except Exception:
+        return None
+
+@app.route('/api/v1.0/addToLibrary/<protein>/', methods=['POST', 'OPTIONS'])
+@crossdomain(origin='*')
+def add_to_library(protein):
+    fileJson = request.get_json()
+    libraryName = fileJson["libraryName"]
+    smiles = fileJson["smiles"]
+    library_f = open(os.path.join(TARGET, protein, "ligand", libraryName), 'a')
+    library_f.write(smiles)
+    library_f.write("\n")
+    library_f.close()    
+    return "Added ligand to library."
 
 @app.route('/api/v1.0/protocols', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
