@@ -1,12 +1,10 @@
 (function(window) {
   var displayMessage, preferencesFile;
   displayMessage = function(message) {};
-  preferencesFile = require('fs');
-  preferencesFile.writeFile("BindingPMF_preferences.py", message, function(error) {
-    if (error) {
-      return alert("Error occurred while writing preferences file");
-    }
-  });
+  preferencesFile = new File("./BindingPMF_preferences.py");
+  preferencesFile.open("w");
+  preferencesFile.write(message);
+  preferencesFile.close();
   return;
 
   /* Listeners */
