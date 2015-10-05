@@ -1,10 +1,11 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, redirect, url_for
 
 import os
 import json
 from cross_domain import *
 
 app = Flask(__name__)
+ALLOWED_EXTENSIONS = set(['mol', 'smi'])
 
 try:
     TARGET = os.environ['TARGET']

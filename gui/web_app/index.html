@@ -38,6 +38,9 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
           </ul>
+      <ul class="nav navbar-nav navbar-left">
+            <li><a href="#" data-toggle="modal" data-target="#upLoadMolModal">Upload mol for SMILES conversion</a></li>
+	  </ul> 
 	  <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-toggle="modal" data-target="#settingsModal">Settings</a></li>
 	  </ul>
@@ -67,6 +70,47 @@
       </div>
     </div>
     <!-- Modal -->
+    <div id="upLoadMolModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+         <div class="modal-content">
+     
+          <div class="modal-body">
+
+            <form id='importPfForm'>
+                <input type='file' id='molfile'>
+                <input type='button' value='IMPORT' onclick='uploadConvertMolFile()'/>
+            </form> 
+               
+
+              <script>
+                function uploadConvertMolFile() {
+                    var file = document.getElementById('molfile').files[0];
+
+                    if (file) {
+                      var reader = new FileReader();
+                      reader.onload = function(theFile) {
+                            var contents = theFile.target.result;
+                            var lines = contents.split("\n");
+                            var molecule = chem.Molfile.parseCTFile(lines);
+                            var smiles = new chem.SmilesSaver().saveMolecule(molecule);
+                      };
+
+                      var molfile = reader.readAsText(file)
+                       
+                    }
+                    else {
+                        alert("no file :(")
+                    }
+
+                }
+              </script>
+
+              </div>
+           </div>
+          </div>
+     </div>
+
     <div id="settingsModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
@@ -208,5 +252,27 @@
     <script src="js/helper.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/run.js"></script>
+    <!--util -->
+    <script src="js/chem/util/common.js"></script>
+    <script src="js/chem/util/map.js"></script>
+    <script src="js/chem/util/pool.js"> </script>
+    <script src="js/chem/util/set.js"></script>
+    <script src="js/chem/util/vec2.js"> </script> 
+    <!--chem -->
+    <script src="js/chem/chem/element.js"></script>
+    <script src="js/chem/chem/struct.js"></script>
+    <script src="js/chem/chem/cis_trans.js"></script>
+    <script src="js/chem/chem/dfs.js"></script>
+    <script src="js/chem/chem/molfile.js"></script>
+    <script src="js/chem/chem/sgroup.js"></script>
+    <script src="js/chem/chem/smiles.js"></script>
+    <script src="js/chem/chem/stereocenters.js"> </script>
+    <script src="js/chem/chem/struct_valence.js"> </script>
+    <!--prototype -->
+    <script src="js/chem/prototype.js"></script>
+
+ 
+ 
+ 
 
 </body></html>
