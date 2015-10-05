@@ -40,7 +40,7 @@
             ligandId = ligandSelections[i];
             if (ligandId.indexOf(enteredText) > -1) {
               results.push({
-                "ligand": ligandId + " - " + (base10val(ligandId.substring(0, 3)))
+                "ligand": ligandId + " - " + (base10val(ligandId.substring(0, 3)) + 1)
               });
             }
           }
