@@ -1,8 +1,10 @@
 ((window) ->
 
   displayMessage = (message) ->
-    alert message
-    return
+  fs = require "fs"
+  preferencesFile.writeFile "BindingPMF_preferences.py", message, (error) -> 
+    alert "Error occurred while writing preferences file" if error
+  return
 
   ### Listeners ###
   $("#runBtn").click () -> 

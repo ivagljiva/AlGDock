@@ -1,8 +1,13 @@
 (function(window) {
-  var displayMessage;
-  displayMessage = function(message) {
-    alert(message);
-  };
+  var displayMessage, fs;
+  displayMessage = function(message) {};
+  fs = require("fs");
+  preferencesFile.writeFile("BindingPMF_preferences.py", message, function(error) {
+    if (error) {
+      return alert("Error occurred while writing preferences file");
+    }
+  });
+  return;
 
   /* Listeners */
   $("#runBtn").click(function() {
