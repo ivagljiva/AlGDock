@@ -1,65 +1,5 @@
 (function(window) {
-  var ligandSearch, populateLigands, populatePhases, populateProteins, populateProtocols, populateRuntypes, populateSamplers, populateSites, selectedLigand, selectedProtein;
-  selectedProtein = null;
-  selectedLigand = null;
-  populateProteins = function(proteinJson) {
-    proteinJson = JSON.parse(proteinJson);
-    renderList("proteinScript", {
-      "proteinList": proteinJson.files
-    });
-    $("#proteinScript li a").click(function() {
-      selectedProtein = $(this).html();
-      $("#proteinDropdownBtn").html(selectedProtein);
-      httpGet("http://127.0.0.1:5000/api/v1.0/ligands/" + selectedProtein, populateLigands);
-    });
-  };
-  populateLigands = function(ligandJson) {
-    ligandJson = JSON.parse(ligandJson);
-    renderList("ligandScript", {
-      "ligandList": ligandJson.files
-    });
-    $("#ligandScript li a").click(function() {
-      selectedLigand = $(this).html();
-      $("#ligandDropdownBtn").html(selectedLigand);
-      httpGet("http://127.0.0.1:5000/api/v1.0/ligandSelection/" + selectedProtein + "/" + selectedLigand, ligandSearch);
-    });
-  };
-  ligandSearch = function(ligandJson) {
-    var ligandSelections;
-    ligandJson = JSON.parse(ligandJson);
-    ligandSelections = ligandJson.ligandSelections;
-    if (ligandSelections != null) {
-      toggleEltDisabled("#ligandSearch", false);
-      $("#ligandSearch").keyup(function() {
-        var enteredText, ligandId, matchedLigandIds;
-        enteredText = $(this).val();
-        matchedLigandIds = (function() {
-          var i, len, results;
-          results = [];
-          for (i = 0, len = ligandSelections.length; i < len; i++) {
-            ligandId = ligandSelections[i];
-            if (ligandId.indexOf(enteredText) > -1) {
-              results.push({
-                "ligand": ligandId + " - " + (base10val(ligandId.substring(0, 3)) + 1)
-              });
-            }
-          }
-          return results;
-        })();
-        if (matchedLigandIds.length > 0) {
-          renderList("ligandSelectionScript", {
-            "ligandRegex": matchedLigandIds
-          });
-          toggleEltDisplay("#ligandSelectionPanel", 'show');
-        } else {
-          $("#ligandSelectionScript").html('');
-          toggleEltDisplay("#ligandSelectionPanel", 'hide');
-        }
-      });
-    } else {
-      toggleEltDisabled("#ligandSearch", true);
-    }
-  };
+  var populatePhases, populateProtocols, populateRuntypes, populateSamplers, populateSites;
   populateProtocols = function(protocolJson) {
     protocolJson = JSON.parse(protocolJson);
     renderList("protocolScript", {
@@ -117,7 +57,6 @@
   };
 
   /* Main */
-  httpGet("http://127.0.0.1:5000/api/v1.0/proteins", populateProteins);
   httpGet("http://127.0.0.1:5000/api/v1.0/protocols", populateProtocols);
   httpGet("http://127.0.0.1:5000/api/v1.0/samplers", populateSamplers);
   httpGet("http://127.0.0.1:5000/api/v1.0/sites", populateSites);

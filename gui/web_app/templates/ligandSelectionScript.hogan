@@ -1,0 +1,1 @@
+{{#ligandRegex}}<div class="alert alert-success" role="alert" data-lineNumber={{lineNumber}}>{{ligand}}</div>{{/ligandRegex}}

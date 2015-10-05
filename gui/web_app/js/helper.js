@@ -27,6 +27,13 @@
     xmlHttp.open("GET", url, true);
     xmlHttp.send(null);
   };
+  this.httpPost = function(url, jsonString) {
+    var xmlHttp;
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("POST", url);
+    xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlHttp.send(jsonString);
+  };
 
   /* Ligand Id Conversions */
   key = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

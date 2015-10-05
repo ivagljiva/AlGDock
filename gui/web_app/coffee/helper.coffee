@@ -28,6 +28,12 @@
     xmlHttp.send(null)
     return
 
+  this.httpPost = (url, jsonString) ->
+    xmlHttp = new XMLHttpRequest()
+    xmlHttp.open("POST", url)
+    xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+    xmlHttp.send(jsonString)
+    return
 
   ### Ligand Id Conversions ###
   key = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

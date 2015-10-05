@@ -39,8 +39,8 @@
             <li class="active"><a href="#">Home</a></li>
           </ul>
       <ul class="nav navbar-nav navbar-left">
-            <li><a href="#" data-toggle="modal" data-target="#upLoadMolModal">Upload mol for SMILES conversion</a></li>
-	  </ul> 
+            <li><a href="#" data-toggle="modal" data-target="#createLigandLibraryModal">New Ligand Library</a></li>
+	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
             <li><a href="#" data-toggle="modal" data-target="#settingsModal">Settings</a></li>
 	  </ul>
@@ -70,46 +70,25 @@
       </div>
     </div>
     <!-- Modal -->
-    <div id="upLoadMolModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+    <div id="createLigandLibraryModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
 
-         <div class="modal-content">
-     
+        <div class="modal-content">
+
           <div class="modal-body">
-
             <form id='importPfForm'>
-                <input type='file' id='molfile'>
-                <input type='button' value='IMPORT' onclick='uploadConvertMolFile()'/>
-            </form> 
-               
-
-              <script>
-                function uploadConvertMolFile() {
-                    var file = document.getElementById('molfile').files[0];
-
-                    if (file) {
-                      var reader = new FileReader();
-                      reader.onload = function(theFile) {
-                            var contents = theFile.target.result;
-                            var lines = contents.split("\n");
-                            var molecule = chem.Molfile.parseCTFile(lines);
-                            var smiles = new chem.SmilesSaver().saveMolecule(molecule);
-                      };
-
-                      var molfile = reader.readAsText(file)
-                       
-                    }
-                    else {
-                        alert("no file :(")
-                    }
-
-                }
-              </script>
-
-              </div>
-           </div>
-          </div>
-     </div>
+	      <input type='file' id='molfile' multiple>
+	      <div class="input-group">
+		<input id="libraryName" type="text" class="form-control" placeholder="Library Name">
+		<span class="input-group-btn">
+		  <input id="addToLibraryBtn" type='button' class="btn btn-default" value='Add to Library'/>
+		</span>
+	      </div>
+            </form>
+          </div> <!-- modal-body -->
+        </div>
+      </div>
+    </div>
 
     <div id="settingsModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -240,9 +219,6 @@
     <div class="container">
     </div>
 
-    <!-- Molview -->
-    <!-- <iframe style="width: 1000px; height: 1300px;" frameborder="0" src="http://molview.org/?cid=12766473"></iframe> -->
-
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/ie10-viewport-bug-workaround.js"></script>
@@ -250,6 +226,7 @@
     <!-- Custom Javascript -->
     <script src="js/templates.js"></script>
     <script src="js/helper.js"></script>
+    <script src="js/selection.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/run.js"></script>
     <!--util -->
@@ -257,7 +234,7 @@
     <script src="js/chem/util/map.js"></script>
     <script src="js/chem/util/pool.js"> </script>
     <script src="js/chem/util/set.js"></script>
-    <script src="js/chem/util/vec2.js"> </script> 
+    <script src="js/chem/util/vec2.js"> </script>
     <!--chem -->
     <script src="js/chem/chem/element.js"></script>
     <script src="js/chem/chem/struct.js"></script>
@@ -271,8 +248,8 @@
     <!--prototype -->
     <script src="js/chem/prototype.js"></script>
 
- 
- 
- 
+
+
+
 
 </body></html>
