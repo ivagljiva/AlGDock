@@ -102,10 +102,12 @@ def get_runtype():
     choice_lst = [{"choice": choice} for choice in choices]
     return jsonify({"runtype": choice_lst})
 
-@app.route('/api/v1.0/run/<protein>/<ligand>/<protocol>/<runtype>/<cthermspeed>/<dthermspeed>/<sampler>/<mcmc>/<seedperstate>/<stepsperseed>/<sweepspercycle>/<attemptspersweep>/<stepspersweep>/<crepxcycles>/<drepxcycles>/<site>/<sxcenter>/<sycenter>/<szcenter>/<sradius>/<sdensity>/<phase>/<cores>/<rmsd>/', methods=['GET', 'OPTIONS'])
+@app.route('/api/v1.0/run/<protein>/<ligand>/<protocol>/<runtype>/<cthermspeed>/<dthermspeed>/<sampler>/<mcmc>/<seedperstate>/<stepsperseed>/<sweepspercycle>/<attemptspersweep>/<stepspersweep>/<crepxcycles>/<drepxcycles>/<site>/<sxcenter>/<sycenter>/<szcenter>/<sradius>/<sdensity>/<phase>/<cores>/<rmsd>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-def run(protein, ligand, protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd):
-    return "import AlGDock.BindingPMF_plots\nimport os, shutil, glob\n\nfor run_type in %s:\nself = AlGDock.BindingPMF_plots.BPMF_plots(\ndir_dock='dock', dir_cool='cool',\nligand_tarball='prmtopcrd/ligand.tar.gz',\nligand_database='ligand.db',\nforcefield='prmtopcrd/gaff.dat',\nligand_prmtop='ligand.prmtop',\nligand_inpcrd='ligand.trans.inpcrd',\nreceptor_tarball='prmtopcrd/receptor.tar.gz',\nreceptor_prmtop='receptor.prmtop',\nreceptor_inpcrd='receptor.trans.inpcrd',\nreceptor_fixed_atoms='receptor.pdb',\ncomplex_tarball='prmtopcrd/complex.tar.gz',\ncomplex_prmtop='complex.prmtop',\ncomplex_inpcrd='complex.trans.inpcrd',\ncomplex_fixed_atoms='complex.pdb',\nscore = 'prmtopcrd/anchor_and_grow_scored.mol2',\ndir_grid='grids',\nprotocol=%s, cool_therm_speed=%s, dock_therm_speed=%s,\nsampler='%s',\nMCMC_moves=%s,\nseeds_per_state=%s, steps_per_seed=%s,\nsweeps_per_cycle=%s, attempts_per_sweep=%s, steps_per_sweep=%s,\ncool_repX_cycles=%s, dock_repX_cycles=%s,\nsite='%s', site_center=[%s, %s, %s], site_max_R=%s,\nsite_density=%s,\nphases=['%s'],\ncores=%s,\nrmsd=%s)\nself._run(run_type)\ndel self"
+def run(protein, ligand, protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd):
+    pref_string = "./create_preferences %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s > ../../AlGDock/BindingPMF_preferences.py" % (runtype, protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd)
+    os.subprocess(pref_string)
+    return "Preferences File Saved"
 
 if __name__ == '__main__':
     app.run(debug=True)
