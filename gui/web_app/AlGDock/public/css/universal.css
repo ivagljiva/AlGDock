@@ -1,3 +1,125 @@
+
+
+.hide_elt {
+    display: none;
+}
+
+.glyphicon {
+    position: relative;
+    top: -.5px;
+}
+
+.centerlize{
+    margin:0 auto;
+}
+
+.blue-iconCol{
+    color: #009ACD;
+}
+
+.default-iconCol{
+    color: #404040;
+}
+
+.success {
+    color: #468847;
+}
+
+.danger {
+    color: #b94a48;
+}
+
+.font-sm {
+    font-size: 12px;
+}
+
+.blue-col {
+    background-color : blue;
+}
+
+.grey-col {
+    background-color : #e8e8e8;
+}
+
+.padding-top-sm {
+    padding-top : 6.5px;
+}
+
+.panel-title {
+font-weight: bold;
+font-size: 110%;
+}
+.panel-heading {
+opacity: 0.8;
+}
+
+.panel_list {
+padding-left: 0px;
+list-style: none;
+}
+
+.panel_list li {
+display: inline;
+}
+
+.issue_title {
+font-size: 20px;
+font-weight: bold;
+padding-right: 10px;
+}
+
+.issue_body {
+border-bottom: 1px solid #ccc;
+padding-bottom: 10px;
+}
+
+.tags {
+list-style: none;
+}
+
+.tags ul {
+padding-left: 0px;
+}
+
+.tags li {
+display: inline;
+}
+
+.tags a{
+color: #888888;
+}
+
+.badge {
+margin-right: 5px;
+margin-left: 5px;
+}
+
+.original_comment {
+margin-top: 0px;
+}
+
+.original_comment li {
+list-style: none;
+}
+
+.full_issue {
+margin-top: 20px;
+}
+
+#msg_nav {
+  padding-left: 0;
+  margin-bottom: 20px;
+  list-style: none;
+}
+
+#msg_field {
+position: auto;
+}
+
+#sender-and-timestamp {
+text-align: right;
+}
+
 .float-right {
     float: right;
 }

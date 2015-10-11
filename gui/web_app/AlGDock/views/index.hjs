@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,7 +62,7 @@
 
     <div class="button display-inline">
       <button class="btn btn-default" type="button" id="runBtn">Run</button>
-    </div> 
+    </div>
 
     <input id="ligandSearch" type="text" class="form-control" placeholder="Ligand ID" disabled>
     <span class="input-group-btn">

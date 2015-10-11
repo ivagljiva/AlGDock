@@ -37,3 +37,6 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Gui
+gui/web_app/AlGDock/public/mailer.js
