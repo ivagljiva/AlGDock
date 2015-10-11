@@ -40,3 +40,7 @@ nosetests.xml
 
 # Gui
 gui/web_app/AlGDock/public/mailer.js
+
+# Vim stuff
+*.swp
+*.swo
