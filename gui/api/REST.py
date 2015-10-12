@@ -9,9 +9,14 @@ ALLOWED_EXTENSIONS = set(['mol', 'smi'])
 
 try:
     TARGET = os.environ['TARGET']
-    AlGDock = os.environ['AlGDock']
 except Exception:
     print 'export TARGET=<path to data>'
+    exit(1)
+
+try:
+    AlGDock = os.environ['AlGDock_Pref']
+except Exception:
+    print 'export AlGDock_Pref=<path to BindingPMF_arguments.py>'
     exit(1)
 
 import sys
@@ -104,10 +109,18 @@ def get_runtype():
 
 @app.route('/api/v1.0/run/<protocol>/<runtype>/<cthermspeed>/<dthermspeed>/<sampler>/<mcmc>/<seedsperstate>/<stepsperseed>/<sweepspercycle>/<attemptspersweep>/<stepspersweep>/<crepxcycles>/<drepxcycles>/<site>/<sxcenter>/<sycenter>/<szcenter>/<sradius>/<sdensity>/<phase>/<cores>/<rmsd>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-def run(protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd):
-    pref_string = "./create_preferences.sh %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s > ../../AlGDock/BindingPMF_preferences.py" % (runtype, protocol, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd)
+def save_preferences(protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd):
+    pref_string = "./create_preferences.sh %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s > %s" % (runtype, protocol, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd, os.path.join(AlGDock, "BindingPMF_preferences.py"))
     os.system(pref_string)
     return "Preferences File Saved"
+
+@app.route('/api/v1.0/run/<protein>/<ligand>', methods=['GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def run(protein, ligand):
+    run_string = "source test_terminal.sh"
+    os.chdir('../../Example')
+    os.system(run_string)
+    return "Job Sent to Cluster"
 
 if __name__ == '__main__':
     app.run(debug=True)
