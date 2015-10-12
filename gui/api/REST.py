@@ -117,9 +117,9 @@ def save_preferences(protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc,
 @app.route('/api/v1.0/run/<protein>/<ligand>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def run(protein, ligand):
-    run_string = "source test_terminal.sh"
-    os.chdir('../../Example')
-    os.system(run_string)
+    #run_string = "source test_terminal.sh"
+    #os.chdir('../../Example')
+    #os.system(run_string)
     return "Job Sent to Cluster"
 
 if __name__ == '__main__':
