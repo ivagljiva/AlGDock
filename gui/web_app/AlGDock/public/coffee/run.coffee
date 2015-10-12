@@ -38,7 +38,6 @@
     selectedProtein = $("#proteinDropdownBtn").html()
     selectedLigand = $("#ligandDropdownBtn").html()
     httpGet("http://127.0.0.1:5000/api/v1.0/run/#{selectedProtein}/#{selectedLigand}", displayMessage)
-  	
-  return
+   return
 
 )(window)
