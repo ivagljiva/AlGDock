@@ -32,12 +32,14 @@
     if selectedProtocol != "Select a Protocol" and selectedRuntype != "Select a Run Type" and selectedCThermSpeed != "" and selectedDThermSpeed != "" and selectedSampler != "Select a Sampler" and selectedMcmc != "" and selectedSeedsPerState != "" and selectedStepsPerSeed != "" and selectedSweepsPerCycle != "" and selectedAttemptsPerSweep != "" and selectedStepsPerSweep != "" and selectedCRepXCycles != "" and selectedDRepXCycles != "" and selectedSite != "Select a Site" and selectedSiteCenterX != "" and selectedSiteCenterY != "" and selectedSiteCenterZ != "" and selectedSiteMaxRadius != "" and selectedSiteDensity != "" and selectedPhase != "Phases" and selectedCores != ""
       httpGet("http://127.0.0.1:5000/api/v1.0/run/#{selectedProtocol}/#{selectedRuntype}/#{selectedCThermSpeed}/#{selectedDThermSpeed}/#{selectedSampler}/#{selectedMcmc}/#{selectedSeedsPerState}/#{selectedStepsPerSeed}/#{selectedSweepsPerCycle}/#{selectedAttemptsPerSweep}/#{selectedStepsPerSweep}/#{selectedCRepXCycles}/#{selectedDRepXCycles}/#{selectedSite}/#{selectedSiteCenterX}/#{selectedSiteCenterY}/#{selectedSiteCenterZ}/#{selectedSiteMaxRadius}/#{selectedSiteDensity}/#{selectedPhase}/#{selectedCores}/#{selectedRmsd}", displayMessage)
     return
-  return
 
   $("#runBtn").click () ->
     selectedProtein = $("#proteinDropdownBtn").html()
     selectedLigand = $("#ligandDropdownBtn").html()
-    httpGet("http://127.0.0.1:5000/api/v1.0/run/#{selectedProtein}/#{selectedLigand}", displayMessage)
-   return
 
+    if selectedProtein != "Select Protein" and selectedLigand != "Select Ligand Library"
+      httpGet("http://127.0.0.1:5000/api/v1.0/run/#{selectedProtein}/#{selectedLigand}", displayMessage)
+    return
+
+  return
 )(window)
