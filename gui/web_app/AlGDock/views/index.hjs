@@ -118,12 +118,12 @@
 
 		<div class="form-group">
 			<label for="coolThermSpeedTxtBox">Cool Therm Speed:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="coolThermSpeedTxtBox" placeholder="1.5">
+			<input type="text" class="input input-sm" style="text-align: center" id="coolThermSpeedTxtBox" value="1.5">
 		</div>
 
 		<div class="form-group">
 			<label for="dockThermSpeedTxtBox">Dock Therm Speed:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="dockThermSpeedTxtBox" placeholder="1.5">
+			<input type="text" class="input input-sm" style="text-align: center" id="dockThermSpeedTxtBox" value="1.5">
 		</div>
 
 		<div class="dropdown">
@@ -134,42 +134,42 @@
 
 	    <div class="form-group">
 			<label for="mcmcMovesTxtBox">MCMC Moves:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="mcmcMovesTxtBox" placeholder="1">
+			<input type="text" class="input input-sm" style="text-align: center" id="mcmcMovesTxtBox" value="1">
 		</div>
 
 		<div class="form-group">
 			<label for="seedsPerStateTxtBox">Seeds Per State:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="seedsPerStateTxtBox" placeholder="10">
+			<input type="text" class="input input-sm" style="text-align: center" id="seedsPerStateTxtBox" value="10">
 		</div>
 
 		<div class="form-group">
 			<label for="stepsPerSeedTxtBox">Steps Per Seed:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="stepsPerSeedTxtBox" placeholder="200">
+			<input type="text" class="input input-sm" style="text-align: center" id="stepsPerSeedTxtBox" value="200">
 		</div>
 
 		<div class="form-group">
 			<label for="sweepsPerCycleTxtBox">Sweeps Per Cycle:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="sweepsPerCycleTxtBox" placeholder="10">
+			<input type="text" class="input input-sm" style="text-align: center" id="sweepsPerCycleTxtBox" value="10">
 		</div>
 
 		<div class="form-group">
 			<label for="attemptsPerSweepTxtBox">Attempts Per Sweep:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="attemptsPerSweepTxtBox" placeholder="100">
+			<input type="text" class="input input-sm" style="text-align: center" id="attemptsPerSweepTxtBox" value="100">
 		</div>
 
 		<div class="form-group">
 			<label for="stepsPerSweepTxtBox">Steps Per Sweep:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="stepsPerSweepTxtBox" placeholder="50">
+			<input type="text" class="input input-sm" style="text-align: center" id="stepsPerSweepTxtBox" value="50">
 		</div>
 
 		<div class="form-group">
 			<label for="coolRepXCyclesTxtBox">Cool RepX Cycles:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="coolRepXCyclesTxtBox" placeholder="2">
+			<input type="text" class="input input-sm" style="text-align: center" id="coolRepXCyclesTxtBox" value="2">
 		</div>
 
 		<div class="form-group">
 			<label for="dockRepXCyclesTxtBox">Dock RepX Cycles:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="dockRepXCyclesTxtBox" placeholder="3">
+			<input type="text" class="input input-sm" style="text-align: center" id="dockRepXCyclesTxtBox" value="3">
 		</div>
 
     	<div class="dropdown">
@@ -187,12 +187,12 @@
 
 		<div class="form-group">
 			<label for="siteMaxRadiusTxtBox">Site Max Radius:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="siteMaxRadiusTxtBox" placeholder="0.01">
+			<input type="text" class="input input-sm" style="text-align: center" id="siteMaxRadiusTxtBox" value="0.01">
 		</div>
 
     	<div class="form-group">
 			<label for="siteDensityTxtBox">Site Density:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="siteDensityTxtBox" placeholder="10">
+			<input type="text" class="input input-sm" style="text-align: center" id="siteDensityTxtBox" value="10">
 		</div>
 
     	<div class="dropdown">
@@ -203,7 +203,7 @@
 
 	    <div class="form-group">
 			<label for="coresTxtBox">Cores:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="coresTxtBox" placeholder="-1">
+			<input type="text" class="input input-sm" style="text-align: center" id="coresTxtBox" value="-1">
 		</div>
 
 		<div class="checkbox">
