@@ -34,6 +34,12 @@
       httpGet("http://127.0.0.1:5000/api/v1.0/run/" + selectedProtein + "/" + selectedProtocol + "/" + selectedRuntype + "/" + selectedCThermSpeed + "/" + selectedDThermSpeed + "/" + selectedSampler + "/" + selectedMcmc + "/" + selectedSeedsPerState + "/" + selectedStepsPerSeed + "/" + selectedSweepsPerCycle + "/" + selectedAttemptsPerSweep + "/" + selectedStepsPerSweep + "/" + selectedCRepXCycles + "/" + selectedDRepXCycles + "/" + selectedSite + "/" + selectedSiteCenterX + "/" + selectedSiteCenterY + "/" + selectedSiteCenterZ + "/" + selectedSiteMaxRadius + "/" + selectedSiteDensity + "/" + selectedPhase + "/" + selectedCores + "/" + selectedRmsd, displayMessage);
     }
   });
-  return;
-  $("#runBtn").click(function() {});
+  $("#runBtn").click(function() {
+    var selectedLigand, selectedProtein;
+    selectedProtein = $("#proteinDropdownBtn").html();
+    selectedLigand = $("#ligandDropdownBtn").html();
+    if (selectedProtein !== "Select Protein" && selectedLigand !== "Select Ligand Library") {
+      httpGet("http://127.0.0.1:5000/api/v1.0/run/" + selectedProtein + "/" + selectedLigand, displayMessage);
+    }
+  });
 })(window);
