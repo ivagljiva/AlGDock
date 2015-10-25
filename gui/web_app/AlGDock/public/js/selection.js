@@ -1,5 +1,5 @@
 (function(window) {
-  var addLigandToLibrary, ligandSearch, molViewDisplay, populateLigands, populateProteins, selectedLigand, selectedProtein;
+  var addLigandToLibrary, displaySvg, ligandSearch, molViewDisplay, populateLigands, populateProteins, selectedLigand, selectedProtein;
   selectedProtein = null;
   selectedLigand = null;
   populateProteins = function(proteinJson) {
@@ -24,8 +24,16 @@
       httpGet("http://127.0.0.1:5000/api/v1.0/ligandSelection/" + selectedProtein + "/" + selectedLigand, ligandSearch);
     });
   };
+  displaySvg = function(htmlLabel) {
+    var lineNumber;
+    lineNumber = htmlLabel.attr("data-lineNumber");
+    return httpGet("http://127.0.0.1:5000/api/v1.0/ligandLine/" + selectedProtein + "/" + selectedLigand + "/" + lineNumber, function(smiles) {
+      htmlLabel.append('<img src="http://localhost:3000/getSvg/' + lineNumber + '/' + smiles + '" />');
+    });
+  };
   molViewDisplay = function() {
     $("#ligandSelectionScript .alert").each(function() {
+      displaySvg($(this));
       $(this).click(function() {
         var lineNumber;
         lineNumber = $(this).attr("data-lineNumber");
