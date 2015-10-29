@@ -107,10 +107,10 @@ def get_runtype():
     choice_lst = [{"choice": choice} for choice in choices]
     return jsonify({"runtype": choice_lst})
 
-@app.route('/api/v1.0/run/<protocol>/<runtype>/<cthermspeed>/<dthermspeed>/<sampler>/<mcmc>/<seedsperstate>/<stepsperseed>/<sweepspercycle>/<attemptspersweep>/<stepspersweep>/<crepxcycles>/<drepxcycles>/<site>/<sxcenter>/<sycenter>/<szcenter>/<sradius>/<sdensity>/<phase>/<cores>/<rmsd>', methods=['GET', 'OPTIONS'])
+@app.route('/api/v1.0/run/<protein>/<protocol>/<runtype>/<cthermspeed>/<dthermspeed>/<sampler>/<mcmc>/<seedsperstate>/<stepsperseed>/<sweepspercycle>/<attemptspersweep>/<stepspersweep>/<crepxcycles>/<drepxcycles>/<site>/<sxcenter>/<sycenter>/<szcenter>/<sradius>/<sdensity>/<phase>/<cores>/<rmsd>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-def save_preferences(protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd):
-    pref_string = "./create_preferences.sh %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s > %s" % (runtype, protocol, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd, os.path.join(AlGDock, "BindingPMF_preferences.py"))
+def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd):
+    pref_string = "./create_saved_args.sh %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s > %s" % (runtype, protocol, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, rmsd, os.path.join(TARGET, protein, "AlGDock/saved_arguments.py"))
     os.system(pref_string)
     return "Preferences File Saved"
 
