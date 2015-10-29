@@ -204,13 +204,22 @@
 	      <input type="text" class="input input-sm" style="text-align: center" id="coresTxtBox" value="-1">
 	    </div>
 
-            <div class="form-group">
-              <label for="repsField">Cores:</label>
+	    <div class="dropdown">
+	      <button class="btn btn-default dropdown-toggle" type="button" id="scoreDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Score</button>
+	      <ul class="dropdown-menu">
+		<li>xtal</li>
+		<li>dock</li>
+		<li>None</li>
+	      </ul>
+	    </div> <!--/.dropdown-->
+
+	    <div class="form-group">
+	      <label for="repsField">Repitions:</label>
 	      <div id="repsField">
 		<input type="text" class="input input-sm" style="text-align: center" id="fromTxtBox" value="0">
 		<input type="text" class="input input-sm" style="text-align: center" id="toTxtBox" value="1">
 	      </div>
-            </div>
+	    </div>
 
 	    <div class="checkbox">
 	      <label><input type="checkbox" value="" id="rmsdChkBox" checked="checked">RMSD</label>
@@ -218,7 +227,7 @@
 
 	  </div>
 	  <div class="modal-footer">
-            <button id="savePrefBtn" type="button" class="btn btn-default" data-dismiss="modal">Save Preferences</button>
+      	<button id="savePrefBtn" type="button" class="btn btn-default" data-dismiss="modal">Save Preferences</button>
 	  </div>
 	</div>
 
