@@ -1,4 +1,6 @@
-
+.white-color {
+    color: white;
+}
 
 .hide_elt {
     display: none;
@@ -146,4 +148,12 @@ text-align: right;
     background: white;
     cursor: inherit;
     display: block;
+}
+
+.navbar {
+    background-color: #00898e;
+}
+
+.nav.navbar-nav.navbar-left li a, .nav.navbar-nav.navbar-right li a {
+    color: white;
 }

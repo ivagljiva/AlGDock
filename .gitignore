@@ -38,10 +38,6 @@ nosetests.xml
 .project
 .pydevproject
 
-# Gui
-gui/web_app/AlGDock/public/mailer.js
-gui/web_app/AlGDock/node_modules
-
 # Vim stuff
 *.swp
 *.swo

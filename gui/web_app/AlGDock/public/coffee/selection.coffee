@@ -27,7 +27,8 @@
   displaySvg = (htmlLabel) ->
     lineNumber = htmlLabel.attr("data-lineNumber")
     httpGet "http://127.0.0.1:5000/api/v1.0/ligandLine/#{selectedProtein}/#{selectedLigand}/#{lineNumber}", (smiles) ->
-      htmlLabel.append('<img src="http://localhost:3000/getSvg/' + lineNumber + '/' + smiles + '" />');
+      smiles = smiles.replace(/\//g, "%2F").replace(/\\/g, "%5c")
+      htmlLabel.append('<img style="padding-left: 20px;" src="http://localhost:3000/getSvg/' + lineNumber + '/' + smiles + '" />');
       return
 
   molViewDisplay = () ->

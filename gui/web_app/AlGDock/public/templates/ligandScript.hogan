@@ -1,1 +1,1 @@
-{{#ligandList}}<li><a href="#">{{filename}}</a></li>{{/ligandList}}
+<li><a href="#" data-toggle="modal" data-target="#createLigandLibraryModal" style="color: white; background-color: #00898e;">Create Ligand Library</a></li>{{#ligandList}}<li><a href="#">{{filename}}</a></li>{{/ligandList}}
