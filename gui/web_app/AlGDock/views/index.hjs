@@ -19,9 +19,9 @@
     <link href="css/universal.css" rel="stylesheet"/>
 
   <style type="text/css"></style></head>
-
+  
   <body>
-
+    
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -37,7 +37,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
           </ul>
-      <ul class="nav navbar-nav navbar-left">
+	  <ul class="nav navbar-nav navbar-left">
             <li><a href="#" data-toggle="modal" data-target="#createLigandLibraryModal">New Ligand Library</a></li>
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right">
@@ -46,24 +46,24 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
+    
     <!-- Dropdown for Protein Selection -->
     <div class="dropdown display-inline">
       <button class="btn btn-default dropdown-toggle" type="button" id="proteinDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Protein</button>
       <ul id="proteinScript" class="dropdown-menu" aria-labelledby="proteinDropdownBtn">
       </ul>
     </div> <!--/.dropdown-->
-
+    
     <div class="dropdown display-inline">
       <button class="btn btn-default dropdown-toggle" type="button" id="ligandDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Ligand Library</button>
       <ul id="ligandScript" class="dropdown-menu" aria-labelledby="ligandDropdownBtn">
       </ul>
     </div> <!--/.dropdown-->
-
+    
     <div class="button display-inline">
       <button class="btn btn-default" type="button" id="runBtn">Run</button>
     </div>
-
+    
     <input id="ligandSearch" type="text" class="form-control" placeholder="Ligand ID" disabled>
     <span class="input-group-btn">
       <!-- <button class="ligandSearch btn btn-default" type="button" disabled>Search</button> -->
@@ -75,9 +75,9 @@
     <!-- Modal -->
     <div id="createLigandLibraryModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
-
+	
         <div class="modal-content">
-
+	  
           <div class="modal-body">
             <form id='importPfForm'>
 	      <input type='file' id='molfile' multiple>
@@ -92,10 +92,10 @@
         </div>
       </div>
     </div>
-
+    
     <div id="settingsModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
-
+	
 	<!-- Modal content-->
 	<div class="modal-content">
 	  <div class="modal-header">
@@ -103,125 +103,142 @@
             <h4 class="modal-title">Settings</h4>
 	  </div>
 	  <div class="modal-body">
-
-	  	<div class="dropdown">
+	    
+	    <div class="dropdown">
               <button class="btn btn-default dropdown-toggle" type="button" id="runtypeDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Run Type</button>
               <ul id="runtypeScript" class="dropdown-menu" aria-labelledby="runtypeDropdownBtn">
               </ul>
-        </div> <!--/.dropdown-->
-
+            </div> <!--/.dropdown-->
+	    
 	    <div class="dropdown">
 	      <button class="btn btn-default dropdown-toggle" type="button" id="protocolDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Protocol</button>
 	      <ul id="protocolScript" class="dropdown-menu" aria-labelledby="protocolDropdownBtn">
 	      </ul>
 	    </div> <!--/.dropdown-->
-
-		<div class="form-group">
-			<label for="coolThermSpeedTxtBox">Cool Therm Speed:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="coolThermSpeedTxtBox" placeholder="1.5">
-		</div>
-
-		<div class="form-group">
-			<label for="dockThermSpeedTxtBox">Dock Therm Speed:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="dockThermSpeedTxtBox" placeholder="1.5">
-		</div>
-
-		<div class="dropdown">
+	    
+	    <div class="form-group">
+	      <label for="coolThermSpeedTxtBox">Cool Therm Speed:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="coolThermSpeedTxtBox" value="1.5">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="dockThermSpeedTxtBox">Dock Therm Speed:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="dockThermSpeedTxtBox" value="1.5">
+	    </div>
+	    
+	    <div class="dropdown">
 	      <button class="btn btn-default dropdown-toggle" type="button" id="samplerDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Sampler</button>
 	      <ul id="samplerScript" class="dropdown-menu" aria-labelledby="samplerDropdownBtn">
 	      </ul>
 	    </div> <!--/.dropdown-->
-
+	    
 	    <div class="form-group">
-			<label for="mcmcMovesTxtBox">MCMC Moves:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="mcmcMovesTxtBox" placeholder="1">
-		</div>
-
-		<div class="form-group">
-			<label for="seedsPerStateTxtBox">Seeds Per State:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="seedsPerStateTxtBox" placeholder="10">
-		</div>
-
-		<div class="form-group">
-			<label for="stepsPerSeedTxtBox">Steps Per Seed:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="stepsPerSeedTxtBox" placeholder="200">
-		</div>
-
-		<div class="form-group">
-			<label for="sweepsPerCycleTxtBox">Sweeps Per Cycle:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="sweepsPerCycleTxtBox" placeholder="10">
-		</div>
-
-		<div class="form-group">
-			<label for="attemptsPerSweepTxtBox">Attempts Per Sweep:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="attemptsPerSweepTxtBox" placeholder="100">
-		</div>
-
-		<div class="form-group">
-			<label for="stepsPerSweepTxtBox">Steps Per Sweep:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="stepsPerSweepTxtBox" placeholder="50">
-		</div>
-
-		<div class="form-group">
-			<label for="coolRepXCyclesTxtBox">Cool RepX Cycles:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="coolRepXCyclesTxtBox" placeholder="2">
-		</div>
-
-		<div class="form-group">
-			<label for="dockRepXCyclesTxtBox">Dock RepX Cycles:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="dockRepXCyclesTxtBox" placeholder="3">
-		</div>
-
-    	<div class="dropdown">
+	      <label for="mcmcMovesTxtBox">MCMC Moves:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="mcmcMovesTxtBox" value="1">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="seedsPerStateTxtBox">Seeds Per State:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="seedsPerStateTxtBox" value="10">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="stepsPerSeedTxtBox">Steps Per Seed:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="stepsPerSeedTxtBox" value="200">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="sweepsPerCycleTxtBox">Sweeps Per Cycle:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="sweepsPerCycleTxtBox" value="10">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="attemptsPerSweepTxtBox">Attempts Per Sweep:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="attemptsPerSweepTxtBox" value="100">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="stepsPerSweepTxtBox">Steps Per Sweep:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="stepsPerSweepTxtBox" value="50">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="coolRepXCyclesTxtBox">Cool RepX Cycles:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="coolRepXCyclesTxtBox" value="2">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="dockRepXCyclesTxtBox">Dock RepX Cycles:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="dockRepXCyclesTxtBox" value="3">
+	    </div>
+	    
+    	    <div class="dropdown">
 	      <button class="btn btn-default dropdown-toggle" type="button" id="siteDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Site</button>
 	      <ul id="siteScript" class="dropdown-menu" aria-labelledby="siteDropdownBtn">
 	      </ul>
 	    </div> <!--/.dropdown-->
-
+	    
 	    <div class="form-group">
-			<label for="siteCenter">Site Center:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="siteCenterXTxtBox" placeholder="X">
-			<input type="text" class="input input-sm" style="text-align: center" id="siteCenterYTxtBox" placeholder="Y">
-			<input type="text" class="input input-sm" style="text-align: center" id="siteCenterZTxtBox" placeholder="Z">
-		</div>
-
-		<div class="form-group">
-			<label for="siteMaxRadiusTxtBox">Site Max Radius:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="siteMaxRadiusTxtBox" placeholder="0.01">
-		</div>
-
-    	<div class="form-group">
-			<label for="siteDensityTxtBox">Site Density:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="siteDensityTxtBox" placeholder="10">
-		</div>
-
-    	<div class="dropdown">
+	      <label for="siteCenter">Site Center:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="siteCenterXTxtBox" placeholder="X">
+	      <input type="text" class="input input-sm" style="text-align: center" id="siteCenterYTxtBox" placeholder="Y">
+	      <input type="text" class="input input-sm" style="text-align: center" id="siteCenterZTxtBox" placeholder="Z">
+	    </div>
+	    
+	    <div class="form-group">
+	      <label for="siteMaxRadiusTxtBox">Site Max Radius:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="siteMaxRadiusTxtBox" value="0.01">
+	    </div>
+	    
+    	    <div class="form-group">
+	      <label for="siteDensityTxtBox">Site Density:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="siteDensityTxtBox" value="10">
+	    </div>
+	    
+    	    <div class="dropdown">
 	      <button class="multiselect btn btn-default dropdown-toggle" type="button" id="phaseDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Phases</button>
 	      <ul id="phaseScript" class="multiselect-container dropdown-menu" aria-labelledby="phaseDropdownBtn">
 	      </ul>
 	    </div> <!--/.dropdown-->
-
+	    
 	    <div class="form-group">
-			<label for="coresTxtBox">Cores:</label>
-			<input type="text" class="input input-sm" style="text-align: center" id="coresTxtBox" placeholder="-1">
-		</div>
+	      <label for="coresTxtBox">Cores:</label>
+	      <input type="text" class="input input-sm" style="text-align: center" id="coresTxtBox" value="-1">
+	    </div>
 
-		<div class="checkbox">
-		  <label><input type="checkbox" value="" id="rmsdChkBox" checked="checked">RMSD</label>
-		</div>
-
+	    <div class="dropdown">
+	      <button class="btn btn-default dropdown-toggle" type="button" id="scoreDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Score</button>
+	      <ul class="dropdown-menu">
+	      	<li>xtal</li>
+	      	<li>dock</li>
+	      	<li>None</li>
+	      </ul>
+	    </div> <!--/.dropdown-->
+	    
+        <div class="form-group">
+          <label for="repsField">Repitions:</label>
+	      <div id="repsField">
+			<input type="text" class="input input-sm" style="text-align: center" id="fromTxtBox" value="0">
+			<input type="text" class="input input-sm" style="text-align: center" id="toTxtBox" value="1">
+	      </div>
+        </div>
+	    
+	    <div class="checkbox">
+	      <label><input type="checkbox" value="" id="rmsdChkBox" checked="checked">RMSD</label>
+	    </div>
+	    
 	  </div>
 	  <div class="modal-footer">
-            <button id="savePrefBtn" type="button" class="btn btn-default" data-dismiss="modal">Save Preferences</button>
+      	<button id="savePrefBtn" type="button" class="btn btn-default" data-dismiss="modal">Save Preferences</button>
 	  </div>
 	</div>
-
+	
       </div>
     </div>
-
+    
     <div class="container">
     </div>
-
+    
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/ie10-viewport-bug-workaround.js"></script>

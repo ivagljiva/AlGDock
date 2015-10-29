@@ -5,6 +5,9 @@ var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 
 var fs = require('fs');
+var path = require('path');
+var exec = require('child_process').exec;
+
 var People = require('../public/models/people.js');
 
 var transporter = require('../public/mailer.js');
@@ -52,6 +55,18 @@ router.get('/', valid_user, function(req, res, next) {
     res.render('index');
 });
 
+// Smiles SVG Image
+
+router.get('/getSvg/:lineNumber/:smiles', function(req, res) {
+    var lineNumber = req.params.lineNumber;
+    var smilesStr = req.params.smiles;
+    var child_proc = exec('obabel -:"' + smilesStr + '" -xP 80 -O public/svg/' + lineNumber + '.svg');
+    child_proc.stdout.pipe(process.stdout);
+    child_proc.on('exit', function() {
+	res.sendFile(path.join(__dirname, '../public/svg', lineNumber + '.svg'));
+    });
+});
+
 // Login and Registration
 router.post('/', function(req, res) {
     mongoose.model('peoples').findOne({people_username : req.body.login_mail}, function(err, peoples) {
@@ -86,14 +101,14 @@ router.post('/reg', function(req, res, next) {
 			people_password : create_hash(req.body.reg_pass2),
 			});
 			db_save(new_people);
-			
+
 			mongoose.model('peoples').findOne({people_username : email}, function(err, peoples) {
 
 				peoples["email_verify"] = generate_tok();
 				db_save(peoples);
 
 				verify_link = 'http://localhost:3000/verify_email/' + email + '/' + peoples["email_verify"];
- 
+
 				var verifyEmail = {
 					from: 'AlGDock Admin <algdock.ipro@gmail.com>',
 					to: peoples["people_username"],
@@ -103,7 +118,7 @@ router.post('/reg', function(req, res, next) {
 
 				send_mail(verifyEmail);
 				res.render('login', {hide_class : '', alert_type: 'alert-success', alert : "You have been successfully registered, please verify your email address. An email has been sent to you." });
-			});	
+			});
 		}
 	});
 });
