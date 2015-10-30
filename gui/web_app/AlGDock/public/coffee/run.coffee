@@ -38,15 +38,15 @@
     else
       selectedRmsd = 'None'
 
-    if selectedProtein != "Select Protein" and selectedProtocol != "Select a Protocol" and selectedRuntype != "Select a Run Type" and selectedCThermSpeed != "" and selectedDThermSpeed != "" and selectedSampler != "Select a Sampler" and selectedMcmc != "" and selectedSeedsPerState != "" and selectedStepsPerSeed != "" and selectedSweepsPerCycle != "" and selectedAttemptsPerSweep != "" and selectedStepsPerSweep != "" and selectedCRepXCycles != "" and selectedDRepXCycles != "" and selectedSite != "Select a Site" and selectedSiteCenterX != "" and selectedSiteCenterY != "" and selectedSiteCenterZ != "" and selectedSiteMaxRadius != "" and selectedSiteDensity != "" and selectedPhase != "Phases" and selectedCores != "" and selectedScore != "Score" and selectedFReps != "" and selectedTReps != ""
-      httpGet("http://127.0.0.1:5000/api/v1.0/run/#{selectedProtein}/#{selectedProtocol}/#{selectedRuntype}/#{selectedCThermSpeed}/#{selectedDThermSpeed}/#{selectedSampler}/#{selectedMcmc}/#{selectedSeedsPerState}/#{selectedStepsPerSeed}/#{selectedSweepsPerCycle}/#{selectedAttemptsPerSweep}/#{selectedStepsPerSweep}/#{selectedCRepXCycles}/#{selectedDRepXCycles}/#{selectedSite}/#{selectedSiteCenterX}/#{selectedSiteCenterY}/#{selectedSiteCenterZ}/#{selectedSiteMaxRadius}/#{selectedSiteDensity}/#{selectedPhase}/#{selectedCores}/#{selectedScore}/#{selectedFReps}/#{selectedTReps}/#{selectedRmsd}", displayMessage)
+    if selectedProtein != "Protein" and selectedProtocol != "Select a Protocol" and selectedRuntype != "Select a Run Type" and selectedCThermSpeed != "" and selectedDThermSpeed != "" and selectedSampler != "Select a Sampler" and selectedMcmc != "" and selectedSeedsPerState != "" and selectedStepsPerSeed != "" and selectedSweepsPerCycle != "" and selectedAttemptsPerSweep != "" and selectedStepsPerSweep != "" and selectedCRepXCycles != "" and selectedDRepXCycles != "" and selectedSite != "Select a Site" and selectedSiteCenterX != "" and selectedSiteCenterY != "" and selectedSiteCenterZ != "" and selectedSiteMaxRadius != "" and selectedSiteDensity != "" and selectedPhase != "Phases" and selectedCores != ""
+      httpGet("http://127.0.0.1:5000/api/v1.0/run/#{selectedProtein}/#{selectedProtocol}/#{selectedRuntype}/#{selectedCThermSpeed}/#{selectedDThermSpeed}/#{selectedSampler}/#{selectedMcmc}/#{selectedSeedsPerState}/#{selectedStepsPerSeed}/#{selectedSweepsPerCycle}/#{selectedAttemptsPerSweep}/#{selectedStepsPerSweep}/#{selectedCRepXCycles}/#{selectedDRepXCycles}/#{selectedSite}/#{selectedSiteCenterX}/#{selectedSiteCenterY}/#{selectedSiteCenterZ}/#{selectedSiteMaxRadius}/#{selectedSiteDensity}/#{selectedPhase}/#{selectedCores}/#{selectedRmsd}", displayMessage)
     return
 
   $("#runBtn").click () ->
     selectedProtein = $("#proteinDropdownBtn").html()
     selectedLigand = $("#ligandDropdownBtn").html()
 
-    if selectedProtein != "Select Protein" and selectedLigand != "Select Ligand Library"
+    if selectedProtein != "Protein" and selectedLigand != "Ligand Library" and selectedLigand != "Create Ligand Library"
       httpGet("http://127.0.0.1:5000/api/v1.0/run/#{selectedProtein}/#{selectedLigand}", displayMessage)
     return
 
