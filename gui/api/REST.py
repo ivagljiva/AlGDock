@@ -110,13 +110,7 @@ def get_runtype():
 @app.route('/api/v1.0/run/<protein>/<protocol>/<runtype>/<cthermspeed>/<dthermspeed>/<sampler>/<mcmc>/<seedsperstate>/<stepsperseed>/<sweepspercycle>/<attemptspersweep>/<stepspersweep>/<crepxcycles>/<drepxcycles>/<site>/<sxcenter>/<sycenter>/<szcenter>/<sradius>/<sdensity>/<phase>/<cores>/<score>/<from_reps>/<to_reps>/<rmsd>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, score, from_reps, to_reps, rmsd):
-    score_None = ""
-    rmsd_None = ""
-    if rmsd == False:
-        rmsd_None = "#"
-    if score == "None":
-        score_None = "#"
-    pref_string = "./create_saved_args.sh %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s > %s" % (runtype, protocol, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, score, from_reps, to_reps, rmsd, score_None, rmsd_None, os.path.join(TARGET, protein, "AlGDock/saved_arguments.py"))
+    pref_string = "./create_saved_args.sh %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s >&! /home/trogers1/saved_arguments_test.py" % (runtype, protocol, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, score, from_reps, to_reps, rmsd, "#", "#")
     os.system(pref_string)
     return "Preferences File Saved"
 
