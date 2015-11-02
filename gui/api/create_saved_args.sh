@@ -26,8 +26,8 @@ SCORE=${22}
 FROM_REPS=${23}
 TO_REPS=${24}
 RMSD=${25}
-SCORE_NONE=${26}
-RMSD_NONE=${27}
+SN=${26}
+RN=${27}
 
 # Define the template for BindingPMF preferences
 cat << EOF
@@ -45,13 +45,13 @@ class args_saved:
   cool_repX_cycles = $COOL_REPX_CYCLES
   dock_repX_cycles = $DOCK_REPX_CYCLES
   site = '$SITE'
-  site_density = $SITE_DENSITY.
+  site_density = $SITE_DENSITY
   phases = ['$PHASES']
-  site_max_R = $SITE_MAX_R.
+  site_max_R = $SITE_MAX_R
   cores = $CORES
   site_center=[$X, $Y, $Z]
   run_type = '$RUN_TYPE'
-  $SCORE_NONEscore = '$SCORE'
-  $RMSD_NONErmsd = $RMSD
+ $SN score = '$SCORE'
+ $RN rmsd = $RMSD
   reps = [$FROM_REPS,$TO_REPS]
 EOF
