@@ -1,1 +1,1 @@
-{{#proteinList}}<li><a href="#">{{filename}}</a></li>{{/proteinList}}
+<li><a href="#" data-toggle="modal" data-target="#proteinSelectionModal" style="color: white; background-color: #00898e;">Create Protein</a></li>{{#proteinList}}<li><a href="#">{{filename}}</a></li>{{/proteinList}}
