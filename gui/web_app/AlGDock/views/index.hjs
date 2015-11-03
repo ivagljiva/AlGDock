@@ -194,8 +194,8 @@
 	    </div>
 
     	    <div class="dropdown">
-	      <button class="multiselect btn btn-default dropdown-toggle" type="button" id="phaseDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Phases</button>
-	      <ul id="phaseScript" class="multiselect-container dropdown-menu" aria-labelledby="phaseDropdownBtn">
+	      <button class="btn btn-default dropdown-toggle" type="button" id="phaseDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Phases</button>
+	      <ul id="phaseScript" class="dropdown-menu" aria-labelledby="phaseDropdownBtn">
 	      </ul>
 	    </div> <!--/.dropdown-->
 
@@ -206,10 +206,10 @@
 
 	    <div class="dropdown">
 	      <button class="btn btn-default dropdown-toggle" type="button" id="scoreDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Score</button>
-	      <ul class="dropdown-menu">
-		<li>xtal</li>
-		<li>dock</li>
-		<li>None</li>
+	      <ul class="dropdown-menu" aria-labelledby="scoreDropdownBtn">
+	       	<li><a href="#">xtal</a></li>
+    		<li><a href="#">dock</a></li>
+    		<li><a href="#">None</a></li>
 	      </ul>
 	    </div> <!--/.dropdown-->
 
