@@ -51,7 +51,7 @@ class args_saved:
   cores = $CORES
   site_center=[$X, $Y, $Z]
   run_type = '$RUN_TYPE'
- $SN score = '$SCORE'
- $RN rmsd = $RMSD
+$SN score = '$SCORE'
+$RN rmsd = $RMSD
   reps = [$FROM_REPS,$TO_REPS]
 EOF

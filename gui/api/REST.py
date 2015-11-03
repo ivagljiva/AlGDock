@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, redirect, url_for
+import subprocess
 
 import os
 import json
@@ -110,16 +111,27 @@ def get_runtype():
 @app.route('/api/v1.0/run/<protein>/<protocol>/<runtype>/<cthermspeed>/<dthermspeed>/<sampler>/<mcmc>/<seedsperstate>/<stepsperseed>/<sweepspercycle>/<attemptspersweep>/<stepspersweep>/<crepxcycles>/<drepxcycles>/<site>/<sxcenter>/<sycenter>/<szcenter>/<sradius>/<sdensity>/<phase>/<cores>/<score>/<from_reps>/<to_reps>/<rmsd>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, score, from_reps, to_reps, rmsd):
-    pref_string = "./create_saved_args.sh %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s >&! /home/trogers1/saved_arguments_test.py" % (runtype, protocol, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, score, from_reps, to_reps, rmsd, "#", "#")
-    os.system(pref_string)
+    rmsd_n = " "
+    score_n = " "
+    if rmsd == "false":
+        rmsd_n = "#"
+    
+    if score == "Score" or score == "None":
+        score_n = "#"
+    
+    args = ["./create_saved_args.sh", runtype, protocol, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, score, from_reps, to_reps, rmsd, score_n, rmsd_n]
+    p = subprocess.Popen(args, stdout=subprocess.PIPE)
+    f = open(os.path.join(TARGET, protein, "AlGDock/saved_arguments.py"), 'w')
+    f.write(p.stdout.read())
+    f.close()
     return "Preferences File Saved"
 
 @app.route('/api/v1.0/run/<protein>/<ligand>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def run(protein, ligand):
-    #run_string = ""
-    #os.chdir('../../Example')
-    #os.system(run_string)
+    run_string = "python /home/trogers1/AlGDock/Pipeline/run_AlGDock.py"
+    os.chdir(os.path.join(TARGET, protein, "ligand"))
+    os.system(run_string)
     return "Job Sent to Cluster"
 
 if __name__ == '__main__':
