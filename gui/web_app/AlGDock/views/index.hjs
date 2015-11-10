@@ -105,7 +105,9 @@
           <div class="modal-body">
 
 	    <input id="ligandEntry" type="text" class="form-control" placeholder="Ligand Smiles Sequence">
-	    <button type="button" style="float: right;" class="btn btn-info btn-sm">Search Binding Database</button><br>
+	    <a href="https://www.bindingdb.org/bind/index.jsp">
+	      <button type="button" style="float: right;" class="btn btn-info btn-sm">Search Binding Database</button><br>
+	    </a>
 
             <form id='importPfForm'>
 	      <input type='file' id='molfile' multiple>
