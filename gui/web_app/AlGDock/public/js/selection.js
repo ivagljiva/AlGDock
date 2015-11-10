@@ -10,7 +10,7 @@
     $("#proteinScript li a").click(function() {
       selectedProtein = $(this).html();
       $("#proteinDropdownBtn").html(selectedProtein);
-      httpGet("http://127.0.0.1:5000/api/v1.0/ligands/" + selectedProtein, populateLigands);
+      httpGet(restAddr + "/api/v1.0/ligands/" + selectedProtein, populateLigands);
     });
   };
   populateLigands = function(ligandJson) {
@@ -21,13 +21,13 @@
     $("#ligandScript li a").click(function() {
       selectedLigand = $(this).html();
       $("#ligandDropdownBtn").html(selectedLigand);
-      httpGet("http://127.0.0.1:5000/api/v1.0/ligandSelection/" + selectedProtein + "/" + selectedLigand, ligandSearch);
+      httpGet(restAddr + "/api/v1.0/ligandSelection/" + selectedProtein + "/" + selectedLigand, ligandSearch);
     });
   };
   displaySvg = function(htmlLabel) {
     var lineNumber;
     lineNumber = htmlLabel.attr("data-lineNumber");
-    return httpGet("http://127.0.0.1:5000/api/v1.0/ligandLine/" + selectedProtein + "/" + selectedLigand + "/" + lineNumber, function(smiles) {
+    return httpGet(restAddr + "/api/v1.0/ligandLine/" + selectedProtein + "/" + selectedLigand + "/" + lineNumber, function(smiles) {
       smiles = smiles.replace(/\//g, "%2F").replace(/\\/g, "%5c");
       htmlLabel.append('<img style="padding-left: 20px;" src="http://localhost:3000/getSvg/' + lineNumber + '/' + smiles + '" />');
     });
@@ -38,7 +38,7 @@
       $(this).click(function() {
         var lineNumber;
         lineNumber = $(this).attr("data-lineNumber");
-        httpGet("http://127.0.0.1:5000/api/v1.0/ligandLine/" + selectedProtein + "/" + selectedLigand + "/" + lineNumber, function(smiles) {
+        httpGet(restAddr + "/api/v1.0/ligandLine/" + selectedProtein + "/" + selectedLigand + "/" + lineNumber, function(smiles) {
           window.open("http://molview.org/?smiles=" + smiles);
         });
       });
@@ -96,7 +96,7 @@
           molecule = chem.Molfile.parseCTFile(lines);
           smiles = new chem.SmilesSaver().saveMolecule(molecule);
           json["smiles"] = smiles;
-          httpPost("http://127.0.0.1:5000/api/v1.0/addToLibrary/" + selectedProtein + "/", JSON.stringify(json));
+          httpPost(restAddr + "/api/v1.0/addToLibrary/" + selectedProtein + "/", JSON.stringify(json));
         };
         reader.readAsText(file);
       }
@@ -111,5 +111,5 @@
   });
 
   /* Main */
-  return httpGet("http://127.0.0.1:5000/api/v1.0/proteins", populateProteins);
+  return httpGet(restAddr + "/api/v1.0/proteins", populateProteins);
 })(window);

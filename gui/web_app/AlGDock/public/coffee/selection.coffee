@@ -9,7 +9,7 @@
     $("#proteinScript li a").click () ->
       selectedProtein = $(this).html()
       $("#proteinDropdownBtn").html selectedProtein
-      httpGet("http://127.0.0.1:5000/api/v1.0/ligands/#{selectedProtein}", populateLigands)
+      httpGet("#{restAddr}/api/v1.0/ligands/#{selectedProtein}", populateLigands)
       return
     return
 
@@ -20,13 +20,13 @@
     $("#ligandScript li a").click () ->
       selectedLigand = $(this).html()
       $("#ligandDropdownBtn").html selectedLigand
-      httpGet("http://127.0.0.1:5000/api/v1.0/ligandSelection/#{selectedProtein}/#{selectedLigand}", ligandSearch)
+      httpGet("#{restAddr}/api/v1.0/ligandSelection/#{selectedProtein}/#{selectedLigand}", ligandSearch)
       return
     return
 
   displaySvg = (htmlLabel) ->
     lineNumber = htmlLabel.attr("data-lineNumber")
-    httpGet "http://127.0.0.1:5000/api/v1.0/ligandLine/#{selectedProtein}/#{selectedLigand}/#{lineNumber}", (smiles) ->
+    httpGet "#{restAddr}/api/v1.0/ligandLine/#{selectedProtein}/#{selectedLigand}/#{lineNumber}", (smiles) ->
       smiles = smiles.replace(/\//g, "%2F").replace(/\\/g, "%5c")
       htmlLabel.append('<img style="padding-left: 20px;" src="http://localhost:3000/getSvg/' + lineNumber + '/' + smiles + '" />');
       return
@@ -38,7 +38,7 @@
 
       $(this).click () ->
         lineNumber = $(this).attr("data-lineNumber")
-        httpGet "http://127.0.0.1:5000/api/v1.0/ligandLine/#{selectedProtein}/#{selectedLigand}/#{lineNumber}", (smiles) ->
+        httpGet "#{restAddr}/api/v1.0/ligandLine/#{selectedProtein}/#{selectedLigand}/#{lineNumber}", (smiles) ->
           window.open("http://molview.org/?smiles=#{smiles}")
           return
         return
@@ -82,7 +82,7 @@
           molecule = chem.Molfile.parseCTFile(lines)
           smiles = new chem.SmilesSaver().saveMolecule(molecule)
           json["smiles"] = smiles
-          httpPost("http://127.0.0.1:5000/api/v1.0/addToLibrary/#{selectedProtein}/", JSON.stringify(json))
+          httpPost("#{restAddr}/api/v1.0/addToLibrary/#{selectedProtein}/", JSON.stringify(json))
           return
         reader.readAsText(file)
     return
@@ -94,6 +94,6 @@
     return
 
   ### Main ###
-  httpGet("http://127.0.0.1:5000/api/v1.0/proteins", populateProteins)
+  httpGet("#{restAddr}/api/v1.0/proteins", populateProteins)
 
 )(window)

@@ -51,11 +51,11 @@
     return
 
   ### Main ###
-  httpGet("http://127.0.0.1:5000/api/v1.0/protocols", populateProtocols)
-  httpGet("http://127.0.0.1:5000/api/v1.0/samplers", populateSamplers)
-  httpGet("http://127.0.0.1:5000/api/v1.0/sites", populateSites)
-  httpGet("http://127.0.0.1:5000/api/v1.0/phases", populatePhases)
-  httpGet("http://127.0.0.1:5000/api/v1.0/runtypes", populateRuntypes)
+  httpGet("#{restAddr}/api/v1.0/protocols", populateProtocols)
+  httpGet("#{restAddr}/api/v1.0/samplers", populateSamplers)
+  httpGet("#{restAddr}/api/v1.0/sites", populateSites)
+  httpGet("#{restAddr}/api/v1.0/phases", populatePhases)
+  httpGet("#{restAddr}/api/v1.0/runtypes", populateRuntypes)
 
   return
 

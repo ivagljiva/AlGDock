@@ -1,5 +1,10 @@
 (function(window) {
+
+  /* Global Variables */
   var key;
+  this.restAddr = "http://52.91.248.238:5000";
+
+  /* Helper Functions */
   this.toggleEltDisabled = function(elt, newState) {
     $("" + elt).prop('disabled', newState);
   };

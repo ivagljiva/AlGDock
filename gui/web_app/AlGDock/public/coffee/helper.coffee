@@ -1,5 +1,9 @@
 ((window) ->
 
+  ### Global Variables ###
+  this.restAddr = "http://52.91.248.238:5000"
+
+  ### Helper Functions ###
   this.toggleEltDisabled = (elt, newState) ->
     $("#{elt}").prop('disabled', newState)
     return
