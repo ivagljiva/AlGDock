@@ -46,4 +46,13 @@
       httpGet(restAddr + "/api/v1.0/run/" + selectedProtein + "/" + selectedLigand + "/" + email, displayMessage);
     }
   });
+  $("#prepLigandLibraryBtn").click(function() {
+    var email, selectedLigand, selectedProtein;
+    selectedProtein = $("#proteinDropdownBtn").html();
+    selectedLigand = $("#ligandDropdownBtn").html();
+    email = document.cookie.split(';')[1].split('=')[1];
+    if (selectedProtein !== "Protein" && selectedLigand !== "Ligand Library" && selectedLigand !== "Create Ligand Library") {
+      httpGet(restAddr + "/api/v1.0/prepLigandLibrary/" + selectedProtein + "/" + selectedLigand + "/" + email, displayMessage);
+    }
+  });
 })(window);

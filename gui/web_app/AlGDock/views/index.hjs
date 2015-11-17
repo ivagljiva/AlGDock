@@ -81,6 +81,10 @@
     </div> <!--/.dropdown-->
 
     <div class="button display-inline">
+      <button class="btn btn-default" type="button" id="prepLigandLibraryBtn">Prep Ligand Library</button>
+    </div>
+
+    <div class="button display-inline">
       <button class="btn btn-default" type="button" id="runBtn">Run</button>
     </div>
 

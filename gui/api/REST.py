@@ -70,7 +70,7 @@ def add_to_library(protein):
     library_f = open(os.path.join(TARGET, protein, "ligand", libraryName), 'a')
     library_f.write(smiles)
     library_f.write("\n")
-    library_f.close()    
+    library_f.close()
     return "Added ligand to library."
 
 @app.route('/api/v1.0/protocols', methods=['GET', 'OPTIONS'])
@@ -115,10 +115,10 @@ def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampl
     score_n = " "
     if rmsd == "false":
         rmsd_n = "#"
-    
+
     if score == "Score" or score == "None":
         score_n = "#"
-    
+
     args = ["./create_saved_args.sh", runtype, protocol, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, score, from_reps, to_reps, rmsd, score_n, rmsd_n]
     p = subprocess.Popen(args, stdout=subprocess.PIPE)
     f = open(os.path.join(TARGET, protein, "AlGDock/saved_arguments.py"), 'w')
@@ -133,6 +133,14 @@ def run(protein, ligand, email):
     os.chdir(os.path.join(TARGET, protein, "dock6"))
     os.system(run_string)
     return "Job Sent to Cluster"
+
+@app.route('/api/v1.0/prepLigandLibrary/<protein>/<ligand>/<email>', methods=['GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def run(protein, ligand, email):
+    run_string = "python " + os.path.join(AlGDock, "../Pipeline/run_prep_ligand_for_dock.py") + os.path.join(TARGET, protein, "ligand", ligand) + " --email " + email
+    os.chdir(os.path.join(TARGET, protein, "dock6"))
+    os.system(run_string)
+    return "Ligand is being prepared."
 
 if __name__ == '__main__':
     app.run(debug=True)
