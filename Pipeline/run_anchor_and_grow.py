@@ -25,6 +25,9 @@ parser.add_argument('--run_number', default=None, type=int,
 parser.add_argument('--max_jobs', default=None, type=int)
 parser.add_argument('--dry', action='store_true', default=False, \
   help='Does not actually submit the job to the queue')
+
+parser.add_argument('--email', default='', type=str, help="Preferred email for notification")
+
 args = parser.parse_args()
 
 # Check for the existence of input files
@@ -110,14 +113,16 @@ for receptor_FN in receptor_FNs:
       command = '; '.join(command_list)
       name = labels['receptor'] + '-' + '.'.join(code_list)
       print command
-      os.system(' '.join(['python',command_paths['qsub_command'],\
+      system_command = ' '.join(['python',command_paths['qsub_command'],\
         name, "'"+command+"'", \
         '--input_files', ancg_script, \
         receptor_FN[:-4]+'.nrg', receptor_FN[:-4]+'.bmp', \
         '--output_files', ' '.join(out_FNs), \
         {True:'--output_remaps ' + ' '.join(out_remaps), \
          False:''}[len(out_remaps)>0], \
-        {True:'--dry',False:''}[args.dry]], '--email', ))
+        {True:'--dry',False:''}[args.dry], '--email', args.email])
+      print system_command
+      os.system(system_command)
       command_list = []
       out_FNs = []
       out_remaps = []

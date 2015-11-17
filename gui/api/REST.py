@@ -126,10 +126,10 @@ def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampl
     f.close()
     return "Preferences File Saved"
 
-@app.route('/api/v1.0/run/<protein>/<ligand>', methods=['GET', 'OPTIONS'])
+@app.route('/api/v1.0/run/<protein>/<ligand>/<email>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-def run(protein, ligand):
-    run_string = "python /home/trogers1/AlGDock/Pipeline/run_anchor_and_grow.py --max_jobs 20"
+def run(protein, ligand, email):
+    run_string = "python " + os.path.join(AlGDock, "../Pipeline/run_anchor_and_grow.py") + " --max_jobs 20 --email " + email
     os.chdir(os.path.join(TARGET, protein, "dock6"))
     os.system(run_string)
     return "Job Sent to Cluster"
