@@ -117,7 +117,7 @@ for receptor_FN in receptor_FNs:
         '--output_files', ' '.join(out_FNs), \
         {True:'--output_remaps ' + ' '.join(out_remaps), \
          False:''}[len(out_remaps)>0], \
-        {True:'--dry',False:''}[args.dry]]))
+        {True:'--dry',False:''}[args.dry]], '--email', ))
       command_list = []
       out_FNs = []
       out_remaps = []
