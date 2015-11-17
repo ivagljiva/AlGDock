@@ -41,8 +41,10 @@
     selectedProtein = $("#proteinDropdownBtn").html()
     selectedLigand = $("#ligandDropdownBtn").html()
 
+    email = document.cookie.split(';')[1].split('=')[1]
+
     if selectedProtein != "Protein" and selectedLigand != "Ligand Library" and selectedLigand != "Create Ligand Library"
-      httpGet("#{restAddr}/api/v1.0/run/#{selectedProtein}/#{selectedLigand}", displayMessage)
+      httpGet("#{restAddr}/api/v1.0/run/#{selectedProtein}/#{selectedLigand}/#{email}", displayMessage)
     return
 
   return

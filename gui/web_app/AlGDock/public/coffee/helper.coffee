@@ -1,7 +1,7 @@
 ((window) ->
 
   ### Global Variables ###
-  this.restAddr = "http://216.47.155.189:5000/"
+  this.restAddr = "http://216.47.155.189:5000"
 
   ### Helper Functions ###
   this.toggleEltDisabled = (elt, newState) ->
