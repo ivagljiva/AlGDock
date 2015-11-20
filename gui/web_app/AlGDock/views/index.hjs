@@ -64,7 +64,9 @@
 	  </div>
 	  <div class="modal-body">
 	    <input id="proteinSearch" type="text" class="form-control" placeholder="Protein Sequence">
-	    <button type="button" style="float: right;" class="btn btn-info btn-sm">Search Uniprot</button><br>
+	    <a href="http://www.uniprot.org/">
+	      <button type="button" style="float: right;" class="btn btn-info btn-sm">Search Uniprot</button><br>
+	    </a>
 	  </div>
 	  <div class="modal-footer">
 	    <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
