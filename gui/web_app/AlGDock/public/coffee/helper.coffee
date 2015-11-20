@@ -4,6 +4,10 @@
   this.restAddr = "http://localhost:5000"
 
   ### Helper Functions ###
+  this.displayMessage = (message) ->
+    alert message
+    return
+
   this.toggleEltDisabled = (elt, newState) ->
     $("#{elt}").prop('disabled', newState)
     return
@@ -32,11 +36,13 @@
     xmlHttp.send(null)
     return
 
-  this.httpPost = (url, jsonString) ->
+  this.httpPost = (url, jsonString, callback) ->
     xmlHttp = new XMLHttpRequest()
     xmlHttp.open("POST", url)
     xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
     xmlHttp.send(jsonString)
+
+    callback("Library has been added.")
     return
 
   ### Ligand Id Conversions ###

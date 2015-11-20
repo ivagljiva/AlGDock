@@ -5,6 +5,9 @@
   this.restAddr = "http://localhost:5000";
 
   /* Helper Functions */
+  this.displayMessage = function(message) {
+    alert(message);
+  };
   this.toggleEltDisabled = function(elt, newState) {
     $("" + elt).prop('disabled', newState);
   };
@@ -32,12 +35,13 @@
     xmlHttp.open("GET", url, true);
     xmlHttp.send(null);
   };
-  this.httpPost = function(url, jsonString) {
+  this.httpPost = function(url, jsonString, callback) {
     var xmlHttp;
     xmlHttp = new XMLHttpRequest();
     xmlHttp.open("POST", url);
     xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlHttp.send(jsonString);
+    callback("Library has been added.");
   };
 
   /* Ligand Id Conversions */

@@ -82,7 +82,8 @@
           molecule = chem.Molfile.parseCTFile(lines)
           smiles = new chem.SmilesSaver().saveMolecule(molecule)
           json["smiles"] = smiles
-          httpPost("#{restAddr}/api/v1.0/addToLibrary/#{selectedProtein}/", JSON.stringify(json))
+          httpPost("#{restAddr}/api/v1.0/addToLibrary/#{selectedProtein}/", JSON.stringify(json), displayMessage)
+          $("#createLigandLibraryModal").modal('hide')
           return
         reader.readAsText(file)
     return
