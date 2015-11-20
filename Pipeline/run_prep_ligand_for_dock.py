@@ -38,6 +38,9 @@ parser.add_argument('--run_number', default=None, type=int,
 parser.add_argument('--max_jobs', default=None, type=int)
 parser.add_argument('--dry', action='store_true', default=False, \
   help='Does not actually submit the job to the queue')
+
+parser.add_argument('--email', default='', type=str, help="Preferred email for notification")
+
 args = parser.parse_args()
 
 # Load the library
@@ -108,12 +111,16 @@ for ind in inds:
     command = '; '.join(command_list)
     name = args.library + '.' + '.'.join(code_list)
     print 'Submitting: ' + command
-    os.system(' '.join(['python',command_paths['qsub_command'],\
+    system_command = ' '.join(['python',command_paths['qsub_command'],\
       name, "'"+command+"'",\
       '--input_files', prep_script,\
       '--output_files', ' '.join(out_FNs), \
       '--output_remaps', ' '.join(out_remaps), \
-      {True:'--dry',False:''}[args.dry]]))
+      {True:'--dry',False:''}[args.dry], "--email", args.email])
+    print "\n"
+    print "The following command is being executed: \n\n"
+    print system_command
+    os.system(system_command)
     command_list = []
     out_FNs = []
     out_remaps = []
