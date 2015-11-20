@@ -68,7 +68,6 @@ def add_to_library(protein):
     libraryName = fileJson["libraryName"]
     smiles = fileJson["smiles"]
     path = os.path.join(TARGET, protein, "ligand", libraryName)
-    print path
     library_f = open(path, 'a')
     library_f.write(smiles)
     library_f.write("\n")
@@ -138,9 +137,10 @@ def run(protein, ligand, email):
 
 @app.route('/api/v1.0/prepLigandLibrary/<protein>/<ligand>/<email>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-def run(protein, ligand, email):
-    run_string = "python " + os.path.join(AlGDock, "../Pipeline/run_prep_ligand_for_dock.py") + os.path.join(TARGET, protein, "ligand", ligand) + " --email " + email
-    os.chdir(os.path.join(TARGET, protein, "dock6"))
+def prepareLigandLibrary(protein, ligand, email):
+    run_string = "python " + os.path.join(AlGDock, "../Pipeline/run_prep_ligand_for_dock.py") + " " + ligand + " --email " + email
+    os.chdir(os.path.join(TARGET, protein, "ligand"))
+    print run_string
     os.system(run_string)
     return "Ligand is being prepared."
 
