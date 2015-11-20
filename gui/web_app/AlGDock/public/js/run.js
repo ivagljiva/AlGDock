@@ -1,8 +1,4 @@
 (function(window) {
-  var displayMessage;
-  displayMessage = function(message) {
-    alert(message);
-  };
 
   /* Listeners */
   $("#savePrefBtn").click(function() {

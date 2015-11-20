@@ -1,9 +1,5 @@
 ((window) ->
 
-  displayMessage = (message) ->
-    alert message
-    return
-
   ### Listeners ###
   $("#savePrefBtn").click () ->
     selectedProtein = $("#proteinDropdownBtn").html()
