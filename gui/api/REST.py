@@ -67,7 +67,9 @@ def add_to_library(protein):
     fileJson = request.get_json()
     libraryName = fileJson["libraryName"]
     smiles = fileJson["smiles"]
-    library_f = open(os.path.join(TARGET, protein, "ligand", libraryName), 'a')
+    path = os.path.join(TARGET, protein, "ligand", libraryName)
+    print path
+    library_f = open(path, 'a')
     library_f.write(smiles)
     library_f.write("\n")
     library_f.close()
