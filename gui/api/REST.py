@@ -24,6 +24,7 @@ import sys
 sys.path.insert(0, AlGDock)
 from BindingPMF_arguments import *
 
+#File system functions
 @app.route('/api/v1.0/proteins', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def get_protein_names():
@@ -74,6 +75,7 @@ def add_to_library(protein):
     library_f.close()
     return "Added ligand to library."
 
+#Gets for preference dropdowns
 @app.route('/api/v1.0/protocols', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def get_protocols():
@@ -109,6 +111,7 @@ def get_runtype():
     choice_lst = [{"choice": choice} for choice in choices]
     return jsonify({"runtype": choice_lst})
 
+#Saving preferences file
 @app.route('/api/v1.0/run/<protein>/<protocol>/<runtype>/<cthermspeed>/<dthermspeed>/<sampler>/<mcmc>/<seedsperstate>/<stepsperseed>/<sweepspercycle>/<attemptspersweep>/<stepspersweep>/<crepxcycles>/<drepxcycles>/<site>/<sxcenter>/<sycenter>/<szcenter>/<sradius>/<sdensity>/<phase>/<cores>/<score>/<from_reps>/<to_reps>/<rmsd>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampler, mcmc, seedsperstate, stepsperseed, sweepspercycle, attemptspersweep, stepspersweep, crepxcycles, drepxcycles, site, sxcenter, sycenter, szcenter, sradius, sdensity, phase, cores, score, from_reps, to_reps, rmsd):
@@ -127,6 +130,7 @@ def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampl
     f.close()
     return "Preferences File Saved"
 
+#Run button
 @app.route('/api/v1.0/run/<protein>/<ligand>/<email>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def run(protein, ligand, email):
@@ -135,6 +139,7 @@ def run(protein, ligand, email):
     os.system(run_string)
     return "Job Sent to Cluster"
 
+#Prepare ligands button
 @app.route('/api/v1.0/prepLigandLibrary/<protein>/<ligand>/<email>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def prepareLigandLibrary(protein, ligand, email):
