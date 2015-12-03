@@ -7,5 +7,6 @@
 export TARGET=/home/AnthocyaninMechanism
 export AlGDock_Pref=/home/AlGDock
 
+# Run!
 python REST.py
 ```
