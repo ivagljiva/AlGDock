@@ -135,7 +135,7 @@ def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampl
 @crossdomain(origin='*')
 def run(protein, ligand, email):
     run_string = "python " + os.path.join(AlGDock, "../Pipeline/run_anchor_and_grow.py") + " --max_jobs 20 --email " + email
-    os.chdir(os.path.join(TARGET, protein, "dock6"))
+    os.chdir(os.path.join(TARGET, protein, ligand.split(".ism")[0] + ".A__", "dock6"))
     os.system(run_string)
     return "Job Sent to Cluster"
 
