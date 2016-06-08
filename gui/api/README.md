@@ -4,8 +4,8 @@
 ## Quick Start
 ```sh
 # Setup environment variables
-export TARGET=/home/AnthocyaninMechanism
-export AlGDock_Pref=/home/AlGDock
+export TARGET=/home/dminh/AnthocyaninMechanism
+export AlGDock_Pref=/home/<username>/AlGDock/AlGDock
 
 # Run!
 python REST.py
