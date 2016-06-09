@@ -42,6 +42,13 @@ mongod
 ```
 
 8 - Open a new terminal and run node at the .../AlgDock/gui/web_app/AlgDock folder with the command:
+
 ```
 node bin/www
+```
+
+9 - Access the following address on your browser:
+
+```
+localhost:3000
 ```
