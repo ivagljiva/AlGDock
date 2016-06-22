@@ -55,6 +55,9 @@ router.get('/', valid_user, function(req, res, next) {
     res.render('index');
 });
 
+//app.use(express.static(__dirname + '/public'));
+//app.use('/about', express.static(path.join(__dirname, '/about')));
+
 // Smiles SVG Image
 
 router.get('/getSvg/:lineNumber/:smiles', function(req, res) {
