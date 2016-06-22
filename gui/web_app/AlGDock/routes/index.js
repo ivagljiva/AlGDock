@@ -96,29 +96,25 @@ router.post('/reg', function(req, res, next) {
 			res.render('login', {hide_class : '', alert_type: 'alert-danger', alert: 'This email is already in use. Did you forget your password?'});
 		}
 		else {
+			var token = generate_tok();
 			var new_people = new People({
 			people_username : email,
 			people_password : create_hash(req.body.reg_pass2),
+			email_verify : token
 			});
 			db_save(new_people);
 
-			mongoose.model('peoples').findOne({people_username : email}, function(err, peoples) {
+			verify_link = 'http://localhost:3000/verify_email/' + email + '/' + token;
 
-				peoples["email_verify"] = generate_tok();
-				db_save(peoples);
+			var verifyEmail = {
+				from: 'AlGDock Admin <algdock.ipro@gmail.com>',
+				to: email,
+				subject: 'AlGDock | Email Verification',
+				html: 'You are receiving this message because you must verify your email address.<br><br>Just click the link below and you are done!<br>' + '<a href=\"' + verify_link + '\">' + verify_link + '</a>'
+			};
 
-				verify_link = 'http://localhost:3000/verify_email/' + email + '/' + peoples["email_verify"];
-
-				var verifyEmail = {
-					from: 'AlGDock Admin <algdock.ipro@gmail.com>',
-					to: peoples["people_username"],
-					subject: 'AlGDock | Email Verification',
-					html: 'You are receiving this message because you must verify your email address.<br><br>Just click the link below and you are done!<br>' + '<a href=\"' + verify_link + '\">' + verify_link + '</a>'
-				};
-
-				send_mail(verifyEmail);
-				res.render('login', {hide_class : '', alert_type: 'alert-success', alert : "You have been successfully registered, please verify your email address. An email has been sent to you." });
-			});
+			send_mail(verifyEmail); 
+			res.render('login', {hide_class : '', alert_type: 'alert-success', alert : "You have been successfully registered, please verify your email address. An email has been sent to you." });
 		}
 	});
 });
