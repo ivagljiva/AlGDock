@@ -24,6 +24,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">Login</a></li>
             <li><a href="about.html">About Us</a></li>
+            <li><a href="LigandLibrary.html">Ligand Library</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
