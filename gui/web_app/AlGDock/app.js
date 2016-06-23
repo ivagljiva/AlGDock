@@ -13,9 +13,9 @@ var app = express();
 // database connection
 mongoose.connect('mongodb://localhost/algdock');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hjs');
+// view engine setup - for res.render()
+app.set('views', path.join(__dirname, 'views')); //sets all html templates to be in /views directory
+app.set('view engine', 'hjs');	//html templates are in .hjs format
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

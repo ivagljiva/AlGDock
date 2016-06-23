@@ -1,0 +1,101 @@
+<!-- Hogan JS template for the protein selection window -->
+<!DOCTYPE html>
+<!--Iva-->
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+    
+	<title>AlGDock - Protein Selection</title>
+	
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/starter-template.css" rel="stylesheet">
+    
+    <!-- Custom Templates -->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Syncopate" />
+    <link href="css/universal.css" rel="stylesheet"/>
+    <style type="text/css"></style>
+</head>
+
+<body>
+	<!--Header at the top of the page-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" style="color: white; font-family: Syncopate;" href="#">ALGDOCK</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/proteins">Protein Library</a></li>
+            <li><a href="LigandLibrary.html">Ligand Library</a></li>
+          </ul>
+	  <ul class="nav navbar-nav navbar-right">
+<!--            <li><a href="#" data-toggle="modal" data-target="#settingsModal">Settings</a></li> -->
+            <li><a href="/logout">Logout</a></li>
+	  </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<p>Please select a protein:</p>
+	<!-- Taken from index.hjs -->
+    <!-- Dropdown for Protein Selection -->
+    <div class="dropdown display-inline">
+      <button class="btn btn-default dropdown-toggle" type="button" id="proteinDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Protein</button>
+      <ul id="proteinScript" class="dropdown-menu" aria-labelledby="proteinDropdownBtn">
+      </ul>
+    </div> <!--/.dropdown-->
+
+    <!-- Protein Modal -->
+    <div id="proteinSelectionModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+	<!-- Modal content-->
+	<div class="modal-content">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    <h4 class="modal-title">Create Protein</h4>
+	  </div>
+	  <div class="modal-body">
+	    <input id="proteinSearch" type="text" class="form-control" placeholder="Protein Sequence">
+	    <a href="http://www.uniprot.org/">
+	      <button type="button" style="float: right;" class="btn btn-info btn-sm">Search Uniprot</button><br>
+	    </a>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+	  </div>
+	</div>
+
+      </div>
+    </div>
+    
+    <!-- Not sure which of these scripts I actually need to make the dropdown work, but it works -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
+    <!-- Custom JS -->
+    <script src="js/templates.js"></script> <!-- Something to do with HOGAN -->
+    <script src="js/helper.js"></script>	<!-- Definitely need this one; links to REST.py -->
+    <script src="js/selection.js"></script>  <!-- Code for populating drop-down lists -->
+    <script src="js/settings.js"></script>	<!-- For the Settings button -->
+    <script src="js/run.js"></script>	<!-- Listeners for run buttons? -->
+
+
+</body>
+
+<html>
+<!--Iva-->
+<!-- Still need: Better design/format for protein selection
+					Maybe a table on the left where you can select, and on the right appears the MolView image for editing?
+				 Fix the UniProt Search in the modal so that it doesn't take you away from the GUI
+				 Need to integrate the protein selection so that hitting RUN still works
+-->

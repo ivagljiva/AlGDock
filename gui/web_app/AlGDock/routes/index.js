@@ -55,6 +55,11 @@ router.get('/', valid_user, function(req, res, next) {
     res.render('index');
 });
 
+// Protein selection page - added by Iva
+router.get('/proteins', function(req, res, next) {
+	res.render('protein-selection');
+});
+
 //app.use(express.static(__dirname + '/public'));
 //app.use('/about', express.static(path.join(__dirname, '/about')));
 
