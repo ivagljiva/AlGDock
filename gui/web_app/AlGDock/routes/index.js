@@ -52,12 +52,22 @@ function db_save(model) {
 
 // Main page
 router.get('/', valid_user, function(req, res, next) {
-    res.render('index');
+    res.render('index',
+        {
+          title: 'AlGDock',
+          partials: {header: 'header', footer: 'footer'},
+          user: req.cookies.user
+        });
 });
 
 // Protein selection page - added by Iva
 router.get('/proteins', function(req, res, next) {
-	res.render('protein-selection');
+	res.render('protein-selection',
+      {
+        title: 'AlGDock | Protein Selection',
+        partials: {header: 'header', footer: 'footer'},
+        user: req.cookies.user
+      });
 });
 
 //app.use(express.static(__dirname + '/public'));
@@ -81,7 +91,14 @@ router.post('/', function(req, res) {
 
 		if (peoples === null) {
 			console.log(err);
-			res.render('login', { hide_class : '', alert_type: 'alert-danger', alert: "We're sorry. We could not find a user with those credentials."});
+			res.render('login',
+      {
+        title: 'AlGDock | Login or Register',
+        hide_class : '',
+        alert_type: 'alert-danger',
+        alert: "We're sorry. We could not find a user with those credentials.",
+        partials: {header: 'header', footer: 'footer'},
+      });
 		}
 		else if (create_hash(req.body.login_pass) === peoples["people_password"]){
 			logged_tok = generate_tok();
@@ -92,7 +109,14 @@ router.post('/', function(req, res) {
 			res.redirect('/');
 		}
 		else {
-			res.render('login', { hide_class : '', alert_type: 'alert-danger', alert: 'Invalid log in.'});
+			res.render('login',
+      {
+        title: 'AlGDock | Login or Register',
+        hide_class : '',
+        alert_type: 'alert-danger',
+        alert: 'Invalid log in.',
+        partials: {header: 'header', footer: 'footer'}
+      });
 		}
     });
 });
@@ -101,7 +125,14 @@ router.post('/reg', function(req, res, next) {
     var email = req.body.reg_mail;
     mongoose.model('peoples').findOne({people_username : email}, function(err, peoples){
 		if(peoples !== null) {
-			res.render('login', {hide_class : '', alert_type: 'alert-danger', alert: 'This email is already in use. Did you forget your password?'});
+			res.render('login',
+      {
+        title: 'AlGDock | Login or Register',
+        hide_class : '',
+        alert_type: 'alert-danger',
+        alert: 'This email is already in use. Did you forget your password?',
+        partials: {header: 'header', footer: 'footer'}
+      });
 		}
 		else {
 			var token = generate_tok();
@@ -121,8 +152,15 @@ router.post('/reg', function(req, res, next) {
 				html: 'You are receiving this message because you must verify your email address.<br><br>Just click the link below and you are done!<br>' + '<a href=\"' + verify_link + '\">' + verify_link + '</a>'
 			};
 
-			send_mail(verifyEmail); 
-			res.render('login', {hide_class : '', alert_type: 'alert-success', alert : "You have been successfully registered, please verify your email address. An email has been sent to you." });
+			send_mail(verifyEmail);
+			res.render('login',
+      {
+        title: 'AlGDock | Login or Register',
+        hide_class : '',
+        alert_type: 'alert-success',
+        alert : "You have been successfully registered, please verify your email address. An email has been sent to you.",
+        partials: {header: 'header', footer: 'footer'}
+      });
 		}
 	});
 });
@@ -133,7 +171,14 @@ router.get('/verify_email/:email/:tok', function(req, res) {
 	    peoples.last_login = Date.now();
 	    db_save(peoples);
 
-	    res.render('login', { hide_class: '', alert_type: 'alert-success', alert : 'Your email has been successfully verified. You may now log in.' });
+	    res.render('login',
+      {
+        title: 'AlGDock | Login or Register',
+        hide_class: '',
+        alert_type: 'alert-success',
+        alert : 'Your email has been successfully verified. You may now log in.',
+        partials: {header: 'header', footer: 'footer'}
+      });
 	}
 	else{
 	    var err = new Error('Not Found.')

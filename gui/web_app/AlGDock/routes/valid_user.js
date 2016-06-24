@@ -9,5 +9,12 @@ module.exports = function(req, res, next) {
 		next();
 	});
     else
-	res.render('login', {hide_class : 'hide_elt', alert_type: '', alert: ''});
+	res.render('login',
+  {
+    title: 'AlGDock | Login or Register',
+    hide_class : 'hide_elt',
+    alert_type: '',
+    alert: '',
+    partials: {header: 'header', footer: 'footer'},
+  });
 };
