@@ -1,5 +1,6 @@
 # Runs an anchor and grow calculation with UCSF DOCK 6
 # To be run from the [TARGET]/dock6/ directory
+# anchor_and_grow args are: 1 ligand, 1 receptor and the output mol2.gz file
 
 try:
   import argparse

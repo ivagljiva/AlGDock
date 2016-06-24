@@ -5,6 +5,7 @@
 job_block = 5
 # If it takes ~30 minutes per docking, then 5 docking should take 2.5 hours
 
+# set the arguments for run_anchor_and_grow.py and the help file
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--ligand', \
@@ -33,6 +34,7 @@ args = parser.parse_args()
 # Check for the existence of input files
 import os, glob
 
+# Store the ligands in the ligands_FNs var (.mol2 extension)
 if os.path.isfile(args.ligand):
   ligand_FNs = [args.ligand]
 elif os.path.isdir(args.ligand):
@@ -44,6 +46,7 @@ else:
   raise Exception('Ligand input %s is not a file or directory!'%args.ligand)
 ligand_FNs = sorted([os.path.abspath(FN) for FN in ligand_FNs if os.path.getsize(FN)>0])
 
+# Store the receptors in the receptor_FNs file (.sph extension)
 if os.path.isfile(args.receptor):
   receptor_FNs = [args.receptor]
 elif os.path.isdir(args.receptor):
@@ -51,6 +54,7 @@ elif os.path.isdir(args.receptor):
   receptor_FNs = glob.glob(os.path.join(args.receptor,'*.sph'))
 else:
   raise Exception('Receptor input %s is not a file or directory!'%args.receptor)
+
 # Require nrg and bmp as well as sph files
 receptor_FNs = [os.path.abspath(FN) for FN in receptor_FNs \
   if os.path.isfile(FN[:-4]+'.nrg') and os.path.isfile(FN[:-4]+'.bmp')]
@@ -60,7 +64,7 @@ if os.path.isdir(args.output):
 else:
   raise Exception('Docking out %s is not a directory!')
 
-# Find anchor_and_grow.py
+# Find anchor_and_grow.py and qsub_command.py
 import os, inspect
 dirs = {}
 dirs['script'] = os.path.dirname(os.path.abspath(\
@@ -92,7 +96,7 @@ code_list = []
 job_count = 0
 for receptor_FN in receptor_FNs:
   labels = {'receptor':os.path.basename(receptor_FN[:-4])}
-  for ligand_FN in ligand_FNs:
+  for ligand_FN in ligand_FNs:                              # combine each receptor with each ligand
     labels['key'] = os.path.basename(ligand_FN[:-5])
     labels['library'] = '.'.join(os.path.dirname(\
       ligand_FN[len(args.ligand)+1:]).split('.')[:-1])
@@ -102,9 +106,9 @@ for receptor_FN in receptor_FNs:
     if not (os.path.exists(out_prefix+'.mol2.gz') or os.path.exists(out_prefix+'.nc')):
       out_FN = out_prefix + '.mol2.gz'
       command = 'python {0} {1} {2} {3}'.format(
-        ancg_script, ligand_FN, receptor_FN, out_FN)
-      command_list.append(command)
-      out_FNs.append(out_FN)
+        ancg_script, ligand_FN, receptor_FN, out_FN)        # run anchor_and_grow.py for this combination
+      command_list.append(command)                          #add the command above to the command_list to be executed
+      out_FNs.append(out_FN)                                #append the output into out_FNs
       if os.path.basename(out_FN)!=out_FN:
         out_remaps.append(os.path.basename(out_FN))
         out_remaps.append(out_FN)
@@ -125,7 +129,7 @@ for receptor_FN in receptor_FNs:
         {True:'--dry',False:''}[args.dry], '--email', args.email])
       print system_command
       os.system(system_command)
-      command_list = []
+      command_list = []                                   #restart variables
       out_FNs = []
       out_remaps = []
       code_list = []

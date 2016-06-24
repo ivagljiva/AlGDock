@@ -47,7 +47,7 @@ submit_script = ''
 execute_script = ''
 if os.path.exists('/home/dminh/scripts/qsub_command.py'): # CCB Cluster
   cluster = 'CCB'
-  
+
   # Split the command onto multiple lines
   command_list = args.command.split(';')
   command = '\n'.join([c.strip() for c in command_list])
@@ -73,11 +73,11 @@ if os.path.exists('/home/dminh/scripts/qsub_command.py'): # CCB Cluster
 
   if args.ambertools:
     modules += 'module load ambertools/14\n'
-    
+
   email_specified = ''
   if args.email == '':
     emailed_specified = '#'
-  
+
   # Write script
   submit_script = '''#!/bin/bash
 #
@@ -99,11 +99,11 @@ if os.path.exists('/home/dminh/scripts/qsub_command.py'): # CCB Cluster
            modules, command, args.comment, email_specified, args.email, args.email_options)
 elif os.path.exists('/stash'):   # Open Science Grid
   cluster = 'OSG'
-  
+
   # Split the command onto multiple lines
   command_list = args.command.split(';')
   command = '\n'.join([c.strip() for c in command_list])
-  
+
   # Determine the input files
   #   All specified input files
   input_files = set([os.path.abspath(FN) for FN in args.input_files])
@@ -138,7 +138,7 @@ elif os.path.exists('/stash'):   # Open Science Grid
     requirements_string = '&& (HAS_CVMFS_oasis_opensciencegrid_org =?= TRUE)'
   else:
     hold_string = '''
-# stay in queue if there was an error and 
+# stay in queue if there was an error and
 # the job ran for less than min_job_time minutes
 on_exit_hold = (ExitCode != 0) && ((CurrentTime - JobStartDate) < ({0}*60))
 '''.format(args.min_job_time)
