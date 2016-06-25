@@ -70,8 +70,25 @@ router.get('/proteins', function(req, res, next) {
       });
 });
 
-//app.use(express.static(__dirname + '/public'));
-//app.use('/about', express.static(path.join(__dirname, '/about')));
+// Ligand Library selection page - added by Pedro
+router.get('/ligandLibrary', function(req, res, next) {
+  res.render('ligand-library',
+      {
+        title: 'AlGDock | Ligand Library Selection',
+        partials: {header: 'header', footer: 'footer'},
+        user: req.cookies.user
+      });
+});
+
+// About Us page - added by Pedro
+router.get('/about', function(req, res, next) {
+  res.render('about',
+      {
+        title: 'AlGDock | About Us',
+        partials: {header: 'header', footer: 'footer'},
+        user: req.cookies.user
+      });
+});
 
 // Smiles SVG Image
 

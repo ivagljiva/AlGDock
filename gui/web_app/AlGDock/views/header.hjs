@@ -33,13 +33,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" style="color: white; font-family: Syncopate;" href="#">ALGDOCK</a>
+          <a class="navbar-brand" style="color: white; font-family: Syncopate;" href="/">ALGDOCK</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="/">Home</a></li>
+            {{#user}}
             <li><a href="/proteins">Protein Library</a></li> <!--Iva-->
-            <li><a href="LigandLibrary.html">Ligand Library</a></li> <!--Iva-->
+            <li><a href="/ligandLibrary">Ligand Library</a></li> <!--Iva-->
+            {{/user}}
+            <li><a href="/about">About Us</a></li> <!--Pedro-->
           </ul>
           <ul class="nav navbar-nav navbar-right">
           {{#user}}
