@@ -92,6 +92,11 @@
 	  <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Settings</h4>
+             <!--Pedro-->
+            <input id="rCustom" type="radio" name="settingsDefault" value="custom" checked> Custom
+            <input id="rFast" type="radio" name="settingsDefault" value="fast"> Fast
+            <input id="rBest" type="radio" name="settingsDefault" value="best"> Best
+            <!--Pedro-->
 	  </div>
 	  <div class="modal-body">
 

@@ -1,6 +1,63 @@
 (function(window) {
 
   /* Listeners */
+  /* Pedro */
+
+  $("#rCustom").click(function() {
+    document.getElementById("coolThermSpeedTxtBox").value=1.5;
+    document.getElementById("dockThermSpeedTxtBox").value=1.5;
+    document.getElementById("mcmcMovesTxtBox").value=1;
+    document.getElementById("seedsPerStateTxtBox").value=10;
+    document.getElementById("stepsPerSeedTxtBox").value=200;
+    document.getElementById("sweepsPerCycleTxtBox").value=10;
+    document.getElementById("attemptsPerSweepTxtBox").value=100;
+    document.getElementById("stepsPerSweepTxtBox").value=50;    
+    document.getElementById("coolRepXCyclesTxtBox").value=2;
+    document.getElementById("dockRepXCyclesTxtBox").value=3;
+    document.getElementById("siteMaxRadiusTxtBox").value=0.01;
+    document.getElementById("siteDensityTxtBox").value=10;
+    document.getElementById("coresTxtBox").value=-1;
+    document.getElementById("fromTxtBox").value=0;
+    document.getElementById("toTxtBox").value=1;        
+  });
+
+  $("#rBest").click(function() {
+    document.getElementById("coolThermSpeedTxtBox").value=1000;
+    document.getElementById("dockThermSpeedTxtBox").value=1000;
+    document.getElementById("mcmcMovesTxtBox").value=1000;
+    document.getElementById("seedsPerStateTxtBox").value=1000;
+    document.getElementById("stepsPerSeedTxtBox").value=1000;
+    document.getElementById("sweepsPerCycleTxtBox").value=1000;
+    document.getElementById("attemptsPerSweepTxtBox").value=1000;
+    document.getElementById("stepsPerSweepTxtBox").value=1000;    
+    document.getElementById("coolRepXCyclesTxtBox").value=1000;
+    document.getElementById("dockRepXCyclesTxtBox").value=1000;
+    document.getElementById("siteMaxRadiusTxtBox").value=1000;
+    document.getElementById("siteDensityTxtBox").value=1000;
+    document.getElementById("coresTxtBox").value=1000;
+    document.getElementById("fromTxtBox").value=0;
+    document.getElementById("toTxtBox").value=1000;        
+  });
+
+  $("#rFast").click(function() {
+    document.getElementById("coolThermSpeedTxtBox").value=1;
+    document.getElementById("dockThermSpeedTxtBox").value=1;
+    document.getElementById("mcmcMovesTxtBox").value=1;
+    document.getElementById("seedsPerStateTxtBox").value=1;
+    document.getElementById("stepsPerSeedTxtBox").value=1;
+    document.getElementById("sweepsPerCycleTxtBox").value=1;
+    document.getElementById("attemptsPerSweepTxtBox").value=1;
+    document.getElementById("stepsPerSweepTxtBox").value=1;    
+    document.getElementById("coolRepXCyclesTxtBox").value=1;
+    document.getElementById("dockRepXCyclesTxtBox").value=1;
+    document.getElementById("siteMaxRadiusTxtBox").value=1;
+    document.getElementById("siteDensityTxtBox").value=1;
+    document.getElementById("coresTxtBox").value=1;
+    document.getElementById("fromTxtBox").value=0;
+    document.getElementById("toTxtBox").value=1;        
+  });
+
+  /* Pedro */
   $("#savePrefBtn").click(function() {
     var selectedAttemptsPerSweep, selectedCRepXCycles, selectedCThermSpeed, selectedCores, selectedDRepXCycles, selectedDThermSpeed, selectedFReps, selectedMcmc, selectedPhase, selectedProtein, selectedProtocol, selectedRmsd, selectedRuntype, selectedSampler, selectedScore, selectedSeedsPerState, selectedSite, selectedSiteCenterX, selectedSiteCenterY, selectedSiteCenterZ, selectedSiteDensity, selectedSiteMaxRadius, selectedStepsPerSeed, selectedStepsPerSweep, selectedSweepsPerCycle, selectedTReps;
     selectedProtein = $("#proteinDropdownBtn").html();
