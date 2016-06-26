@@ -6,7 +6,7 @@
 			<button id="select" class="btn btn-default dropdown toggle" type="button" data-toggle="dropdown">
 				select existing library <span class="caret"></span>
 			</button>
-	
+
 			<ul class="dropdown-menu">
 				<li>1</li>
 				<li>2</li>
@@ -222,8 +222,7 @@ text-align: right;
 #div1,#div2 {font:14px "Lucida Grande",Helvetica,Arial,sans-serif}a{color:#00B7FF}
 </style>
 
-</body>
-</html>
+{{> footer}}
 
 <!--Future Goals
 a.) respectively, move css and js to separate files

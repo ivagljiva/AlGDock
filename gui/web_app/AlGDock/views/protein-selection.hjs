@@ -45,9 +45,7 @@
     <script src="js/run.js"></script>	<!-- Listeners for run buttons? -->
 
 
-</body>
-
-<html>
+{{> footer}}
 <!--Iva-->
 <!-- Still need: Better design/format for protein selection
 					Maybe a table on the left where you can select, and on the right appears the MolView image for editing?

@@ -4,7 +4,7 @@ module.exports = function(req, res, next) {
     if (req.cookies.user)
 	mongoose.model('peoples').findOne({people_username : req.cookies.user}, function (err, peoples) {
 	    if (peoples === null)
-		res.render('login');
+		res.render('login', {partials: {header: 'header', footer: 'footer'}});
 	    else
 		next();
 	});
