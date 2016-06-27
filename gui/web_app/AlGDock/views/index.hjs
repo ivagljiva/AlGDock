@@ -235,7 +235,8 @@
     <div class="container">
     </div>
     
-    <a href="/tutorial" class="button1">Tutorial</a>
+    <a href="/tutorial" class="button1 centered">Tutorial</a> <!-- Iva -->
+    <a href="/pubs" class="button1 centered">Publications</a> <!-- Iva -->
     	
     </div>
 

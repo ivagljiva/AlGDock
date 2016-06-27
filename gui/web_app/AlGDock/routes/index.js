@@ -110,6 +110,16 @@ router.get('/tutorial', function(req, res, next) {
       });
 });
 
+// Publications page - added by Iva
+router.get('/pubs', function(req, res, next) {
+	res.render('publications',
+      {
+        title: 'AlGDock | Publications',
+        partials: {header: 'header', footer: 'footer'},
+        user: req.cookies.user
+      });
+});
+
 // Smiles SVG Image
 
 router.get('/getSvg/:lineNumber/:smiles', function(req, res) {

@@ -175,11 +175,17 @@ text-align: right;
     display: inline-block;
     font-size: 16px;
     transition-duration: 0.4s; /* time to change format when hovering */
-    position: absolute;
-    top: 50% /* align vertical center of page */
     
 }
 .button1:hover { /* What the button looks like when the mouse hovers over it */
 	background-color: black;
 	color: white;
+}
+
+/* Positioning for buttons on home page */
+.centered {
+	position: relative;
+	top: 200px;
+	left: 50px;
+	
 }
