@@ -41,6 +41,7 @@
             {{#user}}
             <li><a href="/proteins">Protein Library</a></li> <!--Iva-->
             <li><a href="/ligandLibrary">Ligand Library</a></li> <!--Iva-->
+            <li><a href="/jobs">Jobs</a></li>
             {{/user}}
             <li><a href="/about">About Us</a></li> <!--Pedro-->
           </ul>

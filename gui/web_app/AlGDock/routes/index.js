@@ -90,6 +90,16 @@ router.get('/about', function(req, res, next) {
       });
 });
 
+// About Us page - added by Pedro
+router.get('/jobs', function(req, res, next) {
+  res.render('view-jobs',
+      {
+        title: 'AlGDock | Jobs',
+        partials: {header: 'header', footer: 'footer'},
+        user: req.cookies.user
+      });
+});
+
 // Smiles SVG Image
 
 router.get('/getSvg/:lineNumber/:smiles', function(req, res) {
