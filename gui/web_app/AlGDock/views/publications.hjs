@@ -1,0 +1,6 @@
+{{> header}}
+<!-- Iva -->
+      <b>Publications</b>
+      <p>	The following papers have cited our software: </p>
+      <!-- Add papers here -->
+{{> footer}}
