@@ -100,6 +100,16 @@ router.get('/jobs', function(req, res, next) {
       });
 });
 
+// Tutorials page - added by Iva
+router.get('/tutorial', function(req, res, next) {
+	res.render('tutorial',
+      {
+        title: 'AlGDock | Tutorial',
+        partials: {header: 'header', footer: 'footer'},
+        user: req.cookies.user
+      });
+});
+
 // Smiles SVG Image
 
 router.get('/getSvg/:lineNumber/:smiles', function(req, res) {

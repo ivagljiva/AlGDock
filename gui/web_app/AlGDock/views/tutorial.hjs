@@ -1,0 +1,13 @@
+{{> header}}
+<!-- Iva -->
+      <b>TUTORIALS</b>
+      
+      <!-- Embed video walkthrough -->
+      
+      <!-- Add written walkthrough -->
+      <div class="right">
+      	<p><b> Written Walkthrough </b></p>
+      	<p> Add steps here. </p>
+      </div>	
+      
+{{> footer}}

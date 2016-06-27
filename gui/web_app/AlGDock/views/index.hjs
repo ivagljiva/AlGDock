@@ -234,6 +234,10 @@
 
     <div class="container">
     </div>
+    
+    <a href="/tutorial" class="button1">Tutorial</a>
+    	
+    </div>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
