@@ -236,6 +236,7 @@
     </div>
     
     <a href="/tutorial" class="button1 centered">Tutorial</a> <!-- Iva -->
+    <a href="/about" class="button1 centered">About Us</a>
     <a href="/pubs" class="button1 centered">Publications</a> <!-- Iva -->
     <a href="/" class="button1 centered">Run Docking</a> <!-- Pedro -->
     <a href="/jobs" class="button1 centered">Jobs</a> <!-- Pedro -->

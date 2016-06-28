@@ -37,13 +37,11 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li id="homeTab"><a href="/">Home</a></li>
+            <li id="homeTab" class="active"><a href="/">Home</a></li>
             {{#user}}
             <li id="protTab"><a href="/proteins">Protein Library</a></li> <!--Iva-->
             <li id="ligTab"><a href="/ligandLibrary">Ligand Library</a></li> <!--Iva-->
-            <li id="jobsTab"><a href="/jobs">Jobs</a></li>
             {{/user}}
-            <li id="aboutTab"><a href="/about">About Us</a></li> <!--Pedro-->
           </ul>
           <ul class="nav navbar-nav navbar-right">
           {{#user}}
