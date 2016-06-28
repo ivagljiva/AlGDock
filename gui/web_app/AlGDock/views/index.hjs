@@ -237,6 +237,9 @@
     
     <a href="/tutorial" class="button1 centered">Tutorial</a> <!-- Iva -->
     <a href="/pubs" class="button1 centered">Publications</a> <!-- Iva -->
+    <a href="/" class="button1 centered">Run Docking</a> <!-- Pedro -->
+    <a href="/jobs" class="button1 centered">Jobs</a> <!-- Pedro -->
+    <a href="/prerun" class="button1 centered">Temporary</a> <!-- Pedro -->
     	
     </div>
 

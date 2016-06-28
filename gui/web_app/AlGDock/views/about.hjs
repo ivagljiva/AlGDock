@@ -1,5 +1,12 @@
 {{> header}}
+	<div>
       AlGDock<br>
       Developed by Dr. David Minh's lab
+    </div>  
 	<!-- Pedro -->
+
+	<script src="/js/header.js"></script>
+	<script src='/js/jquery-1.11.2.min.js'></script>
+    <script src='/js/bootstrap.min.js'></script>
+
 {{> footer}}

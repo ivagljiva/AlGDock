@@ -178,7 +178,7 @@ text-align: right;
     
 }
 .button1:hover { /* What the button looks like when the mouse hovers over it */
-	background-color: black;
+	background-color: #00898e;
 	color: white;
 }
 

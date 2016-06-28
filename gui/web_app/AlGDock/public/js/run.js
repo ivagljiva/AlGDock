@@ -18,7 +18,14 @@
     document.getElementById("siteDensityTxtBox").value=10;
     document.getElementById("coresTxtBox").value=-1;
     document.getElementById("fromTxtBox").value=0;
-    document.getElementById("toTxtBox").value=1;        
+    document.getElementById("toTxtBox").value=1;
+
+    /*document.getElementById("runtypeDropdownBtn")
+    document.getElementById("protocolDropdownBtn")
+    document.getElementById("samplerDropdownBtn")
+    document.getElementById("siteDropdownBtn")
+    document.getElementById("phaseDropdownBtn")
+    document.getElementById("scoreDropdownBtn")*/
   });
 
   $("#rBest").click(function() {
@@ -36,7 +43,14 @@
     document.getElementById("siteDensityTxtBox").value=1000;
     document.getElementById("coresTxtBox").value=1000;
     document.getElementById("fromTxtBox").value=0;
-    document.getElementById("toTxtBox").value=1000;        
+    document.getElementById("toTxtBox").value=1000;
+
+    /*document.getElementById("runtypeDropdownBtn").html("1");
+    document.getElementById("protocolDropdownBtn")
+    document.getElementById("samplerDropdownBtn")
+    document.getElementById("siteDropdownBtn")
+    document.getElementById("phaseDropdownBtn")
+    document.getElementById("scoreDropdownBtn")*/
   });
 
   $("#rFast").click(function() {
@@ -54,7 +68,14 @@
     document.getElementById("siteDensityTxtBox").value=1;
     document.getElementById("coresTxtBox").value=1;
     document.getElementById("fromTxtBox").value=0;
-    document.getElementById("toTxtBox").value=1;        
+    document.getElementById("toTxtBox").value=1;
+
+    /*document.getElementById("runtypeDropdownBtn")
+    document.getElementById("protocolDropdownBtn")
+    document.getElementById("samplerDropdownBtn")
+    document.getElementById("siteDropdownBtn")
+    document.getElementById("phaseDropdownBtn")
+    document.getElementById("scoreDropdownBtn")*/
   });
 
   /* Pedro */

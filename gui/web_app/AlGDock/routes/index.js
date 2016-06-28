@@ -56,6 +56,9 @@ router.get('/', valid_user, function(req, res, next) {
         {
           title: 'AlGDock',
           partials: {header: 'header', footer: 'footer'},
+
+          alert_type: 'alert-danger',
+          alert: 'This email is already in use. Did you forget your password?',
           user: req.cookies.user
         });
 });
@@ -95,6 +98,16 @@ router.get('/jobs', function(req, res, next) {
   res.render('view-jobs',
       {
         title: 'AlGDock | Jobs',
+        partials: {header: 'header', footer: 'footer'},
+        user: req.cookies.user
+      });
+});
+
+// Pre Run page - added by Pedro
+router.get('/prerun', function(req, res, next) {
+  res.render('pre-run',
+      {
+        title: 'AlGDock | XXXXX',
         partials: {header: 'header', footer: 'footer'},
         user: req.cookies.user
       });
