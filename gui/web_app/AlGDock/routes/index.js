@@ -63,6 +63,16 @@ router.get('/', valid_user, function(req, res, next) {
         });
 });
 
+// Temp route to selection page
+router.get('/selection', valid_user, function(req, res, next) {
+    res.render('selection',
+        {
+          title: 'AlGDock | Selection',
+          partials: {header: 'header', footer: 'footer'},
+          user: req.cookies.user
+        });
+});
+
 // Protein selection page - added by Iva
 router.get('/proteins', function(req, res, next) {
 	res.render('protein-selection',

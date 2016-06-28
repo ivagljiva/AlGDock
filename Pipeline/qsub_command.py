@@ -261,6 +261,6 @@ if not args.dry:
   if cluster=='OSG':
     os.system('condor_submit %s'%submit_FN)
   elif cluster=='CCB' or cluster=='DSCR':
-    os.system('qsub %s'%submit_FN)
+    os.system('qsub %s >> jobs.txt'%submit_FN)
   else:
     os.system(args.command)

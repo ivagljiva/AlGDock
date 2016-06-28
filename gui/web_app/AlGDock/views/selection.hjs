@@ -1,0 +1,13 @@
+{{> header}}
+<br>
+<div class="panel panel-default centerlize" style="width:800px; height:500px;">
+  <div class="panel-body">
+    <button type="button" class="btn btn-default big-button left">Select protein(s)</button>
+    <button type="button" class="btn btn-default big-button right"><span class="button-text">Select Ligand(s) hduashdahsdsaudhsuadhs<br>uadhasudhsuadhsuadhsuahduashdusadhauh</span></button>
+  </div>
+</div>
+
+<br>
+<button type="button" class="btn btn-default center-block">Continue</button>
+
+{{> footer}}
