@@ -2,42 +2,45 @@
 var rows = [{
         name: "job1",
         protein: "p1",
-        ligand: "l2",
+        library: "l2",
         id: 1,
-        score: 100
+        status: "done"
     }, {
         name: "job2",
         protein: "p3",
-        ligand: "l5",
+        library: "l5",
         id: 2,
-        score: 1000
+        status: "running"
     }, {
         name: "job3",
         protein: "p3",
-        ligand: "l12",
+        library: "l12",
         id: 3,
-        score: 87
+        status: "queued"
     }];
 
 $(document).ready(function () {
     var html = "<table border='1|1'> <thead> <tr>";
     html+="<th data-sort='string'>Name</th>";
     html+="<th data-sort='int'>ID</th>";
+    html+="<th data-sort='string'>Status</th>";
     html+="<th data-sort='string'>Protein</th>";
-    html+="<th data-sort='string'>Ligand</th>";
-    html+="<th data-sort='int'>Score</th>";
+    html+="<th data-sort='string'>Ligand Library</th>";
     html+="</tr> </thead> <tbody>";
     for (var i = 0; i < rows.length; i++) {
         html+="<tr>";
         html+="<td>"+rows[i].name+"</td>";
         html+="<td>"+rows[i].id+"</td>";
+        html+="<td>"+rows[i].status+"</td>";
         html+="<td>"+rows[i].protein+"</td>";
         html+="<td>"+rows[i].ligand+"</td>";
         html+="<td>"+rows[i].score+"</td>";
-
+        html+='<td><a href="/report_jobID" class="button1">Data Report</a></td>'; //use variable for JobID to get specific job report
         html+="</tr>";
     }
     html+="</tbody> </table>";
     $("#table").html(html);
     $("#table").stupidtable();
+    
+    	
 });

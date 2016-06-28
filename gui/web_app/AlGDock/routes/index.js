@@ -93,7 +93,7 @@ router.get('/about', function(req, res, next) {
       });
 });
 
-// About Us page - added by Pedro
+// Jobs Status page - added by Pedro
 router.get('/jobs', function(req, res, next) {
   res.render('view-jobs',
       {
@@ -132,6 +132,18 @@ router.get('/pubs', function(req, res, next) {
         user: req.cookies.user
       });
 });
+
+// Data Report page - added by Iva
+// The button for this is on the Jobs Status page
+router.get('/report_jobID', function(req, res, next) {
+	res.render('view-data-report',
+      {
+        title: 'AlGDock | Data Report',
+        partials: {header: 'header', footer: 'footer'},
+        user: req.cookies.user
+      });
+});
+
 
 // Smiles SVG Image
 
