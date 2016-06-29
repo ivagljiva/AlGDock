@@ -8,6 +8,6 @@
 </div>
 
 <br>
-<button type="button" class="btn btn-default center-block">Continue</button>
+<a href="/prerun" button type="button" class="btn btn-default center-block">Continue</button>
 
 {{> footer}}
