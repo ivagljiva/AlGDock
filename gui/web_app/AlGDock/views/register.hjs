@@ -2,25 +2,35 @@
 <!-- Pedro -->
   <br>
     <div class="centerlize" style="width:500px;">
-    <button type="button" class="btn btn-default grey-col" id="login_btn">Login</button>
+    <button type="button" class="btn btn-default" id="reg_btn">Registration</button><br>
 
     <div class="panel panel-default centerlize">
-      <div class="panel-body">
-	<form method="post" action="/" class="login" id="login_form">
+
+	<form method="post" action="/reg" class="reg" id="reg_form">
 
 	  <div class="input-group">
-            <span class="input-group-addon glyphicon glyphicon-envelope" id="envelope"></span>
-            <input class="form-control" type="text" placeholder="Email" id="login_mail" name="login_mail" required>
+            <span class="input-group-addon glyphicon glyphicon-envelope" id="reg_envelope"></span>
+            <input class="form-control" type="text" placeholder="Email" name="reg_mail" required>
 	  </div>
 
 	  <div class="input-group">
-            <span class="input-group-addon glyphicon glyphicon-lock" id="lock"></span>
-            <input class="form-control" type="password" placeholder="Password" id="login_pass" name="login_pass" required>
+            <span class="input-group-addon glyphicon glyphicon-lock" id="reg_lock1"></span>
+            <input class="form-control" type="password" placeholder="Create Password" name="reg_pass1" required>
+	    <span class="input-group-addon glyphicon glyphicon-ok" style="display: none; color: #66CD00" id="pass_ok"></span>
+	    <span class="input-group-addon glyphicon glyphicon-remove" style="display: none; color: #FF0000" id="pass_bad"></span>
+	  </div>
+
+	  <div class="input-group">
+            <span class="input-group-addon glyphicon glyphicon-lock" id="reg_lock2"></span>
+            <input class="form-control" type="password" placeholder="Validate Password" name="reg_pass2" required>
+	    <span class="input-group-addon glyphicon glyphicon-ok" style="display: none; color: #66CD00" id="confpass_ok"></span>
+	    <span class="input-group-addon glyphicon glyphicon-remove" style="display: none; color: #FF0000" id="confpass_bad"></span>
 	  </div><br>
 
 	  <div class="input-group">
-            <button class="form-control" type="submit" class="login-button" style="border-radius: 8px">Login</button>
+            <button class="form-control" type="submit" class="reg-button" style="border-radius: 8px">Register</button>
 	  </div>
+
 	</form>
 
       </div>
@@ -71,8 +81,8 @@
 	</div>
       </div>
     </div><br>
-
-    <div class="alert {{alert_type}} {{hide_class}}" role="alert">
+    
+     <div class="alert {{alert_type}} {{hide_class}}" role="alert">
       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="padding-right: 5px;"></span>
       {{alert}}
     </div>

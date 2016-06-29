@@ -63,6 +63,30 @@ router.get('/', valid_user, function(req, res, next) {
         });
 });
 
+// Login page - added by Christopher
+router.get('/login', function(req, res, next) {
+    res.render('login',
+        {
+           	title: 'AlGDock | Login',
+          	hide_class : 'hide_elt',
+    		alert_type: '',
+    		alert: '',
+           	partials: {header: 'header', footer: 'footer'},
+        });
+});
+
+// Registration page - added by Christopher
+router.get('/register', function(req, res, next) {
+    res.render('register',
+        {
+           	title: 'AlGDock | Register',
+           	hide_class : 'hide_elt',
+    		alert_type: '',
+    		alert: '',
+           	partials: {header: 'header', footer: 'footer'},
+        });
+});
+
 // Temp route to selection page
 router.get('/selection', valid_user, function(req, res, next) {
     res.render('selection',
@@ -173,7 +197,7 @@ router.post('/', function(req, res) {
 
 		if (peoples === null) {
 			console.log(err);
-			res.render('login',
+			res.render('register',
       {
         title: 'AlGDock | Login or Register',
         hide_class : '',
@@ -191,7 +215,7 @@ router.post('/', function(req, res) {
 			res.redirect('/');
 		}
 		else {
-			res.render('login',
+			res.render('register',
       {
         title: 'AlGDock | Login or Register',
         hide_class : '',
