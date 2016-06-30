@@ -1,152 +1,163 @@
 {{> header}}
-	<div style="width:100%; height:100%;">
-		<div>
-			<h4>Proteins Selected</h4>
-		</div>
-		<div>
-			<h4>Ligand Libraries</h4>
-		</div>
-		<div>
-  			<div>
-	            <h4>Settings</h4>
-	             <!--Pedro-->
-	            <input id="rCustom" type="radio" name="settingsDefault" value="custom" checked> Custom
-	            <input id="rFast" type="radio" name="settingsDefault" value="fast"> Fast
-	            <input id="rBest" type="radio" name="settingsDefault" value="best"> Best
-	            <!--Pedro-->
-			</div>
-			
-			<br>
 
-			<div>
-			    <div class="dropdown">
-		              <button class="btn btn-default dropdown-toggle" type="button" id="runtypeDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Run Type</button>
-		              <ul id="runtypeScript" class="dropdown-menu" aria-labelledby="runtypeDropdownBtn">
-		              </ul>
-		        </div> <!--/.dropdown-->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4">
+				<div>
+					<h4>Proteins Selected</h4>
+				</div>	
+			</div>
+			<div class="col-lg-4">
+				<div>
+					<h4>Ligand Libraries</h4>
+				</div>	
+			</div>
+			<div class="col-lg-4">
+				<div>
+	            	<h4>Settings</h4>
+	            	<input id="rCustom" type="radio" name="settingsDefault" value="custom" checked> Custom
+		            <input id="rFast" type="radio" name="settingsDefault" value="fast"> Fast
+		            <input id="rBest" type="radio" name="settingsDefault" value="best"> Best
+		            <!--Pedro-->
+		        </div>
 		        <br>
-			    <div class="dropdown">
-			      <button class="btn btn-default dropdown-toggle" type="button" id="protocolDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Protocol</button>
-			      <ul id="protocolScript" class="dropdown-menu" aria-labelledby="protocolDropdownBtn">
-			      </ul>
-			    </div> <!--/.dropdown-->
-			    <br>
-			    <div class="form-group">
-			      <label for="coolThermSpeedTxtBox">Cool Therm Speed:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="coolThermSpeedTxtBox" value="1.5">
-			    </div>
+		        <div>
+				    <div class="dropdown">
+			              <button class="btn btn-default dropdown-toggle" type="button" id="runtypeDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Run Type</button>
+			              <ul id="runtypeScript" class="dropdown-menu" aria-labelledby="runtypeDropdownBtn">
+			              </ul>
+			        </div> <!--/.dropdown-->
+			        <br>
+				    <div class="dropdown">
+				      <button class="btn btn-default dropdown-toggle" type="button" id="protocolDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Protocol</button>
+				      <ul id="protocolScript" class="dropdown-menu" aria-labelledby="protocolDropdownBtn">
+				      </ul>
+				    </div> <!--/.dropdown-->
+				    <br>
+				    <div class="form-group">
+				      <label for="coolThermSpeedTxtBox">Cool Therm Speed:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="coolThermSpeedTxtBox" value="1.5">
+				    </div>
 
-			    <div class="form-group">
-			      <label for="dockThermSpeedTxtBox">Dock Therm Speed:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="dockThermSpeedTxtBox" value="1.5">
-			    </div>
+				    <div class="form-group">
+				      <label for="dockThermSpeedTxtBox">Dock Therm Speed:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="dockThermSpeedTxtBox" value="1.5">
+				    </div>
 
-			    <div class="dropdown">
-			      <button class="btn btn-default dropdown-toggle" type="button" id="samplerDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Sampler</button>
-			      <ul id="samplerScript" class="dropdown-menu" aria-labelledby="samplerDropdownBtn">
-			      </ul>
-			    </div> <!--/.dropdown-->
-			    <br>
-			    <div class="form-group">
-			      <label for="mcmcMovesTxtBox">MCMC Moves:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="mcmcMovesTxtBox" value="1">
-			    </div>
+				    <div class="dropdown">
+				      <button class="btn btn-default dropdown-toggle" type="button" id="samplerDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Sampler</button>
+				      <ul id="samplerScript" class="dropdown-menu" aria-labelledby="samplerDropdownBtn">
+				      </ul>
+				    </div> <!--/.dropdown-->
+				    <br>
+				    <div class="form-group">
+				      <label for="mcmcMovesTxtBox">MCMC Moves:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="mcmcMovesTxtBox" value="1">
+				    </div>
 
-			    <div class="form-group">
-			      <label for="seedsPerStateTxtBox">Seeds Per State:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="seedsPerStateTxtBox" value="10">
-			    </div>
+				    <div class="form-group">
+				      <label for="seedsPerStateTxtBox">Seeds Per State:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="seedsPerStateTxtBox" value="10">
+				    </div>
 
-			    <div class="form-group">
-			      <label for="stepsPerSeedTxtBox">Steps Per Seed:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="stepsPerSeedTxtBox" value="200">
-			    </div>
+				    <div class="form-group">
+				      <label for="stepsPerSeedTxtBox">Steps Per Seed:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="stepsPerSeedTxtBox" value="200">
+				    </div>
 
-			    <div class="form-group">
-			      <label for="sweepsPerCycleTxtBox">Sweeps Per Cycle:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="sweepsPerCycleTxtBox" value="10">
-			    </div>
+				    <div class="form-group">
+				      <label for="sweepsPerCycleTxtBox">Sweeps Per Cycle:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="sweepsPerCycleTxtBox" value="10">
+				    </div>
 
-			    <div class="form-group">
-			      <label for="attemptsPerSweepTxtBox">Attempts Per Sweep:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="attemptsPerSweepTxtBox" value="100">
-			    </div>
+				    <div class="form-group">
+				      <label for="attemptsPerSweepTxtBox">Attempts Per Sweep:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="attemptsPerSweepTxtBox" value="100">
+				    </div>
 
-			    <div class="form-group">
-			      <label for="stepsPerSweepTxtBox">Steps Per Sweep:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="stepsPerSweepTxtBox" value="50">
-			    </div>
+				    <div class="form-group">
+				      <label for="stepsPerSweepTxtBox">Steps Per Sweep:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="stepsPerSweepTxtBox" value="50">
+				    </div>
 
-			    <div class="form-group">
-			      <label for="coolRepXCyclesTxtBox">Cool RepX Cycles:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="coolRepXCyclesTxtBox" value="2">
-			    </div>
+				    <div class="form-group">
+				      <label for="coolRepXCyclesTxtBox">Cool RepX Cycles:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="coolRepXCyclesTxtBox" value="2">
+				    </div>
 
-			    <div class="form-group">
-			      <label for="dockRepXCyclesTxtBox">Dock RepX Cycles:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="dockRepXCyclesTxtBox" value="3">
-			    </div>
+				    <div class="form-group">
+				      <label for="dockRepXCyclesTxtBox">Dock RepX Cycles:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="dockRepXCyclesTxtBox" value="3">
+				    </div>
 
-		    	<div class="dropdown">
-			      <button class="btn btn-default dropdown-toggle" type="button" id="siteDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Site</button>
-			      <ul id="siteScript" class="dropdown-menu" aria-labelledby="siteDropdownBtn">
-			      </ul>
-			    </div> <!--/.dropdown-->
-			    <br>
-			    <div class="form-group">
-			      <label for="siteCenter">Site Center:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="siteCenterXTxtBox" placeholder="X">
-			      <input type="text" class="input input-sm" style="text-align: center" id="siteCenterYTxtBox" placeholder="Y">
-			      <input type="text" class="input input-sm" style="text-align: center" id="siteCenterZTxtBox" placeholder="Z">
-			    </div>
+			    	<div class="dropdown">
+				      <button class="btn btn-default dropdown-toggle" type="button" id="siteDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select a Site</button>
+				      <ul id="siteScript" class="dropdown-menu" aria-labelledby="siteDropdownBtn">
+				      </ul>
+				    </div> <!--/.dropdown-->
+				    <br>
+				    <div class="form-group">
+				      <label for="siteCenter">Site Center:</label><br>
+				      	<input type="text" class="input input-sm"  style="text-align: center" id="siteCenterXTxtBox" placeholder="X">
+				      	<input type="text" class="input input-sm" style="text-align: center" id="siteCenterYTxtBox" placeholder="Y">
+				      	<input type="text" class="input input-sm" style="text-align: center" id="siteCenterZTxtBox" placeholder="Z">
+				    </div>
 
-			    <div class="form-group">
-			      <label for="siteMaxRadiusTxtBox">Site Max Radius:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="siteMaxRadiusTxtBox" value="0.01">
-			    </div>
+				    <div class="form-group">
+				      <label for="siteMaxRadiusTxtBox">Site Max Radius:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="siteMaxRadiusTxtBox" value="0.01">
+				    </div>
 
-		    	    <div class="form-group">
-			      <label for="siteDensityTxtBox">Site Density:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="siteDensityTxtBox" value="10">
-			    </div>
+			    	    <div class="form-group">
+				      <label for="siteDensityTxtBox">Site Density:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="siteDensityTxtBox" value="10">
+				    </div>
 
-		    	<div class="dropdown">
-			      <button class="btn btn-default dropdown-toggle" type="button" id="phaseDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Phases</button>
-			      <ul id="phaseScript" class="dropdown-menu" aria-labelledby="phaseDropdownBtn">
-			      </ul>
-			    </div> <!--/.dropdown-->
-			    <br>
-			    <div class="form-group">
-			      <label for="coresTxtBox">Cores:</label>
-			      <input type="text" class="input input-sm" style="text-align: center" id="coresTxtBox" value="-1">
-			    </div>
+			    	<div class="dropdown">
+				      <button class="btn btn-default dropdown-toggle" type="button" id="phaseDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Phases</button>
+				      <ul id="phaseScript" class="dropdown-menu" aria-labelledby="phaseDropdownBtn">
+				      </ul>
+				    </div> <!--/.dropdown-->
+				    <br>
+				    <div class="form-group">
+				      <label for="coresTxtBox">Cores:</label>
+				      <input type="text" class="input input-sm" style="text-align: center" id="coresTxtBox" value="-1">
+				    </div>
 
-			    <div class="dropdown">
-			      <button class="btn btn-default dropdown-toggle" type="button" id="scoreDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Score</button>
-			      <ul class="dropdown-menu" aria-labelledby="scoreDropdownBtn">
-			       	<li><a href="#">xtal</a></li>
-		    		<li><a href="#">dock</a></li>
-		    		<li><a href="#">None</a></li>
-			      </ul>
-			    </div> <!--/.dropdown-->
-			    <br>
-			    <div class="form-group">
-			      <label for="repsField">Repetitions:</label>
-			      <div id="repsField">
-				<input type="text" class="input input-sm" style="text-align: center" id="fromTxtBox" value="0">
-				<input type="text" class="input input-sm" style="text-align: center" id="toTxtBox" value="1">
-			      </div>
-			    </div>
+				    <div class="dropdown">
+				      <button class="btn btn-default dropdown-toggle" type="button" id="scoreDropdownBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Score</button>
+				      <ul class="dropdown-menu" aria-labelledby="scoreDropdownBtn">
+				       	<li><a href="#">xtal</a></li>
+			    		<li><a href="#">dock</a></li>
+			    		<li><a href="#">None</a></li>
+				      </ul>
+				    </div> <!--/.dropdown-->
+				    <br>
+				    <div class="form-group">
+				      <label for="repsField">Repetitions:</label>
+				      <div id="repsField">
+					<input type="text" class="input input-sm" style="text-align: center" id="fromTxtBox" value="0">
+					<input type="text" class="input input-sm" style="text-align: center" id="toTxtBox" value="1">
+				      </div>
+				    </div>
 
-			    <div class="checkbox">
-			      <label><input type="checkbox" value="" id="rmsdChkBox" checked="checked">RMSD</label>
-			    </div>
-			</div>
-			<div>
-		    	<button id="savePrefBtn" type="button" class="btn btn-default" data-dismiss="modal">Save Preferences</button>
-			</div>
-		</div>	
-	</div>	
+				    <div class="checkbox">
+				      <label><input type="checkbox" value="" id="rmsdChkBox" checked="checked">RMSD</label>
+				    </div>
+				</div>
+				<div>
+			    	<button id="savePrefBtn" type="button" class="btn btn-default" data-dismiss="modal">Save Preferences</button><br><br>
+				</div>
+			</div>	
+		</div>
+		<div class="row">
+			<button id="runlh" type="button" class="btn btn-lg" data-dismiss="modal">Run LH</button>
+			<button id="runucf" type="button" class="btn btn-lg" data-dismiss="modal">Run UCF</button>
+			<h4 style="float:right">
+				Estimated Time: XXXX
+			</h4>
+		</div>
+	</div>		
 
 
     <script src="js/jquery.min.js"></script>
