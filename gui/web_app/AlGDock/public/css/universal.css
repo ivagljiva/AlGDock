@@ -205,10 +205,10 @@ text-align: right;
 }
 
 .button-text {
-  width: 100%;
   overflow: hidden;
   white-space: pre-line;
   text-overflow: ellipsis;
+  text-align: center;
 }​
 
 .left{
