@@ -86,15 +86,15 @@
 
     <div class="container">
     </div>
-    
+
     <a href="/tutorial" class="button1 centered">Tutorial</a> <!-- Iva -->
     <a href="/about" class="button1 centered">About Us</a>
     <a href="/pubs" class="button1 centered">Publications</a> <!-- Iva -->
     <a href="/selection" class="button1 centered">Run Docking</a> <!-- Pedro --> <!-- Iva re-routed this to /selection -->
     <a href="/jobs" class="button1 centered">Jobs</a> <!-- Pedro -->
-    	
     </div>
 
+    <script src="js/stupidtable.min.js"></script>
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/ie10-viewport-bug-workaround.js"></script>

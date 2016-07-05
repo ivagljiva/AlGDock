@@ -49,6 +49,27 @@
 </div>
 
 <script src="js/stupidtable.min.js"></script>
-<script src="js/selection.js"
-
+<script src="js/templates.js"></script>
+<script src="js/helper.js"></script>
+<script src="js/selection.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/run.js"></script>
+<!--util -->
+<script src="js/chem/util/common.js"></script>
+<script src="js/chem/util/map.js"></script>
+<script src="js/chem/util/pool.js"> </script>
+<script src="js/chem/util/set.js"></script>
+<script src="js/chem/util/vec2.js"> </script>
+<!--chem -->
+<script src="js/chem/chem/element.js"></script>
+<script src="js/chem/chem/struct.js"></script>
+<script src="js/chem/chem/cis_trans.js"></script>
+<script src="js/chem/chem/dfs.js"></script>
+<script src="js/chem/chem/molfile.js"></script>
+<script src="js/chem/chem/sgroup.js"></script>
+<script src="js/chem/chem/smiles.js"></script>
+<script src="js/chem/chem/stereocenters.js"> </script>
+<script src="js/chem/chem/struct_valence.js"> </script>
+<!--prototype -->
+<script src="js/chem/prototype.js"></script>
 {{> footer}}

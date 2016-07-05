@@ -4,6 +4,7 @@
   selectedLigand = null;
   populateProteins = function(proteinJson) {
     proteinJson = JSON.parse(proteinJson);
+    console.log(proteinJson.files)
     renderList("proteinScript", {
       "proteinList": proteinJson.files
     });
@@ -111,9 +112,6 @@
     }
   });
 
-  /* Main */
-  // return httpGet(restAddr + "/api/v1.0/proteins", populateProteins);
-
 
   //data for /selection page
 
@@ -173,6 +171,7 @@
           html+="<td>"+rowsLigand[i].name+"</td>";
           html+="</tr>";
       }
+      console.log(rowsLigand);
       html+="</tbody> </table>";
       $("#tableLigand").html(html);
       $("#tableLigand").stupidtable();
@@ -190,5 +189,16 @@
       $("#btnSelectLigand").html("Select ligand(s)");
     }
   });
+
+  popProteins = function(proteinJson){
+    console.log(proteinJson);
+    proteinJson = JSON.parse(proteinJson);
+    proteinJson.files.each(function(p){
+      console.log(p);
+    })
+  }
+
+  /* Main */
+  return httpGet(restAddr + "/api/v1.0/proteins", populateProteins);
 
 })(window);
