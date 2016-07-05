@@ -151,8 +151,8 @@
 			</div>	
 		</div>
 		<div class="row">
-			<button id="runlh" type="button" class="btn btn-lg" data-dismiss="modal">Run LH</button>
-			<button id="runucf" type="button" class="btn btn-lg" data-dismiss="modal">Run UCF</button>
+			<button id="runlh" type="button" class="btn btn-lg" data-dismiss="modal" onclick="location.href='/jobs'">Run AlGDock</button>
+			<button id="runucf" type="button" class="btn btn-lg" data-dismiss="modal" onclick="location.href='/jobs'">Run UC 8F</button>
 			<h4 style="float:right">
 				Estimated Time: XXXX
 			</h4>
@@ -170,4 +170,5 @@
     <script src="js/selection.js"></script>
     <script src="js/settings.js"></script>
     <script src="js/run.js"></script>
+
 {{> footer}}
