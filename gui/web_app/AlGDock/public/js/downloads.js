@@ -17,7 +17,6 @@ exports.download_file = function() {
 	console.log("The file name is " + file_name);
 	var file = fs.createWriteStream(DOWNLOAD_DIR + file_name);
 	
-	console.log("About to call HTTP.GET");
 	http.get(options, function(res) {
 		res.on('data', function(data) {
 				file.write(data);

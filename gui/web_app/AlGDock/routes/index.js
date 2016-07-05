@@ -184,7 +184,6 @@ router.get('/report_jobID', function(req, res, next) {
 // The button for this is on the Jobs Status page
 router.get('/report_jobID/files', function(req, res, next) {
 	download.download_file();
-	console.log("Waiting in index.js");
 	res.redirect('/jobs');
 	//after download occurs, show Jobs page again
 });
