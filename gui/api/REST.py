@@ -28,9 +28,19 @@ from BindingPMF_arguments import *
 @app.route('/api/v1.0/proteins', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def get_protein_names():
-    proteins = os.walk(TARGET).next()[1]
-    protein_lst = [{"filename": protein} for protein in sorted(proteins) if protein != "scripts"]
-    return jsonify({"files": protein_lst})
+    proteins_folder = os.path.join(TARGET,"proteins")
+    proteins = os.walk(proteins_folder).next()[2] #search for files in TARGET/proteins
+    protein_list = [{"filename": protein} for protein in sorted(proteins)]
+    return jsonify({"files": protein_list})
+
+#File system functions
+@app.route('/api/v1.0/ligands', methods=['GET', 'OPTIONS'])
+@crossdomain(origin='*')
+def get_protein_names():
+    ligands_folder = os.path.join(TARGET,"ligands")
+    ligands = os.walk(ligands_folder).next()[2] #search for files in TARGET/ligands
+    ligand_list = [{"filename": ligand} for ligand in sorted(ligands)]
+    return jsonify({"files": ligand_list})
 
 @app.route('/api/v1.0/ligands/<protein>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
