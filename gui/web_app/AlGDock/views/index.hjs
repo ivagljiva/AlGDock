@@ -94,11 +94,6 @@
     <a href="/jobs" class="button1 centered">Jobs</a> <!-- Pedro -->
     </div>
 
-    <script src="js/stupidtable.min.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/ie10-viewport-bug-workaround.js"></script>
-    <script src="http://twitter.github.com/hogan.js/builds/3.0.1/hogan-3.0.1.js"></script>
     <!-- Custom Javascript -->
     <script src="js/templates.js"></script>
     <script src="js/helper.js"></script>
