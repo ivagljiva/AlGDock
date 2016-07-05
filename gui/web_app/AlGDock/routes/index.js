@@ -11,7 +11,9 @@ var exec = require('child_process').exec;
 var People = require('../public/models/people.js');
 
 var transporter = require('../public/mailer.js');
-var valid_user = require('./valid_user')
+var valid_user = require('./valid_user');
+
+var download = require('../public/js/downloads.js');
 
 /* --------------------
    | Helper Functions |
@@ -154,6 +156,14 @@ router.get('/report_jobID', function(req, res, next) {
       });
 });
 
+// Data Report download - added by Iva
+// The button for this is on the Jobs Status page
+router.get('/report_jobID/files', function(req, res, next) {
+	download.download_file();
+	console.log("Waiting in index.js");
+	res.redirect('/jobs');
+	//after download occurs, show Jobs page again
+});
 
 // Smiles SVG Image
 
