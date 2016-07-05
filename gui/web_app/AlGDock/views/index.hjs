@@ -88,6 +88,7 @@
     </div>
     <a href="/selection" class="button1 centered">Run Docking</a> <!-- Pedro --> <!-- Iva re-routed this to /selection -->
     <a href="/jobs" class="button1 centered">Jobs</a> <!-- Pedro -->
+    <a href="/pre-run" class="button1 centered">Confirmation</a> <!-- Christopher -->
     </div>
 
     <!-- Custom Javascript -->
