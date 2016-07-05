@@ -112,5 +112,83 @@
   });
 
   /* Main */
-  return httpGet(restAddr + "/api/v1.0/proteins", populateProteins);
+  // return httpGet(restAddr + "/api/v1.0/proteins", populateProteins);
+
+
+  //data for /selection page
+
+  //foo data
+  var rowsProtein = [{
+          name: "protein1"
+      }, {
+          name: "protein2",
+      }, {
+          name: "protein3"
+      }];
+
+      var html = "<table border='1|1'> <thead> <tr>";
+      html+="<th></th>";
+      html+="<th data-sort='string'>Name</th>";
+      html+="</tr> </thead> <tbody>";
+      for (var i = 0; i < rowsProtein.length; i++) {
+          html+="<tr>";
+          html+="<td> <input type='checkbox' /></td>"
+          html+="<td>"+rowsProtein[i].name+"</td>";
+          html+="</tr>";
+      }
+      html+="</tbody> </table>";
+      $("#tableProtein").html(html);
+      $("#tableProtein").stupidtable();
+
+  $("#saveProteins").click(function() {
+    if($("#tableProtein input:checked").length > 0){       //If there's at least one checklist checked
+      var html= "Protein(s) Selected:";
+      $('#tableProtein tbody tr').each(function() {        //See which one is checked and add the name
+          var checked = $(this).find("input").is(":checked");
+          var name = $(this).find("td").eq(1).html();
+          html += checked ? "<br>"+name : "";
+      });
+      $("#btnSelectProtein").html(html);
+    }else{
+      $("#btnSelectProtein").html("Select protein(s)");
+    }
+  });
+
+  //foo data
+  var rowsLigand = [{
+          name: "ligand1"
+      }, {
+          name: "ligand2",
+      }, {
+          name: "ligand3"
+      }];
+
+      var html = "<table border='1|1'> <thead> <tr>";
+      html+="<th></th>";
+      html+="<th data-sort='string'>Name</th>";
+      html+="</tr> </thead> <tbody>";
+      for (var i = 0; i < rowsLigand.length; i++) {
+          html+="<tr>";
+          html+="<td> <input type='checkbox' /></td>"
+          html+="<td>"+rowsLigand[i].name+"</td>";
+          html+="</tr>";
+      }
+      html+="</tbody> </table>";
+      $("#tableLigand").html(html);
+      $("#tableLigand").stupidtable();
+
+  $("#saveLigands").click(function() {
+    if($("#tableLigand input:checked").length > 0){       //If there's at least one checklist checked
+      var html= "Ligand(s) Selected:";
+      $('#tableLigand tbody tr').each(function() {        //See which one is checked and add the name
+          var checked = $(this).find("input").is(":checked");
+          var name = $(this).find("td").eq(1).html();
+          html += checked ? "<br>"+name : "";
+      });
+      $("#btnSelectLigand").html(html);
+    }else{
+      $("#btnSelectLigand").html("Select ligand(s)");
+    }
+  });
+
 })(window);
