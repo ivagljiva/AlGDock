@@ -20,7 +20,11 @@
 
 
 
+<<<<<<< HEAD
   // $("btnSelectProtein").click(function(){
+=======
+  // $("btnSelectProtein").click(function(){ 
+>>>>>>> new-target
   //     httpGet(restAddr + "/api/v1.0/proteins", populateProteins)
   // })
   //

@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, redirect, url_for
 import subprocess
 
 import os
+import errno
 import json
 from cross_domain import *
 
@@ -28,16 +29,26 @@ from BindingPMF_arguments import *
 @app.route('/api/v1.0/proteins', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def get_protein_names():
-    proteins = os.walk(TARGET).next()[1]
-    protein_lst = [{"filename": protein} for protein in sorted(proteins) if protein != "scripts"]
-    return jsonify({"files": protein_lst})
+    proteins_folder = os.path.join(TARGET,"proteins")
+    proteins = os.walk(proteins_folder).next()[1] #search for folders in TARGET/proteins
+    protein_list = [{"filename": protein} for protein in sorted(proteins)]
+    return jsonify({"files": protein_list})
 
-@app.route('/api/v1.0/ligands/<protein>', methods=['GET', 'OPTIONS'])
+#File system functions
+@app.route('/api/v1.0/ligands', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
-def get_ligand_names(protein):
-    ligands = os.walk(os.path.join(TARGET, protein, "ligand")).next()[2]
-    ligand_lst = [{"filename": ligand} for ligand in sorted(ligands) if ".ism" in ligand]
-    return jsonify({"files": ligand_lst})
+def get_ligand_names():
+    ligands_folder = os.path.join(TARGET,"ligands")
+    ligands = os.walk(ligands_folder).next()[2] #search for files in TARGET/ligands
+    ligand_list = [{"filename": ligand} for ligand in sorted(ligands)]
+    return jsonify({"files": ligand_list})
+
+#@app.route('/api/v1.0/ligands/<protein>', methods=['GET', 'OPTIONS'])
+#@crossdomain(origin='*')
+#def get_ligand_names(protein):
+#    ligands = os.walk(os.path.join(TARGET, protein, "ligand")).next()[2]
+#    ligand_lst = [{"filename": ligand} for ligand in sorted(ligands) if ".ism" in ligand]
+#    return jsonify({"files": ligand_lst})
 
 @app.route('/api/v1.0/ligandSelection/<protein>/<library>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
@@ -134,8 +145,14 @@ def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampl
 @app.route('/api/v1.0/run/<protein>/<ligand>/<email>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def run(protein, ligand, email):
-    run_string = "python " + os.path.join(AlGDock, "../Pipeline/run_anchor_and_grow.py") + " --max_jobs 20 --email " + email + " --ligand " + os.path.join(TARGET, protein, "ligand/dock_in", ligand.split(".ism")[0] + ".A__")
-    os.chdir(os.path.join(TARGET, protein, "dock6"))
+    run_string = "python " + os.path.join(AlGDock, "../Pipeline/run_anchor_and_grow.py") + " --max_jobs 20 --email " + email + " --ligand " + os.path.join(TARGET, "ligands", ligand) + " --receptor " + os.path.join(TARGET, "proteins", protein)
+    os.chdir(os.path.join(TARGET,"users")) #change the current working dir to TARGET/users
+    try:
+        os.makedirs(email) #try to create the email folder inside TARGET/users/
+    except OSError as exception:
+        if exception.errno != errno.EEXIST:
+            raise
+    os.chdir(os.path.join(TARGET, "users", email))
     print run_string
     os.system(run_string)
     return "Job Sent to Cluster"

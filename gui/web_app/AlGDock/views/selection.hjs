@@ -7,6 +7,7 @@
   </div>
   <a href="/prerun" type="button" class="btn btn-primary center-block">Continue</a>
 </div>
+  <button id="btnRun" href="/prerun" type="button" class="btn btn-primary center-block">RUN</button>
 <br>
 <!-- Modals -->
 
