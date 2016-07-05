@@ -252,9 +252,9 @@ if execute_script!='':
   sh_F.close()
 
 if (not args.dry) and cluster in ['OSG','CCB','DSCR']:
-  print 'Submitting job script: ' + submit_FN
+  print 'qsub_command: Submitting job script: ' + submit_FN
 
-print('Job name: ' + args.name)
+print('qsub_command: Job name: ' + args.name)
 # print('Script contents: ' + submit_script)
 
 if not args.dry:

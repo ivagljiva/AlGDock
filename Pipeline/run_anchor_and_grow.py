@@ -73,19 +73,19 @@ execfile(os.path.join(dirs['script'],'_external_paths.py'))
 ancg_script = os.path.join(dirs['script'], 'anchor_and_grow.py')
 command_paths = findPaths(['qsub_command'])
 
-print '%d ligands and %d receptors found'%(len(ligand_FNs),len(receptor_FNs))
+print 'run_anchor_and_grow: %d ligands and %d receptors found'%(len(ligand_FNs),len(receptor_FNs))
 
 if (args.library_requirement is not None):
   ligand_FNs = [FN for FN in ligand_FNs \
     if FN[len(args.ligand)+1:].find(args.library_requirement)>-1]
-  print '%d ligand(s) meet the library requirement'%(len(ligand_FNs))
+  print 'run_anchor_and_grow: %d ligand(s) meet the library requirement'%(len(ligand_FNs))
 
 if (args.run_number is not None) and (args.run_number < len(ligand_FNs)):
   import numpy as np
   inds_o = set([int(np.floor(ind)) \
     for ind in np.linspace(0,len(ligand_FNs)-1,args.run_number)])
   ligand_FNs = [ligand_FNs[ind] for ind in inds_o]
-  print '%d ligand(s) will be prepared'%(len(ligand_FNs))
+  print 'run_anchor_and_grow: %d ligand(s) will be prepared'%(len(ligand_FNs))
 
 import subprocess
 
@@ -118,7 +118,7 @@ for receptor_FN in receptor_FNs:
       ((ncommands>0) and (ligand_FN==ligand_FNs[-1])):
       command = '; '.join(command_list)
       name = labels['receptor'] + '-' + '.'.join(code_list)
-      print command
+      print 'run_anchor_and_grow: command %s'%(command)
       system_command = ' '.join(['python',command_paths['qsub_command'],\
         name, "'"+command+"'", \
         '--input_files', ancg_script, \
@@ -127,14 +127,14 @@ for receptor_FN in receptor_FNs:
         {True:'--output_remaps ' + ' '.join(out_remaps), \
          False:''}[len(out_remaps)>0], \
         {True:'--dry',False:''}[args.dry], '--email', args.email])
-      print system_command
+      print 'run_anchor_and_grow: system_command %s'%(system_command)
       os.system(system_command)
       command_list = []                                   #restart variables
       out_FNs = []
       out_remaps = []
       code_list = []
       job_count += 1
-      print 'Submitted %d jobs'%(job_count)
+      print 'run_anchor_and_grow: Submitted %d jobs'%(job_count)
       if (args.max_jobs is not None) and (job_count>=args.max_jobs):
         break
   if (args.max_jobs is not None) and (job_count>=args.max_jobs):

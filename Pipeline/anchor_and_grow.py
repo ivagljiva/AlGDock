@@ -145,5 +145,5 @@ command = dirs['dock6'] + '/bin/dock6 -i '+labels['complex']+'.in; ' + \
   'mv '+labels['complex']+'_scored.mol2.gz ' + args.output + '; ' + \
   'rm '+labels['complex']+'_conformers.mol2; ' + \
   'rm '+labels['complex']+'.in'
-print command
+print 'anchor_and_grow command: %s'%(command)
 os.system(command)
