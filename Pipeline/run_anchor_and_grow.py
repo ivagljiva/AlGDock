@@ -71,7 +71,7 @@ dirs['script'] = os.path.dirname(os.path.abspath(\
   inspect.getfile(inspect.currentframe())))
 execfile(os.path.join(dirs['script'],'_external_paths.py'))
 ancg_script = os.path.join(dirs['script'], 'anchor_and_grow.py')
-command_paths['qsub_command'] = os.path.join(dirs['script'], 'qsub_command.py')
+qsub_script = os.path.join(dirs['script'], 'qsub_command.py')
 
 print 'run_anchor_and_grow: %d ligands and %d receptors found'%(len(ligand_FNs),len(receptor_FNs))
 
@@ -119,7 +119,7 @@ for receptor_FN in receptor_FNs:
       command = '; '.join(command_list)
       name = labels['receptor'] + '-' + '.'.join(code_list)
       print 'run_anchor_and_grow: command %s'%(command)
-      system_command = ' '.join(['python',command_paths['qsub_command'],\
+      system_command = ' '.join(['python',qsub_script,\
         name, "'"+command+"'", \
         '--input_files', ancg_script, \
         receptor_FN[:-4]+'.nrg', receptor_FN[:-4]+'.bmp', \
