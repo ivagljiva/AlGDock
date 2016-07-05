@@ -71,7 +71,7 @@ dirs['script'] = os.path.dirname(os.path.abspath(\
   inspect.getfile(inspect.currentframe())))
 execfile(os.path.join(dirs['script'],'_external_paths.py'))
 ancg_script = os.path.join(dirs['script'], 'anchor_and_grow.py')
-command_paths = findPaths(['qsub_command'])
+command_paths['qsub_command'] = os.path.join(dirs['script'], 'qsub_command.py')
 
 print 'run_anchor_and_grow: %d ligands and %d receptors found'%(len(ligand_FNs),len(receptor_FNs))
 
