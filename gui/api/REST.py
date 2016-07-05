@@ -145,7 +145,13 @@ def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampl
 @crossdomain(origin='*')
 def run(protein, ligand, email):
     run_string = "python " + os.path.join(AlGDock, "../Pipeline/run_anchor_and_grow.py") + " --max_jobs 20 --email " + email + " --ligand " + os.path.join(TARGET, protein, "ligand/dock_in", ligand.split(".ism")[0] + ".A__")
-    os.chdir(os.path.join(TARGET, protein, "dock6"))
+    os.chdir(os.path.join(TARGET,"users")) #change the current working dir to TARGET/users
+    try:
+        os.makedirs(email) #try to create the email folder inside TARGET/users/
+    except OSError as exception:
+        if exception.errno != errno.EEXIST:
+            raise
+    os.chdir(os.path.join(TARGET, "users", email))
     print run_string
     os.system(run_string)
     return "Job Sent to Cluster"

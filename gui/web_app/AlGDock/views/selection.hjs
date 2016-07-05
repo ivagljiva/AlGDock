@@ -7,6 +7,7 @@
   </div>
   <a href="/prerun" type="button" class="btn btn-primary center-block">Continue</a>
 </div>
+  <button id="btnRun" href="/prerun" type="button" class="btn btn-primary center-block">RUN</button>
 <br>
 <!-- Modals -->
 
@@ -51,7 +52,7 @@
 <script src="js/stupidtable.min.js"></script>
 <script src="js/templates.js"></script>
 <script src="js/helper.js"></script>
-<script src="js/selection.js"></script>
+<script src="js/selection-table.js"></script>
 <script src="js/settings.js"></script>
 <script src="js/run.js"></script>
 <!--util -->
