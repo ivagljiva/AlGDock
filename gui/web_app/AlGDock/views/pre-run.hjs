@@ -12,7 +12,7 @@
 					<h4>Ligand Libraries</h4>
 				</div>	
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-4" style="height:440px;overflow:scroll;">
 				<div>
 	            	<h4>Settings</h4>
 	            	<input id="rCustom" type="radio" name="settingsDefault" value="custom" checked> Custom
@@ -160,6 +160,10 @@
 	</div>
 	<br>
 	<br>
+	
+	<button style="margin-left:10px;margin-top:10px;">
+		<a href="javascript:history.back()">Back</a>
+	</button>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

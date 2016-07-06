@@ -89,6 +89,14 @@ router.get('/register', function(req, res, next) {
         });
 });
 
+// Registration page - added by Christopher
+router.get('/pre-run', function(req, res, next) {
+    res.render('pre-run',
+        {
+           	partials: {header: 'header', footer: 'footer'},
+        });
+});
+
 // Temp route to selection page
 router.get('/selection', valid_user, function(req, res, next) {
     res.render('selection',
