@@ -65,7 +65,7 @@ else:
   raise Exception('Docking out %s is not a directory!')
 
 # Find anchor_and_grow.py and qsub_command.py
-import os, inspect
+import os, inspect, errno
 dirs = {}
 dirs['script'] = os.path.dirname(os.path.abspath(\
   inspect.getfile(inspect.currentframe())))
@@ -100,6 +100,11 @@ for receptor_FN in receptor_FNs:
     labels['key'] = os.path.basename(ligand_FN[:-5])
     labels['library'] = '.'.join(os.path.dirname(\
       ligand_FN[len(args.ligand)+1:]).split('.')[:-1])
+    #the out_prefix is the path that the output will be stored
+    try:
+        os.makedirs(labels['library']+'.'+labels['key'][:-2]+'__'+'/'+labels['key']+'/'+labels['receptor']))
+    except OSError as exception:
+        pass
     out_prefix = os.path.join(args.output, \
       labels['library']+'.'+labels['key'][:-2]+'__', \
       labels['key'], labels['receptor'])
