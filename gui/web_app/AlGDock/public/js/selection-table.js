@@ -55,7 +55,23 @@
         $("#btnSelectProtein").html("Select protein(s)");
       }
     });
+
+    $("#searchUniprot").click(function(){
+      window.open("http://www.uniprot.org/");
+    });
   }
+
+  /*$("#createProtein").click(function() {
+    if($("#tableProtein input:checked").length==0){
+        alert("Please select the ligand that you want to edit");
+      }
+      if($("#tableProtein input:checked").length>1){
+        alert("Only one ligand can be edited at a time");
+      }
+      if($("#tableProtein input:checked").length==1){
+        
+      }
+  });*/
 
   populateLigandTable = function(ligands){
 
@@ -75,7 +91,21 @@
       $("#tableLigand").html(html);
       $("#tableLigand").stupidtable();
 
+    /*$("#editLigand").click(function() {
+      if($("#tableLigand input:checked").length==0){
+        alert("Please select the ligand that you want to edit");
+      }
+      if($("#tableLigand input:checked").length>1){
+        alert("Only one ligand can be edited at a time");
+      }
+      if($("#tableLigand input:checked").length==1){
+        alert("Only one ligand can be edited at a time");
+      }
+    });*/
+
     $("#saveLigands").click(function() {
+
+      alert("AQII");
       if($("#tableLigand input:checked").length > 0){       //If there's at least one checklist checked
         var html= "Ligand(s) Selected:";
         $('#tableLigand tbody tr').each(function() {        //See which one is checked and add the name
