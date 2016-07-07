@@ -12,7 +12,7 @@
 					<h4>Ligand Libraries</h4>
 				</div>	
 			</div>
-			<div class="col-lg-4" style="height:440px;overflow:scroll;">
+			<div class="col-lg-4" style="height:520px;overflow:auto;">
 				<div>
 	            	<h4>Settings</h4>
 	            	<input id="rCustom" type="radio" name="settingsDefault" value="custom" checked> Custom
@@ -151,8 +151,9 @@
 			</div>	
 		</div>
 		<div class="row">
+			<button id="back" type="button" class="btn btn-lg" onclick="javascript:history.back()">Back</button>
 			<button id="runlh" type="button" class="btn btn-lg" data-dismiss="modal" onclick="location.href='/jobs'">Run AlGDock</button>
-			<button id="runucf" type="button" class="btn btn-lg" data-dismiss="modal" onclick="location.href='/jobs'">Run UC 8F</button>
+			<button id="runucf" type="button" class="btn btn-lg" data-dismiss="modal" onclick="location.href='/jobs'">Run UCSF</button>
 			<h4 style="float:right">
 				Estimated Time: XXXX
 			</h4>
@@ -161,9 +162,7 @@
 	<br>
 	<br>
 	
-	<button style="margin-left:10px;margin-top:10px;">
-		<a href="javascript:history.back()">Back</a>
-	</button>
+	
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
