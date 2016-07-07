@@ -40,7 +40,7 @@ def get_protein_names():
 def get_ligand_names():
     ligands_folder = os.path.join(TARGET,"ligands")
     ligands = os.walk(ligands_folder).next()[2] #search for files in TARGET/ligands
-    ligand_list = [{"filename": ligand} for ligand in sorted(ligands)]
+    ligand_list = [{"filename": ligand.split(".ism")[0]} for ligand in sorted(ligands) if ".ism" in ligand]
     return jsonify({"files": ligand_list})
 
 #@app.route('/api/v1.0/ligands/<protein>', methods=['GET', 'OPTIONS'])
@@ -145,7 +145,7 @@ def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampl
 @app.route('/api/v1.0/run/<protein>/<ligand>/<email>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def run(protein, ligand, email):
-    run_string = "python " + os.path.join(AlGDock, "../Pipeline/run_anchor_and_grow.py") + " --max_jobs 20 --email " + email + " --ligand " + os.path.join(TARGET, "ligands", ligand) + " --receptor " + os.path.join(TARGET, "proteins", protein)
+    run_string = "python " + os.path.join(AlGDock, "../Pipeline/run_anchor_and_grow.py") + " --max_jobs 20 --email " + email + " --ligand " + os.path.join(TARGET, "ligands","dock_in", ligand + ".A__") + " --receptor " + os.path.join(TARGET, "proteins", protein)
     os.chdir(os.path.join(TARGET,"users")) #change the current working dir to TARGET/users
     try:
         os.makedirs(email) #try to create the email folder inside TARGET/users/

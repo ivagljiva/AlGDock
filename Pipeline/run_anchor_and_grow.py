@@ -102,12 +102,14 @@ for receptor_FN in receptor_FNs:
       ligand_FN[len(args.ligand)+1:]).split('.')[:-1])
     #the out_prefix is the path that the output will be stored
     try:
-        os.makedirs(labels['library']+'.'+labels['key'][:-2]+'__'+'/'+labels['key']+'/'+labels['receptor']))
+        path = str(labels['receptor'])+str(labels['library'])+'/'+str(labels['key'])
+        print 'path %s'%(path)
+        os.makedirs(path)
     except OSError as exception:
-        pass
-    out_prefix = os.path.join(args.output, \
-      labels['library']+'.'+labels['key'][:-2]+'__', \
-      labels['key'], labels['receptor'])
+        if exception.errno != errno.EEXIST:
+        	raise
+    out_prefix = os.path.join(args.output, path,'output')
+    print 'out: %s'%(out_prefix)
     if not (os.path.exists(out_prefix+'.mol2.gz') or os.path.exists(out_prefix+'.nc')):
       out_FN = out_prefix + '.mol2.gz'
       command = 'python {0} {1} {2} {3}'.format(
