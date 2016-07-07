@@ -1,9 +1,6 @@
 (function(window) {
   //foo data
-  var addLigandToLibrary, displaySvg, ligandSearch, molViewDisplay,
-      populateLigands, populateProteins, // callback for httpGet
-      selectedLigands=[], selectedProteins=[], //array with user's choice
-      populateProteinTable, populateLigandTable; //function for table
+  var addLigandToLibrary, displaySvg, ligandSearch, molViewDisplay, populateLigands, populateProteins, selectedLigand, selectedProtein, proteins, ligands, populateProteinTable, populateLigandTable;
 
   populateProteins = function(proteinJson){
     proteinJson = JSON.parse(proteinJson);
@@ -17,6 +14,8 @@
 
   httpGet(restAddr + "/api/v1.0/ligands", populateLigands)
   httpGet(restAddr + "/api/v1.0/proteins", populateProteins)
+
+
 
   // $("btnSelectProtein").click(function(){
   //     httpGet(restAddr + "/api/v1.0/proteins", populateProteins)
@@ -49,10 +48,7 @@
         $('#tableProtein tbody tr').each(function() {        //See which one is checked and add the name
             var checked = $(this).find("input").is(":checked");
             var name = $(this).find("td").eq(1).html();
-            if(checked){
-              html += "<br>"+name;
-              selectedProteins.push(name);
-            }
+            html += checked ? "<br>"+name : "";
         });
         $("#btnSelectProtein").html(html);
       }else{
@@ -85,10 +81,7 @@
         $('#tableLigand tbody tr').each(function() {        //See which one is checked and add the name
             var checked = $(this).find("input").is(":checked");
             var name = $(this).find("td").eq(1).html();
-            if(checked){
-              html += "<br>"+name;
-              selectedLigands.push(name);
-            }
+            html += checked ? "<br>"+name : "";
         });
         $("#btnSelectLigand").html(html);
       }else{
@@ -97,14 +90,18 @@
     });
   }
 
-  $("#btnRun").click(function() { //TODO: validation for this button
-    var email = document.cookie.split(';')[1].split('=')[1];
-    for(i=0; i<selectedProteins.length; i++){
-      for(j=0; j<selectedLigands.length; j++){
-        console.log(selectedProteins[i]+" "+selectedLigands[j]+" "+email);
-        httpGet(restAddr + "/api/v1.0/run/" + selectedProteins[i] + "/" + selectedLigands[j] + "/" + email, displayMessage);
-      }
-    }
-  });
-
 })(window);
+
+//table selection look and behavior
+
+var check = true;
+
+function checkAll() {
+    if (check == true){
+    	$(':checkbox').prop('checked', true);
+    	check = false;
+    }else if (check == false){
+    	$(':checkbox').prop('checked', false);
+    	check = true;
+    }
+}
