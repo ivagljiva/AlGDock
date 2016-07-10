@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, redirect, url_for
+from flask import Flask, jsonify, request, redirect, url_for, send_from_directory
 import subprocess
 
 import os
@@ -171,10 +171,10 @@ def prepareLigandLibrary(protein, ligand, email):
 @app.route('/api/v1.0/download/<email>/<protein>/<ligand>', methods=['GET', 'POST'])
 @crossdomain(origin='*')
 def download(email, protein, ligand):
-	upload_dir = os.path.join(TARGET, "users", email, protein); #change to directory in which results are stored
-	file = "%s.mol2.gz" % ligand
-	print "Attempting to download ", file, " from directory ", upload_dir
-	return send_from_directory(directory=upload_dir, filename=file)
+    upload_dir = os.path.join(TARGET, "users", email, protein); #change to directory in which results are stored
+    file = "%s.mol2.gz" % ligand
+    print "Attempting to download ", file, " from directory ", upload_dir
+    return send_from_directory(directory=upload_dir, filename=file)
 	
 if __name__ == '__main__':
     app.run(debug=True)
