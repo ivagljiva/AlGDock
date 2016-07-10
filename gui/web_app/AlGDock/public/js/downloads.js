@@ -3,11 +3,11 @@ var url = require('url');
 var http = require('http');
 var exports = module.exports = {};
 
-var file_url = '/Users/Iva/School/College/Sophomore/IPRO/AlGDock/gui/web-app/AlGDock/public/foo-data.txt'; //file to download
+var file_url = "http://localhost:5000/api/v1.0/download/cieslakluiz@gmail.com/AGLU/AA9"; //file path on cluster to download
 var DOWNLOAD_DIR = '/Users/Iva/Downloads/'; //directory to download to
 
 // Function to download file using HTTP.get
-exports.download_file = function() {
+/*exports.download_file = function() {
 	var options = {
     	host: url.parse(file_url).host,
     	port: 3000,
@@ -24,5 +24,16 @@ exports.download_file = function() {
 				file.end();
 				console.log(file_name + ' downloaded to ' + DOWNLOAD_DIR);
 		});
+	}); 
+}; */
+
+exports.download_file = function() {
+	//TARGET variable on cluster should be set to /home/ldasilva/target/
+	var file_name = url.parse(file_url).pathname.split('/').pop();
+	console.log("The file name is " + file_name);
+	var file = fs.createWriteStream(DOWNLOAD_DIR + 	file_name);
+	var request = http.get(file_url, function(response) {
+		response.pipe(file);
+		console.log(file_name + ' downloaded to ' + DOWNLOAD_DIR);
 	});
 };
