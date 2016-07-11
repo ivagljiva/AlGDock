@@ -1,3 +1,6 @@
+<!-- This is the Login page. Route: 'localhost:3000/login' -->
+<!-- Source code for button functions in login.js -->
+
 {{> header}}
 <!-- Pedro -->
   <br>

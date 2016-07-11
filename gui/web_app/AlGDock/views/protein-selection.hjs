@@ -1,3 +1,6 @@
+<!-- The same protein selection code that is currently on the home page; copied over from the previous GUI code -->
+<!-- Will soon be deprecated -->
+
 {{> header}}	<!--Header at the top of the page-->
 <p>Please select a protein:</p>
 	<!-- Taken from index.hjs -->

@@ -1,3 +1,6 @@
+<!-- Registration page. Route: 'localhost:3000/register' -->
+<!-- Source code for buttons in login.js -->
+
 {{> header}}
 <!-- Pedro -->
   <br>

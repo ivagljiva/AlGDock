@@ -26,6 +26,8 @@ sys.path.insert(0, AlGDock)
 from BindingPMF_arguments import *
 
 #File system functions
+
+# Display list of proteins to dock against
 @app.route('/api/v1.0/proteins', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def get_protein_names():
@@ -34,7 +36,7 @@ def get_protein_names():
     protein_list = [{"filename": protein} for protein in sorted(proteins)]
     return jsonify({"files": protein_list})
 
-#File system functions
+# Display list of ligand libraries to select from
 @app.route('/api/v1.0/ligands', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def get_ligand_names():
@@ -50,6 +52,7 @@ def get_ligand_names():
 #    ligand_lst = [{"filename": ligand} for ligand in sorted(ligands) if ".ism" in ligand]
 #    return jsonify({"files": ligand_lst})
 
+# Get the selected ligands for docking
 @app.route('/api/v1.0/ligandSelection/<protein>/<library>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def get_ligand_selections(protein, library):
@@ -60,6 +63,8 @@ def get_ligand_selections(protein, library):
         ligand_selections = None
     return jsonify({"ligandSelections": ligand_selections})
 
+# Called from displaySvg in selection.js
+# Returns structural data for a ligand so it can be displayed/edited in MolView?
 @app.route('/api/v1.0/ligandLine/<protein>/<library>/<lineNumber>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def get_ligand_line(protein, library, lineNumber):
@@ -73,6 +78,7 @@ def get_ligand_line(protein, library, lineNumber):
     except Exception:
         return None
 
+# Adds a ligand file to a library
 @app.route('/api/v1.0/addToLibrary/<protein>/', methods=['POST', 'OPTIONS'])
 @crossdomain(origin='*')
 def add_to_library(protein):

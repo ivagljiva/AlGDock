@@ -7,4 +7,5 @@
   <script src="js/jobs.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/stupidtable.min.js"></script>
+  <script src="js/downldbtn.js"></script>
 {{> footer}}

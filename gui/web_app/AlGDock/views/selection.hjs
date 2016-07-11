@@ -1,3 +1,6 @@
+<!-- Page for selection of proteins and ligands. Route: 'localhost:3000/selection' -->
+<!-- Source code in selection.js -->
+
 {{> header}}
 
 <br>

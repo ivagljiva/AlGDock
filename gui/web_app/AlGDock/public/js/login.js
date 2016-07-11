@@ -1,3 +1,5 @@
+// Source code for buttons on login.hjs page
+
 $(document).ready(function(){
     $("#login_btn").click(function(){
           $("#reg_form").slideUp();
@@ -22,6 +24,7 @@ $(document).ready(function(){
     $('[name="reg_mail"]').bind('focus', function(){
           $("#reg_envelope").toggleClass("blue-iconCol");
     })
+    // Check whether email is valid IIT student or faculty email account
     $('[name="reg_mail"]').bind('focusout', function(){
         $("#reg_envelope").toggleClass("blue-iconCol");
 	var email = $('[name="reg_mail"').val();
@@ -43,7 +46,7 @@ $(document).ready(function(){
             $('#stud').slideUp();
         }
     })
-
+	// Check whether password is strong enough
     $('[name="reg_pass1"]').keyup(function(){
       var password = $('[name="reg_pass1"]').val();
       var hasUpperCase = /[A-Z]/.test(password);
@@ -94,7 +97,7 @@ $(document).ready(function(){
 	    $('#confpass_bad').hide();
 	}
     })
-
+	// Submit button for registration. Does not allow registration if email or password are invalid or password/confirm password not matching
     $('#reg_form').submit(function(e){
       if($('#confpass_bad').is(':visible') || $('#pass_bad').is(':visible') || $('[name="reg_email"]').val() === "" || $('#invalid').is(':visible'))
         e.preventDefault();

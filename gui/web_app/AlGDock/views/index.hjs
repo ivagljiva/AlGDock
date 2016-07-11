@@ -1,3 +1,5 @@
+<!-- This is the html for the home page. Route: 'localhost:3000/' -->
+
 {{> header}}
     <!-- Dropdown for Protein Selection -->
     <div class="dropdown display-inline">
@@ -84,6 +86,7 @@
       </div>
     </div>
 
+	<!-- Buttons that route to other screens -->
     <div class="container">
     </div>
     <a href="/selection" class="button1 centered">Run Docking</a> <!-- Pedro --> <!-- Iva re-routed this to /selection -->
