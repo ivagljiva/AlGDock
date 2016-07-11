@@ -1,3 +1,4 @@
+<!-- Error page shown when error is thrown in Verify Email function in index.js -->
 <h1>{{ message }}</h1>
 <h2>{{ error.status }}</h2>
 <pre>{{ error.stack }}</pre>

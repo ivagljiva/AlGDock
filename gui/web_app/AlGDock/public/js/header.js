@@ -1,3 +1,6 @@
+// Source code for footer.hjs - this file really should be renamed
+// Defines functions for the buttons in the footer
+
 //Pedro's Stuff
 
 $(document).ready(function(){

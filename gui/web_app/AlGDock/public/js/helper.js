@@ -1,8 +1,13 @@
+// This script provides global variables and helper functions for other source code in the GUI
+
 (function(window) {
 
   /* Global Variables */
   var key;
-  this.restAddr = "http://localhost:5000";
+  this.restAddr = "http://localhost:5000"; // This is the path to REST.py script, currently running on the cluster
+  // If you are running the GUI locally on your machine, you must ssh to the cluster with port forwarding (on port 5000)
+  // in order to be able to connect to REST.py:
+  // ssh -L 5000:localhost:5000 your-username@ccb.tbc.iit.edu
 
   /* Helper Functions */
   this.displayMessage = function(message) {

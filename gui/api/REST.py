@@ -1,3 +1,7 @@
+# This is the REST service script for the AlGDock Web application. It handles the app's connection to the cluster.
+# It must be running on the cluster in order for the GUI (on local machines) to be able to access files and scripts on the cluster
+# As you can see below, it can run Terminal commands by using os.system(). This is how it changes directories and runs the docking software scripts
+
 from flask import Flask, jsonify, request, redirect, url_for, send_from_directory
 import subprocess
 
@@ -10,12 +14,15 @@ app = Flask(__name__)
 ALLOWED_EXTENSIONS = set(['mol', 'smi'])
 
 try:
-    TARGET = os.environ['TARGET']
+	# TARGET is the folder that contains the protein files, ligand files, and results files
+	# It needs to be set properly so that the REST service can navigate to the correct directory on the cluster to access these files
+    TARGET = os.environ['TARGET'] # This should be set to /home/ldasilva/target/ for downloading to work
 except Exception:
     print 'export TARGET=<path to data>'
     exit(1)
 
 try:
+	# AlGDock_Pref is the folder that contains the AlGDock software scripts
     AlGDock = os.environ['AlGDock_Pref']
 except Exception:
     print 'export AlGDock_Pref=<path to BindingPMF_arguments.py>'
@@ -26,6 +33,7 @@ sys.path.insert(0, AlGDock)
 from BindingPMF_arguments import *
 
 #File system functions
+#----------------------
 
 # Display list of proteins to dock against
 @app.route('/api/v1.0/proteins', methods=['GET', 'OPTIONS'])
@@ -147,7 +155,11 @@ def save_preferences(protein, protocol, runtype, cthermspeed, dthermspeed, sampl
     f.close()
     return "Preferences File Saved"
 
-#Run button
+#Button Functionalities
+#------------------------
+
+# Run button
+# Called from run button source code in run.js
 @app.route('/api/v1.0/run/<protein>/<ligand>/<email>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def run(protein, ligand, email):
@@ -163,7 +175,8 @@ def run(protein, ligand, email):
     os.system(run_string)
     return "Job Sent to Cluster"
 
-#Prepare ligands button
+# Prepare ligands button
+# Called from prepLigandLibrary button source code in run.js
 @app.route('/api/v1.0/prepLigandLibrary/<protein>/<ligand>/<email>', methods=['GET', 'OPTIONS'])
 @crossdomain(origin='*')
 def prepareLigandLibrary(protein, ligand, email):
@@ -173,7 +186,8 @@ def prepareLigandLibrary(protein, ligand, email):
     os.system(run_string)
     return "Ligand is being prepared."
     
-#Download button
+# Download button
+# Called from download function in downloads.js (which is called from index.js when the user presses a Download button)
 @app.route('/api/v1.0/download/<email>/<protein>/<ligand>', methods=['GET', 'POST'])
 @crossdomain(origin='*')
 def download(email, protein, ligand):

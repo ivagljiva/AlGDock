@@ -1,3 +1,6 @@
+<!-- This is the header that appears at the top of every screen in the web application -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,17 +42,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" style="color: white; font-family: Syncopate;" href="/">ALGDOCK</a>
+          <a class="navbar-brand" style="color: white; font-family: Syncopate;" href="/">ALGDOCK</a> <!-- GETS route: 'localhost:3000/' which is the index.hjs page -->
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li id="homeTab" class="active"><a href="/">Home</a></li>
+            <li id="homeTab" class="active"><a href="/">Home</a></li> <!-- GETS route: 'localhost:3000/' which is the index.hjs page -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
+          <!-- If a user is logged in, show the Logout button -->
           {{#user}}
             <!--<li><a href="#" data-toggle="modal" data-target="#settingsModal">Settings</a></li>-->
             <li><a href="/logout">Logout</a></li>
           {{/user}}
+          <!-- If no user is logged in, show the Login button -->
           {{^user}}
             <li><a href="/login">Login</a></li>
           {{/user}}

@@ -1,3 +1,6 @@
+// Source code for Selection page
+// Note: restAddr is the path to the REST.py script. It is set in helper.js 
+
 (function(window) {
   var addLigandToLibrary, displaySvg, ligandSearch, molViewDisplay, populateLigands, populateProteins, selectedLigand, selectedProtein;
   selectedProtein = null;

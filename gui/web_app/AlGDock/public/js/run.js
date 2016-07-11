@@ -1,8 +1,11 @@
+// Source code for Run button (currently on pre-run.hjs page)
+
 (function(window) {
 
   /* Listeners */
   /* Pedro */
 
+	// User can define custom run-time parameters for the software
   $("#rCustom").click(function() {
     document.getElementById("coolThermSpeedTxtBox").value=1.5;
     document.getElementById("dockThermSpeedTxtBox").value=1.5;
@@ -27,7 +30,9 @@
     document.getElementById("phaseDropdownBtn")
     document.getElementById("scoreDropdownBtn")*/
   });
-
+  
+	// Pre-set runtime parameters for the Best docking
+	// Note: These values do not currently reflect the actual parameters for Best docking
   $("#rBest").click(function() {
     document.getElementById("coolThermSpeedTxtBox").value=1000;
     document.getElementById("dockThermSpeedTxtBox").value=1000;
@@ -53,6 +58,8 @@
     document.getElementById("scoreDropdownBtn")*/
   });
 
+	// Pre-set runtime parameters for Fast docking
+	// Note: These values do not currently reflect the actual parameters for Fast docking
   $("#rFast").click(function() {
     document.getElementById("coolThermSpeedTxtBox").value=1;
     document.getElementById("dockThermSpeedTxtBox").value=1;
@@ -79,6 +86,7 @@
   });
 
   /* Pedro */
+  // When user changes settings, obtain the new values for the run-time parameters
   $("#savePrefBtn").click(function() {
     var selectedAttemptsPerSweep, selectedCRepXCycles, selectedCThermSpeed, selectedCores, selectedDRepXCycles, selectedDThermSpeed, selectedFReps, selectedMcmc, selectedPhase, selectedProtein, selectedProtocol, selectedRmsd, selectedRuntype, selectedSampler, selectedScore, selectedSeedsPerState, selectedSite, selectedSiteCenterX, selectedSiteCenterY, selectedSiteCenterZ, selectedSiteDensity, selectedSiteMaxRadius, selectedStepsPerSeed, selectedStepsPerSweep, selectedSweepsPerCycle, selectedTReps;
     selectedProtein = $("#proteinDropdownBtn").html();
@@ -111,21 +119,29 @@
       httpGet(restAddr + "/api/v1.0/run/" + selectedProtein + "/" + selectedProtocol + "/" + selectedRuntype + "/" + selectedCThermSpeed + "/" + selectedDThermSpeed + "/" + selectedSampler + "/" + selectedMcmc + "/" + selectedSeedsPerState + "/" + selectedStepsPerSeed + "/" + selectedSweepsPerCycle + "/" + selectedAttemptsPerSweep + "/" + selectedStepsPerSweep + "/" + selectedCRepXCycles + "/" + selectedDRepXCycles + "/" + selectedSite + "/" + selectedSiteCenterX + "/" + selectedSiteCenterY + "/" + selectedSiteCenterZ + "/" + selectedSiteMaxRadius + "/" + selectedSiteDensity + "/" + selectedPhase + "/" + selectedCores + "/" + selectedScore + "/" + selectedFReps + "/" + selectedTReps + "/" + selectedRmsd, displayMessage);
     }
   });
+  
+  // When the run button is pressed, obtain the protein and ligand selections (and the user's email)
+  // and call the run function in REST.py to run the docking software on these files
   $("#runBtn").click(function() {
     var email, selectedLigand, selectedProtein;
     selectedProtein = $("#proteinDropdownBtn").html();
     selectedLigand = $("#ligandDropdownBtn").html();
     email = document.cookie.split(';')[1].split('=')[1];
     if (selectedProtein !== "Protein" && selectedLigand !== "Ligand Library" && selectedLigand !== "Create Ligand Library") {
+      // see run() in REST.py
       httpGet(restAddr + "/api/v1.0/run/" + selectedProtein + "/" + selectedLigand + "/" + email, displayMessage);
     }
   });
+  
+  // When this button is pressed, obtain the protein and ligand selections (and the user's email)
+  // and call the prepareLigandLibrary function in REST.py to run the preparation script on these files
   $("#prepLigandLibraryBtn").click(function() {
     var email, selectedLigand, selectedProtein;
     selectedProtein = $("#proteinDropdownBtn").html();
     selectedLigand = $("#ligandDropdownBtn").html();
     email = document.cookie.split(';')[1].split('=')[1];
     if (selectedProtein !== "Protein" && selectedLigand !== "Ligand Library" && selectedLigand !== "Create Ligand Library") {
+      // see prepareLigandLibrary(protein, ligand, email) in REST.py
       httpGet(restAddr + "/api/v1.0/prepLigandLibrary/" + selectedProtein + "/" + selectedLigand + "/" + email, displayMessage);
     }
   });

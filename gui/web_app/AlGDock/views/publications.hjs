@@ -1,3 +1,5 @@
+<!-- A page for publications that describe or have cited AlGDock or its GUI. Route: 'localhost:3000/pubs' -->
+
 {{> header}}
 <!-- Iva -->
       <b>Publications</b>

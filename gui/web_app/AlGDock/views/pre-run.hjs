@@ -1,3 +1,7 @@
+<!-- The confirmation page that shows before the user runs the docking software. Route: 'localhost:3000/prerun' -->
+<!-- Allows selection of run-time settings for the docking software, and selection of which software to use -->
+<!-- Source code for Run button in run.js -->
+
 {{> header}}
 
 	<div class="container">

@@ -1,3 +1,6 @@
+<!-- This is the Tutorials page. Route: 'localhost:3000/tutorial' -->
+<!-- There is absolutely nothing on this page for now, but walkthroughs can be added here -->
+
 {{> header}}
 <!-- Iva -->
       <b>TUTORIALS</b>

@@ -58,7 +58,7 @@ function db_save(model) {
    ---------- */
 
 // Main page
-// When browsers try to access 'localhost:3000/'
+// When browsers try to access 'localhost:3000/' (for locally-run GUI)
 // First uses valid_user.js to check if user is logged in (if not, renders login/registration page instead)
 // Then renders index.hjs page
 router.get('/', valid_user, function(req, res, next) {
@@ -153,6 +153,9 @@ router.get('/ligandLibrary', function(req, res, next) {
 });
 
 // About Us page - added by Pedro
+// When browsers try to access 'localhost:3000/about'
+// Renders about.hjs page
+// Button for this is in Footer (footer.hjs)
 router.get('/about', function(req, res, next) {
   res.render('about',
       {
@@ -163,6 +166,8 @@ router.get('/about', function(req, res, next) {
 });
 
 // Jobs Status page - added by Pedro
+// When browsers try to access 'localhost:3000/jobs'
+// Renders view-jobs.hjs page
 router.get('/jobs', function(req, res, next) {
   res.render('view-jobs',
       {
@@ -173,6 +178,8 @@ router.get('/jobs', function(req, res, next) {
 });
 
 // Pre Run page - added by Pedro
+// When browsers try to access 'localhost:3000/prerun'
+// Renders pre-run.hjs page
 router.get('/prerun', function(req, res, next) {
   res.render('pre-run',
       {
@@ -183,6 +190,9 @@ router.get('/prerun', function(req, res, next) {
 });
 
 // Tutorials page - added by Iva
+// When browsers try to access 'localhost:3000/tutorial'
+// Renders tutorial.hjs page
+// Button for this is in Footer (footer.hjs)
 router.get('/tutorial', function(req, res, next) {
 	res.render('tutorial',
       {
@@ -193,6 +203,9 @@ router.get('/tutorial', function(req, res, next) {
 });
 
 // Publications page - added by Iva
+// When browsers try to access 'localhost:3000/pubs'
+// Renders publications.hjs page
+// Button for this is in Footer (footer.hjs)
 router.get('/pubs', function(req, res, next) {
 	res.render('publications',
       {
@@ -203,7 +216,10 @@ router.get('/pubs', function(req, res, next) {
 });
 
 // Data Report page - added by Iva
-// The button for this is on the Jobs Status page
+// When browsers try to access 'localhost:3000/report_jobID'
+// Renders view-data-report.hjs
+// NOTE: Change this to render different data depending on jobID
+// The button for this is on the Job Report page
 router.get('/report_jobID', function(req, res, next) {
 	res.render('view-data-report',
       {
@@ -214,15 +230,18 @@ router.get('/report_jobID', function(req, res, next) {
 });
 
 // Data Report download - added by Iva
-// The button for this is on the Jobs Status page
+// When browsers try to access 'localhost:3000/report_jobID/files'
+// Downloads file and then renders Job Report page again
+// The button for this is on the Job Report page
+// download_file function defined in downloads.js
 router.get('/report_jobID/files', function(req, res, next) {
 	download.download_file();
-	res.redirect('/jobs');
 	//after download occurs, show Jobs page again
+	res.redirect('/jobs');
 });
 
 // Smiles SVG Image
-
+// When browsers try to access 'localhost:3000/getSvg/:lineNumber/:smiles'
 router.get('/getSvg/:lineNumber/:smiles', function(req, res) {
     var lineNumber = req.params.lineNumber;
     var smilesStr = req.params.smiles;
@@ -233,10 +252,11 @@ router.get('/getSvg/:lineNumber/:smiles', function(req, res) {
     });
 });
 
-// Login and Registration
+// User Login
 router.post('/', function(req, res) {
+	// Try to find the existing user in the algdock database
     mongoose.model('peoples').findOne({people_username : req.body.login_mail}, function(err, peoples) {
-
+		// if this user does not exist, show the Registration page
 		if (peoples === null) {
 			console.log(err);
 			res.render('register',
@@ -248,6 +268,7 @@ router.post('/', function(req, res) {
         partials: {header: 'header', footer: 'footer'},
       });
 		}
+		// If the user was found and entered the correct password, generate cookies and render Home page
 		else if (create_hash(req.body.login_pass) === peoples["people_password"]){
 			logged_tok = generate_tok();
 			res.cookie('logged_tok', logged_tok);
@@ -256,6 +277,7 @@ router.post('/', function(req, res) {
 			db_save(peoples);
 			res.redirect('/');
 		}
+		// If user was found but entered incorrect credentials, render Registration page
 		else {
 			res.render('register',
       {
@@ -269,9 +291,12 @@ router.post('/', function(req, res) {
     });
 });
 
+// User Registration
 router.post('/reg', function(req, res, next) {
     var email = req.body.reg_mail;
+    // try to find registered user in algdock database
     mongoose.model('peoples').findOne({people_username : email}, function(err, peoples){
+    	// if this user was already registered, show Login page
 		if(peoples !== null) {
 			res.render('login',
       {
@@ -282,6 +307,7 @@ router.post('/reg', function(req, res, next) {
         partials: {header: 'header', footer: 'footer'}
       });
 		}
+		// if this is a newly registered user, add user to the database and send a Verification Email, then show Login page
 		else {
 			var token = generate_tok();
 			var new_people = new People({
@@ -291,6 +317,7 @@ router.post('/reg', function(req, res, next) {
 			});
 			db_save(new_people);
 
+			// Link to verification page
 			verify_link = 'http://localhost:3000/verify_email/' + email + '/' + token;
 
 			var verifyEmail = {
@@ -300,7 +327,7 @@ router.post('/reg', function(req, res, next) {
 				html: 'You are receiving this message because you must verify your email address.<br><br>Just click the link below and you are done!<br>' + '<a href=\"' + verify_link + '\">' + verify_link + '</a>'
 			};
 
-			send_mail(verifyEmail);
+			send_mail(verifyEmail); // Verification email sent from account in mailer.js to user's email account
 			res.render('login',
       {
         title: 'AlGDock | Login or Register',
@@ -313,8 +340,11 @@ router.post('/reg', function(req, res, next) {
 	});
 });
 
+// Verify email - called when user clicks on link in Verification email
 router.get('/verify_email/:email/:tok', function(req, res) {
+	// try to find user in algdock database
     mongoose.model('peoples').findOne({people_username : req.params.email}, function(err, peoples){
+    // if the token from the email matches up with the token saved in the user's profile in the database, update the user's last_login field and render the Login page
 	if (peoples["email_verify"] === req.params.tok){
 	    peoples.last_login = Date.now();
 	    db_save(peoples);
@@ -328,6 +358,7 @@ router.get('/verify_email/:email/:tok', function(req, res) {
         partials: {header: 'header', footer: 'footer'}
       });
 	}
+	// if the tokens do not match, throw an error and render the error.hjs page
 	else{
 	    var err = new Error('Not Found.')
 	    res.render('error', {message : err.message, error: err});
@@ -335,6 +366,7 @@ router.get('/verify_email/:email/:tok', function(req, res) {
     });
 });
 
+// Logout button - clears cookies to log out the user and renders the home page (which should in turn redirect to Login/Registration since user is not logged in anymore)
 router.get('/logout', function(req, res) {
     res.clearCookie('logged_tok');
     res.clearCookie('user');

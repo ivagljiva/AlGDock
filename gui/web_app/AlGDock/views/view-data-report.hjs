@@ -1,6 +1,9 @@
+<!-- Data Report page: Should show a specific report according to the job that is selected from the Jobs Status screen -->
+<!-- Route: 'localhost:3000/report_jobID' -->
+<!-- Source code in data-report.js -->
+
 {{> header}}
 <!-- Iva -->
-<!-- Should show a specific report according to the job that is selected from the Jobs Status screen -->
 
 <p><b>Data Report</b></p>
   <table id="data-table" class="table table-striped">

@@ -1,5 +1,6 @@
-// Iva
 // Script to populate the table in the data report screen (view-data-report.hjs) with data from a specific job
+// Iva
+
 
 // mock data for now
 var rows = [{

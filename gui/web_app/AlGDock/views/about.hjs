@@ -1,3 +1,6 @@
+<!-- About Us page. Route: 'localhost:3000/about' -->
+<!-- We can add any relevant information about the software to this page -->
+
 {{> header}}
 	<div>
       AlGDock<br>

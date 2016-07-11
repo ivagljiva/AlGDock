@@ -1,3 +1,6 @@
+// Source code for view-jobs.js
+// Generates a table to summarize all the jobs submitted to cluster
+
 //foo data
 var rows = [{
         name: "job1",
@@ -37,7 +40,6 @@ $(document).ready(function () {
         html+="<td>"+rows[i].score+"</td>";
         html+='<td><a href="/report_jobID" class="button1">Data Report</a></td>'; //use variable for JobID to get specific job report
         html+='<td><a href="/report_jobID/files" class="button1">Download</a></td>'; //download a specific job report
-        //html+='<td><button class="button1" type="button" id="dwnldBtn">Download</button></td>';
         html+="</tr>";
     }
     html+="</tbody> </table>";

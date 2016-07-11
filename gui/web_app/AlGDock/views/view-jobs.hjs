@@ -1,3 +1,6 @@
+<!-- Job Report screen that summarizes status of all jobs submitted to cluster. Route: 'localhost:3000/jobs' -->
+<!-- Source code in jobs.js -->
+
 {{> header}}
   <table id="table" class="table table-striped">
 
@@ -7,5 +10,5 @@
   <script src="js/jobs.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/stupidtable.min.js"></script>
-  <script src="js/downldbtn.js"></script>
+  
 {{> footer}}
