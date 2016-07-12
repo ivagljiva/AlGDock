@@ -13,6 +13,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     
+    <!--slideshow css-->
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    
 <!--begin jquery slider style-->
     <style>
 .news-demo {
@@ -44,7 +47,7 @@
 <link rel="stylesheet" href="css/jquery-slider/vertical.news.slider.css?v=1.0">
 <!--end jquery slider style-->
     
-    <!--histogram setup-->
+    <!--begin histogram setup-->
     <!--from https://developers.google.com/chart/interactive/docs/gallery/histogram -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -208,6 +211,46 @@
 
   <p class="p"><a href="http://www.impressivewebs.com/jquery-vertical-news-slider/">View Blog Post</a></p>
 <!-- end slider code-->
+
+<p><h4>Slideshow</h4></p><br>
+
+<!--code from w3schools.com javascript slideshow example-->
+<!--slideshow container begins-->
+<div class="w3-content" style="max-width:800px;position:relative;">
+
+<!--establish images-->
+<img class="mySlides" src="img/img_1.jpg" style="width:100%">
+<img class="mySlides" src="img/img_2.jpg" style="width:100%">
+<img class="mySlides" src="img/img_3.jpg" style="width:100%">
+<img class="mySlides" src="img/img_4.jpg" style="width:100%">
+
+<a class="w3-btn-floating" style="position:absolute;top:45%;left:0" onclick="plusDivs(-1)">❮</a>
+<a class="w3-btn-floating" style="position:absolute;top:45%;right:0" onclick="plusDivs(1)">❯</a>
+
+</div>
+<!--slideshow container ends-->
+
+<!--slideshow logic-->
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  x[slideIndex-1].style.display = "block";
+}
+</script>
+<!--end slideshow logic-->
 
 <!--begin jquery slider scripts-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
