@@ -230,12 +230,14 @@ router.get('/report_jobID', function(req, res, next) {
 });
 
 // Data Report download - added by Iva
-// When browsers try to access 'localhost:3000/report_jobID/files'
+// When browsers try to access 'localhost:3000/report_jobID/:protein/:ligand'
 // Downloads file and then renders Job Report page again
 // The button for this is on the Job Report page
 // download_file function defined in downloads.js
-router.get('/report_jobID/files', function(req, res, next) {
-	download.download_file();
+router.get('/report_jobID/:protein/:ligand', function(req, res, next) {
+	var protein = req.params.protein;
+	var ligand = req.params.ligand;
+	download.download_file(protein, ligand);
 	//after download occurs, show Jobs page again
 	res.redirect('/jobs');
 });

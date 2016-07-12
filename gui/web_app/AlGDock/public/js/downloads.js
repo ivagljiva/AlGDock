@@ -5,8 +5,6 @@ var url = require('url');
 var http = require('http');
 var exports = module.exports = {};
 
-var file_url = "http://localhost:5000/api/v1.0/download/cieslakluiz@gmail.com/AGLU/AA9"; //file path on cluster to download
-var DOWNLOAD_DIR = '/Users/Iva/Downloads/'; //directory to download to
 
 // OLD function 
 /*exports.download_file = function() {
@@ -31,9 +29,12 @@ var DOWNLOAD_DIR = '/Users/Iva/Downloads/'; //directory to download to
 
 // Function to download file using HTTP.get
 // This function is exported when another script requires downloads.js
-exports.download_file = function() {
+exports.download_file = function(prot, lig) {
+	var file_url = "http://localhost:5000/api/v1.0/download/cieslakluiz@gmail.com/"+prot+"/"+lig; //file path on cluster to download
+	var DOWNLOAD_DIR = '/Users/Iva/Downloads/'; //directory to download to
 	//TARGET variable on cluster should be set to /home/ldasilva/target/
 	var file_name = url.parse(file_url).pathname.split('/').pop();
+	console.log("The file URL is " + file_url);
 	console.log("The file name is " + file_name);
 	var file = fs.createWriteStream(DOWNLOAD_DIR + 	file_name);
 	var request = http.get(file_url, function(response) {
