@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-# This script starts the web application by running app.js on port 3000.
-# You can start the GUI on your local machine by running this script with node from the command line 
-# (in the web_app/AlGDock folder): node bin/www
-# and then navigating to localhost:3000 in your preferred web browser
+// This script starts the web application by running app.js on port 3000.
+// You can start the GUI on your local machine by running this script with node from the command line 
+//(in the web_app/AlGDock folder): node bin/www
+// and then navigating to localhost:3000 in your preferred web browser
 
 /**
  * Module dependencies.
