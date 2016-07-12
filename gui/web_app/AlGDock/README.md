@@ -1,11 +1,18 @@
 # Web Application
 
-##Quick Start
+## Files and folders
+* [app.js](https://github.com/luizcieslak/AlGDock/blob/master/gui/web_app/AlGDock/app.js) - The primary control script for the web application.
+* [public](https://github.com/luizcieslak/AlGDock/tree/master/gui/web_app/AlGDock/public) - JS and CSS files used in the web pages.
+* [public/models](https://github.com/luizcieslak/AlGDock/tree/master/gui/web_app/AlGDock/public/models) - DB models used in the project
+* [routes](https://github.com/luizcieslak/AlGDock/tree/master/gui/web_app/AlGDock/routes) - Routes used in node
+* [views](https://github.com/luizcieslak/AlGDock/tree/master/gui/web_app/AlGDock/views) - View files using [Hogan](http://twitter.github.io/hogan.js/)
+
+## Quick Start
 
 ### Dependencies
 * [Node.js](https://nodejs.org/en/)
 * [MongoDB](https://www.mongodb.com/download-center#community)
-* 
+
 
 ### Setup
 
