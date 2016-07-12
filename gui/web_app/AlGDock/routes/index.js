@@ -101,6 +101,16 @@ router.get('/register', function(req, res, next) {
         });
 });
 
+// Test page - added by Christopher
+// Renders test page
+router.get('/test', function(req, res, next) {
+    res.render('test',
+        {
+           	title: 'test page'
+        });
+});
+
+
 // Pre-run page - added by Christopher
 // This is a duplicate to Pedro's pre-run route (see below)
 // Keeping Pedro's because it keeps track of cookies
