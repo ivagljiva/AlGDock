@@ -29,8 +29,10 @@ var exports = module.exports = {};
 
 // Function to download file using HTTP.get
 // This function is exported when another script requires downloads.js
-exports.download_file = function(prot, lig) {
-	var file_url = "http://localhost:5000/api/v1.0/download/cieslakluiz@gmail.com/"+prot+"/"+lig; //file path on cluster to download
+// On the cluster, results files are stored in the TARGET directory (see REST.py), under the user's email and the protein/ligand folders for the job
+exports.download_file = function(email, prot, lig) {
+	var file_url = "http://localhost:5000/api/v1.0/download/" + email + "/"+prot+"/"+lig; //file path on cluster to download
+	// This must be changed:
 	var DOWNLOAD_DIR = '/Users/Iva/Downloads/'; //directory to download to
 	//TARGET variable on cluster should be set to /home/ldasilva/target/
 	var file_name = url.parse(file_url).pathname.split('/').pop();

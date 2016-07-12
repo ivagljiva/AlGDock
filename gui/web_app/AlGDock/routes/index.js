@@ -247,7 +247,8 @@ router.get('/report_jobID', function(req, res, next) {
 router.get('/report_jobID/:protein/:ligand', function(req, res, next) {
 	var protein = req.params.protein;
 	var ligand = req.params.ligand;
-	download.download_file(protein, ligand);
+	var user_email = req.cookies.user;
+	download.download_file(user_email, protein, ligand);
 	//after download occurs, show Jobs page again
 	res.redirect('/jobs');
 });

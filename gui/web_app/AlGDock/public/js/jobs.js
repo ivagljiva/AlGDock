@@ -39,6 +39,7 @@ $(document).ready(function () {
         html+="<td>"+rows[i].ligand+"</td>";
         html+="<td>"+rows[i].score+"</td>";
         html+='<td><a href="/report_jobID" class="button1">Data Report</a></td>'; //use variable for JobID to get specific job report
+        // CHANGE URL below to be specific to job
         html+='<td><a href="/report_jobID/AGLU/AA9" class="button1">Download</a></td>'; //download a specific job report
         html+="</tr>";
     }
