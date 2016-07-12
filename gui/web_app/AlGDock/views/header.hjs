@@ -49,6 +49,7 @@
             <li id="homeTab" class="active"><a href="/">Home</a></li> <!-- GETS route: 'localhost:3000/' which is the index.hjs page -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
+          <li><a href="/test">Test Page</a></li>
           <!-- If a user is logged in, show the Logout button -->
           {{#user}}
             <!--<li><a href="#" data-toggle="modal" data-target="#settingsModal">Settings</a></li>-->
