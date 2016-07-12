@@ -29,6 +29,7 @@
     renderedTemplate = compiledTemplate.render(data);
     $("#" + htmlID).html(renderedTemplate);
   };
+  //httpGet does an AJAX GET request to the url and calls the callback function
   this.httpGet = function(url, callback) {
     var xmlHttp;
     xmlHttp = new XMLHttpRequest();
@@ -40,13 +41,14 @@
     xmlHttp.open("GET", url, true);
     xmlHttp.send(null);
   };
+  //httpGet does an AJAX POST request to the url and calls the callback function
   this.httpPost = function(url, jsonString, callback) {
     var xmlHttp;
     xmlHttp = new XMLHttpRequest();
     xmlHttp.open("POST", url);
     xmlHttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xmlHttp.send(jsonString);
-    callback("Library has been added.");
+    callback("Library has been added."); //does the callback of this is alert()?
   };
 
   /* Ligand Id Conversions */
