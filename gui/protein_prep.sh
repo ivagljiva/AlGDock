@@ -10,13 +10,13 @@ do
 case $i in
 	-p=*|--protein=*)	# protein sequence file should go after =
 	SEQUENCE="${i#*=}"
-	echo 'Sequence file is $SEQUENCE';
+	echo "Sequence file is ${SEQUENCE}";
 	shift	# go to next argument
 	;;
 	# you can add more arguments here in same format
 	*)
 	# unknown argument
-	echo 'Argument $i is not known';
+	echo "Argument ${i} is not known";
 esac #end case statement
 shift
 done
