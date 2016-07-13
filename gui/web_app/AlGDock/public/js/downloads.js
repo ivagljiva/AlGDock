@@ -32,10 +32,11 @@ var exports = module.exports = {};
 // On the cluster, results files are stored in the TARGET directory (see REST.py), under the user's email and the protein/ligand folders for the job
 exports.download_file = function(email, prot, lig) {
 	var file_url = "http://localhost:5000/api/v1.0/download/" + email + "/"+prot+"/"+lig; //file path on cluster to download
-	// This must be changed:
+	// This must be changed so it is no longer hardcoded. Do a 'Save As' prompt?:
 	var DOWNLOAD_DIR = '/Users/Iva/Downloads/'; //directory to download to
 	//TARGET variable on cluster should be set to /home/ldasilva/target/
 	var file_name = url.parse(file_url).pathname.split('/').pop();
+	filename += '.gz';
 	console.log("The file URL is " + file_url);
 	console.log("The file name is " + file_name);
 	var file = fs.createWriteStream(DOWNLOAD_DIR + 	file_name);

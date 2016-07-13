@@ -127,7 +127,7 @@ router.get('/pre-run', function(req, res, next) {
 // When browsers try to access 'localhost:3000/selection'
 // Renders selection.hjs page
 // We probably won't need this once we restructure
-router.get('/selection', valid_user, function(req, res, next) {
+router.get('/selection/', valid_user, function(req, res, next) {
     res.render('selection',
         {
           title: 'AlGDock | Selection',
@@ -195,7 +195,7 @@ router.get('/prerun', function(req, res, next) {
       {
         title: 'AlGDock | XXXXX',
         partials: {header: 'header', footer: 'footer'},
-        user: req.cookies.user
+        user: req.cookies.user,
       });
 });
 
