@@ -5,9 +5,9 @@
 # For now at least, run this script from the same directory where you saved the protein
 
 export TARGET=/home/ldasilva/target/	# This directory contains the protein files
-echo "$TARGET is ${TARGET}" 
+echo "TARGET is ${TARGET}" 
 export ALGDOCKHOME=/home/ldasilva/AlGDock/	# This directory contains the scripts required by this pipeline
-echo "$ALGDOCKHOME is ${ALGDOCKHOME}"
+echo "ALGDOCKHOME is ${ALGDOCKHOME}"
 
 # parse command line argument to get protein sequence file
 for i in "$@"
@@ -28,8 +28,8 @@ shift
 done
 
 # Prep PDB database files if necessary
-PDB_PIRFILE = pdball.pir	# database of all PDB sequences
-PDB_BINFILE = pdball.bin	# binary file converted from .pir
+PDB_PIRFILE="pdball.pir"	# database of all PDB sequences
+PDB_BINFILE="pdball.bin"	# binary file converted from .pir
 if [ ! -f $ALGDOCKHOME/Pipeline/$PDB_BINFILE ]; then
 	# .bin file not found, so look for .pir
 	if [ -f $ALGDOCKHOME/Pipeline/$PDB_PIRFILE ]; then
