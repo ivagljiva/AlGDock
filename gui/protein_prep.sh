@@ -6,7 +6,7 @@
 
 export TARGET=/home/ldasilva/target	# This directory contains the protein files
 echo "TARGET is ${TARGET}" 
-export ALGDOCKHOME=/home/ldasilva/AlGDock	# This directory contains the scripts required by this pipeline
+export ALGDOCKHOME=/home/iveseli/AlGDock	# This directory contains the scripts required by this pipeline
 echo "ALGDOCKHOME is ${ALGDOCKHOME}"
 modeller=/export/apps/modeller/9.14/modlib/ # path to modeller
 case ":${PATH:=$modeller}:" in
