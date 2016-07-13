@@ -12,10 +12,11 @@ echo "ALGDOCKHOME is ${ALGDOCKHOME}"
 modeller=/export/apps/modeller/9.14/modlib/ # path to modeller
 case ":${PATH:=$modeller}:" in
 	*:$modeller:*)
+	echo "Modeller found in path"
 	;;
-	*) PATH=$PATH:$modeller # add modeller to path if necessary
+	*) export PATH=$PATH:$modeller # add modeller to path if necessary
 esac
-echo "PATH is ${PYTHONPATH}"
+echo "PATH is ${PATH}"
 
 # parse command line argument to get protein sequence file
 for i in "$@"
