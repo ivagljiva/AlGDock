@@ -1,13 +1,9 @@
-# Parameter should be ${SEQUENCE_FILE}_profile.prf (output from profile.modeller.py)
 import os, inspect, sys, subprocess
 
-# Get .prf file from argument list
-prf_file = sys.argv[1]
 
 script_dir = os.path.dirname(os.path.abspath(\
   inspect.getfile(inspect.currentframe())))
-print "Calling _load_profile.py as subprocess"
-profile = subprocess.check_output([sys.executable, os.path.join(script_dir,'_load_profile.py'), prf_file])
+execfile(os.path.join(script_dir,'_load_profile.py'))
 
 if not os.path.isdir('figures'):
   os.makedirs('figures')

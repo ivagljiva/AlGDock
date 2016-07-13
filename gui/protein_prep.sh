@@ -58,10 +58,10 @@ fi
 # From same directory as where the protein sequence is saved:
 echo "Running profile.modeller.py on ${SEQUENCE_FILE}"
 python $ALGDOCKHOME/Pipeline/profile.modeller.py $PATH_TO_PBD/$PDB_BINFILE $SEQUENCE_FILE
-# Output files: $SEQUENCE_FILE_profile.prf and $SEQUENCE_FILE_profile.ali
+# Output files: profile.prf and profile.ali
 
-echo "Running analyze_profile.py on ${SEQUENCE_FILE}_profile.prf"
-python $ALGDOCKHOME/Pipeline/analyze_profile.py $SEQUENCE_FILE_profile.prf
+echo "Running analyze_profile.py"
+python $ALGDOCKHOME/Pipeline/analyze_profile.py
 # Output histograms of sequence identity: figures/hist_seq_id.png and figures/hist_seq_id_selected.png
 # This will also display the sequences that are present in the selected chains. 
 # The sequences will be sorted in descending order of the number of sequence identity and the number of equivalent positions.

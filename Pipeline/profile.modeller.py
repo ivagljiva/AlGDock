@@ -40,17 +40,19 @@ prf = aln.to_profile()
 prf.build(sdb, matrix_offset=-450, rr_file='${LIB}/blosum62.sim.mat',
           gap_penalties_1d=(-500, -50), n_prof_iterations=1,
           check_profile=False, max_aln_evalue=0.01)
-          
-seq_name = seq_file.replace(".ali", "") # remove file extension
-prf_out = seq_name + '_profile.prf'	# name of .prf output file
-ali_out = seq_name + '_profile.ali'	# name of .prf output file
-print "Output files: ", prf_out, " and ", ali_out
+        
+# Iva: I tried to make the protein file names more specific but failed when passing arguments to subprocesses
+# That's what this code below is from  
+#seq_name = seq_file.replace(".ali", "") # remove file extension
+#prf_out = seq_name + '_profile.prf'	# name of .prf output file
+#ali_out = seq_name + '_profile.ali'	# name of .prf output file
+#print "Output files: ", prf_out, " and ", ali_out
 
 #-- Write out the profile in text format
-prf.write(file=prf_out, profile_format='TEXT')
+prf.write(file='profile.prf', profile_format='TEXT')
 
 #-- Convert the profile back to alignment format
 aln = prf.to_alignment()
 
 #-- Write out the alignment file
-aln.write(file=ali_out, alignment_format='PIR')
+aln.write(file='profile.ali', alignment_format='PIR')
