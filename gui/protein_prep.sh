@@ -50,7 +50,7 @@ if [ ! -f $ALGDOCKHOME/Pipeline/$PDB_BINFILE ]; then
 		gunzip pdball.pir.gz
 	fi
 	# once we have .pir file, convert it to .bin
-	python $ALGDOCKHOME/Pipeline/pdball_pir2bin.modeller.py
+	mod9.15 $ALGDOCKHOME/Pipeline/pdball_pir2bin.modeller.py
 fi
 
 # From same directory as where the protein sequence is saved:
