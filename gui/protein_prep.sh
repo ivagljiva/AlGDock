@@ -13,6 +13,9 @@ echo "ALGDOCKHOME is ${ALGDOCKHOME}"
 # load modeller environment
 module load modeller/9.14
 
+# default sequence file name:
+SEQUENCE_FILE="seq.ali"
+
 # parse command line argument to get protein sequence file
 for i in "$@"
 do
@@ -20,7 +23,6 @@ case $i in
 	-p=*|--protein=*)	# protein sequence file should go after =
 						# Example: ./protein_prep.sh -p=prot_seq.ali
 	SEQUENCE_FILE="${i#*=}"
-	echo "Sequence file is ${SEQUENCE_FILE}";
 	shift	# go to next argument
 	;;
 	# you can add more arguments here in same format
@@ -30,6 +32,9 @@ case $i in
 esac #end case statement
 shift
 done
+
+echo "Sequence file is ${SEQUENCE_FILE}";
+# if sequence file is not named seq.ali, the script will break. 
 
 # Prep PDB database files if necessary
 PDB_PIRFILE="pdball.pir"	# database of all PDB sequences
@@ -51,7 +56,7 @@ if [ ! -f $PATH_TO_PBD/$PDB_BINFILE ]; then
 fi
 
 # From same directory as where the protein sequence is saved:
-python $ALGDOCKHOME/Pipeline/profile.modeller.py $PATH_TO_PBD/$PDB_BINFILE
+python $ALGDOCKHOME/Pipeline/profile.modeller.py $PATH_TO_PBD/$PDB_BINFILE $SEQUENCE_FILE
 # Output files: profile.prf and profile.ali
 
 python $ALGDOCKHOME/Pipeline/analyze_profile.py
