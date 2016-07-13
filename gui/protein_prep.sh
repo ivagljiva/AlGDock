@@ -33,9 +33,9 @@ PDB_BINFILE="pdball.bin"	# binary file converted from .pir
 if [ ! -f $ALGDOCKHOME/Pipeline/$PDB_BINFILE ]; then
 	# .bin file not found, so look for .pir
 	if [ -f $ALGDOCKHOME/Pipeline/$PDB_PIRFILE ]; then
-		echo "${PDB_FILE} found."
+		echo "${PDB_PIRFILE} found."
 	else
-		echo "${PDB_FILE} not found; downloading from modeller...."
+		echo "${PDB_PIRFILE} not found; downloading from modeller...."
 		# .pir file not found, so download and unzip it
 		wget "http://salilab.org/modeller/downloads/pdball.pir.gz"
 		gunzip pdball.pir.gz
