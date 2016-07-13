@@ -35,3 +35,5 @@ for line in profile_lines:
     ((int(split_line[5]), int(split_line[6]),
       int(split_line[7]), int(split_line[8])), \
     int(split_line[9]), int(split_line[10][:-1]), split_line[-1])
+    
+    return profile
