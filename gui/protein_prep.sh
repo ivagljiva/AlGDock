@@ -34,14 +34,15 @@ done
 # Prep PDB database files if necessary
 PDB_PIRFILE="pdball.pir"	# database of all PDB sequences
 PDB_BINFILE="pdball.bin"	# binary file converted from .pir
-if [ ! -f $ALGDOCKHOME/Pipeline/$PDB_BINFILE ]; then
+PATH_TO_PBD="${ALGDOCKHOME}/Pipeline"	# the above files should be stored in this directory
+if [ ! -f $PATH_TO_PBD/$PDB_BINFILE ]; then
 	# .bin file not found, so look for .pir
-	if [ -f $ALGDOCKHOME/Pipeline/$PDB_PIRFILE ]; then
+	if [ -f $PATH_TO_PBD/$PDB_PIRFILE ]; then
 		echo "${PDB_PIRFILE} found."
 	else
 		echo "${PDB_PIRFILE} not found; downloading from modeller...."
 		# .pir file not found, so download and unzip it
-		wget "http://salilab.org/modeller/downloads/pdball.pir.gz"
+		wget -O $PATH_TO_PBD/pdball.pir.gz "http://salilab.org/modeller/downloads/pdball.pir.gz"
 		gunzip pdball.pir.gz
 	fi
 	# once we have .pir file, convert it to .bin
@@ -50,4 +51,21 @@ if [ ! -f $ALGDOCKHOME/Pipeline/$PDB_BINFILE ]; then
 fi
 
 # From same directory as where the protein sequence is saved:
-#python $ALGDOCKHOME/Pipeline/profile.modeller.py 
+python $ALGDOCKHOME/Pipeline/profile.modeller.py $PATH_TO_PBD/$PDB_BINFILE
+# Output files: profile.prf and profile.ali
+
+python $ALGDOCKHOME/Pipeline/analyze_profile.py
+# Output histograms of sequence identity: figures/hist_seq_id.png and figures/hist_seq_id_selected.png
+# This will also display the sequences that are present in the selected chains. 
+# The sequences will be sorted in descending order of the number of sequence identity and the number of equivalent positions.
+# Selected chains have 
+	# * a sequence identity greater than min_seq_identity (90 by default) and
+	# * at least min_equivalent_positions (1 by default) equivalent positions.
+# The defaults can be modified in [TARGET]/receptor/search_options.py
+# using, e.g.,
+# min_seq_identity = 100
+# min_equivalent_positions = 50
+# See pipeline.txt for further explanation
+
+echo "One iteration of analyze_profile.py has been completed. Check reference sequence and structure."
+
