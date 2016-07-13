@@ -4,10 +4,12 @@
 # Before running: download your protein sequence and save in a file with .ali extension
 # For now at least, run this script from the same directory where you saved the protein
 
-export TARGET=/home/ldasilva/target/	# This directory contains the protein files
+export TARGET=/home/ldasilva/target	# This directory contains the protein files
 echo "TARGET is ${TARGET}" 
-export ALGDOCKHOME=/home/ldasilva/AlGDock/	# This directory contains the scripts required by this pipeline
+export ALGDOCKHOME=/home/ldasilva/AlGDock	# This directory contains the scripts required by this pipeline
 echo "ALGDOCKHOME is ${ALGDOCKHOME}"
+export PYTHONPATH="${PYTHONPATH}:/export/apps/modeller/9.14/modlib/:" # Add modeller to python path
+echo "PYTHONPATH is ${PYTHONPATH}"
 
 # parse command line argument to get protein sequence file
 for i in "$@"
