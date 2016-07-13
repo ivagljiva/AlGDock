@@ -4,6 +4,7 @@
 
 import modeller
 import os
+import sys
 
 modeller.log.none()
 env = modeller.environ()
