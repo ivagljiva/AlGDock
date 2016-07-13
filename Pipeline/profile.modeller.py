@@ -40,12 +40,15 @@ prf = aln.to_profile()
 prf.build(sdb, matrix_offset=-450, rr_file='${LIB}/blosum62.sim.mat',
           gap_penalties_1d=(-500, -50), n_prof_iterations=1,
           check_profile=False, max_aln_evalue=0.01)
+          
+prf_out = seq_file + '_profile.prf'	# name of .prf output file
+ali_out = seq_file + '_profile.ali'	# name of .prf output file
 
 #-- Write out the profile in text format
-prf.write(file='profile.prf', profile_format='TEXT')
+prf.write(file=prf_out, profile_format='TEXT')
 
 #-- Convert the profile back to alignment format
 aln = prf.to_alignment()
 
 #-- Write out the alignment file
-aln.write(file='profile.ali', alignment_format='PIR')
+aln.write(file=ali_out, alignment_format='PIR')

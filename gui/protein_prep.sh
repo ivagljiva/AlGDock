@@ -57,7 +57,7 @@ fi
 
 # From same directory as where the protein sequence is saved:
 python $ALGDOCKHOME/Pipeline/profile.modeller.py $PATH_TO_PBD/$PDB_BINFILE $SEQUENCE_FILE
-# Output files: profile.prf and profile.ali
+# Output files: $SEQUENCE_FILE_profile.prf and $SEQUENCE_FILE_profile.ali
 
 python $ALGDOCKHOME/Pipeline/analyze_profile.py
 # Output histograms of sequence identity: figures/hist_seq_id.png and figures/hist_seq_id_selected.png
