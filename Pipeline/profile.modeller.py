@@ -9,7 +9,7 @@ import sys
 modeller.log.none()
 env = modeller.environ()
 
-print "The arguments are: ", str(sys.argv)
+#print "The arguments are: ", str(sys.argv)
 if len(sys.argv) != 3:
 	sys.exit("Not enough parameters were passed. You need to provide the full path to pdball.bin and the protein sequence file")
 	
@@ -28,7 +28,7 @@ sdb.read(seq_database_file=pdball_FN, seq_database_format='BINARY',
 
 #-- Read in the target sequence/alignment
 seq_file = sys.argv[2]
-print "Running profile.modeller.py on ", seq_file, "\n"
+print "Sequence file: ", seq_file
 aln = modeller.alignment(env)
 aln.append(file=seq_file, alignment_format='PIR', align_codes='ALL')
 
@@ -43,6 +43,7 @@ prf.build(sdb, matrix_offset=-450, rr_file='${LIB}/blosum62.sim.mat',
           
 prf_out = seq_file + '_profile.prf'	# name of .prf output file
 ali_out = seq_file + '_profile.ali'	# name of .prf output file
+print "Output files: ", prf_out, " and ", ali_out
 
 #-- Write out the profile in text format
 prf.write(file=prf_out, profile_format='TEXT')
