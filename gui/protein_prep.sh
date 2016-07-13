@@ -9,7 +9,7 @@ export TARGET=/home/ldasilva/target	# This directory contains the protein files
 echo "TARGET is ${TARGET}" 
 export ALGDOCKHOME=/home/iveseli/AlGDock	# This directory contains the scripts required by this pipeline
 echo "ALGDOCKHOME is ${ALGDOCKHOME}"
-modeller=/export/apps/modeller/9.14/modlib/ # path to modeller
+modeller=/export/apps/modeller/9.14/lib/x86_64-intel8/python2.5/_modeller.so:/export/apps/modeller/9.14/lib/x86_64-intel8/python3.0/_modeller.so:/export/apps/modeller/9.14/lib/x86_64-intel8/python3.2/_modeller.so:/export/apps/modeller/9.14/lib/x86_64-intel8/python3.3/_modeller.so # path to modeller
 case ":${PATH:=$modeller}:" in
 	*:$modeller:*)
 	echo "Modeller found in path"
