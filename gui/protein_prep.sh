@@ -8,8 +8,12 @@ export TARGET=/home/ldasilva/target	# This directory contains the protein files
 echo "TARGET is ${TARGET}" 
 export ALGDOCKHOME=/home/ldasilva/AlGDock	# This directory contains the scripts required by this pipeline
 echo "ALGDOCKHOME is ${ALGDOCKHOME}"
-export PYTHONPATH="${PYTHONPATH}:/export/apps/modeller/9.14/modlib/:" # Add modeller to python path
-echo "PYTHONPATH is ${PYTHONPATH}"
+modeller=/export/apps/modeller/9.14/modlib/ # path to modeller
+case ":${PATH:=$modeller}:" in
+	*:$modeller:*)
+	;;
+	*) PATH=$PATH:$modeller # add modeller to path if necessary
+echo "PATH is ${PYTHONPATH}"
 
 # parse command line argument to get protein sequence file
 for i in "$@"
