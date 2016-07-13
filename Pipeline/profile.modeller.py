@@ -41,7 +41,7 @@ prf.build(sdb, matrix_offset=-450, rr_file='${LIB}/blosum62.sim.mat',
           gap_penalties_1d=(-500, -50), n_prof_iterations=1,
           check_profile=False, max_aln_evalue=0.01)
           
-seq_name = seq_file.replace(".ali", "")
+seq_name = seq_file.replace(".ali", "") # remove file extension
 prf_out = seq_name + '_profile.prf'	# name of .prf output file
 ali_out = seq_name + '_profile.ali'	# name of .prf output file
 print "Output files: ", prf_out, " and ", ali_out

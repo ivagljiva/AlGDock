@@ -1,7 +1,10 @@
-import os
+import os, sys
+
+# Get .prf file from parameter list
+prf_file = sys.argv[1]
 
 # Create a list of PDB ids and chains in the profile
-profileF = open('profile.prf','r')
+profileF = open(prf_file,'r')
 profile_lines = profileF.read().split('\n')
 profileF.close()
 
