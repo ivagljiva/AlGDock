@@ -10,6 +10,8 @@ echo "TARGET is ${TARGET}"
 export ALGDOCKHOME=/home/iveseli/AlGDock	# This directory contains the scripts required by this pipeline
 echo "ALGDOCKHOME is ${ALGDOCKHOME}"
 
+# load modeller environment
+module load modeller/9.14
 
 # parse command line argument to get protein sequence file
 for i in "$@"
@@ -43,6 +45,7 @@ if [ ! -f $ALGDOCKHOME/Pipeline/$PDB_BINFILE ]; then
 		gunzip pdball.pir.gz
 	fi
 	# once we have .pir file, convert it to .bin
+	echo "Converting ${PDB_PIRFILE} to ${PDB_BINFIlE}"
 	python $ALGDOCKHOME/Pipeline/pdball_pir2bin.modeller.py
 fi
 
