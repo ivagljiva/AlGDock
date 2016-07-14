@@ -3,6 +3,9 @@
 # Attempted automation of pipeline.txt to prepare protein files for docking
 # Before running: download your protein sequence and save in a file with .ali extension
 # For now at least, run this script from the same directory where you saved the protein
+# This only automates the pipeline up to the analyze_profile.py point
+
+# Usage: [PATH_TO_SCRIPT]/protein_prep.sh -p=prot_seq.ali
 
 # Set paths
 export TARGET=/home/ldasilva/target	# This directory contains the protein files
@@ -30,7 +33,7 @@ case $i in
 	# you can add more arguments here in same format
 	*)
 	# unknown argument
-	echo "Argument ${i} is not known";
+	echo "Argument ${i} is not known. Did you forget the -p= argument prefix?";
 esac #end case statement
 shift
 done
@@ -62,7 +65,7 @@ echo "Running profile.modeller.py on ${SEQUENCE_FILE}"
 python $ALGDOCKHOME/Pipeline/profile.modeller.py $PATH_TO_PBD/$PDB_BINFILE $SEQUENCE_FILE
 # Output files: profile.prf and profile.ali
 
-echo "Running analyze_profile.py"
+echo "Running analyze_profile.py. For this to work, you need to have done ssh -Y to the cluster"
 python $ALGDOCKHOME/Pipeline/analyze_profile.py
 # Output histograms of sequence identity: figures/hist_seq_id.png and figures/hist_seq_id_selected.png
 # This will also display the sequences that are present in the selected chains. 
