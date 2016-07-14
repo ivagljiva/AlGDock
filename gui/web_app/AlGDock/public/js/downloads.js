@@ -31,21 +31,14 @@ var exports = module.exports = {};
 // This function is exported when another script requires downloads.js
 // On the cluster, results files are stored in the TARGET directory (see REST.py), under the user's email and the protein/ligand folders for the job
 exports.download_file = function(email, prot, lig) {
-	var file_url = "http://localhost:5000/api/v1.0/download/" + email + "/"+prot+"/"+lig; //file path on cluster to download
+	var file_url = "http://localhost:3000/api/v1.0/download/" + email + "/"+prot+"/"+lig; //file path on cluster to download
 	// This must be changed so it is no longer hardcoded. Do a 'Save As' prompt?:
-	var DOWNLOAD_DIR = '/Users/Iva/Downloads/'; //directory to download to
-	/*
-	//windows
-	if (navigator.appVersion.indexOf("Win")!=-1) DOWNLOAD_DIR = 'C:/';
-	//mac
-	else if (navigator.appVersion.indexOf("Mac")!=-1) DOWNLOAD_DIR = 'Users/';
-	//unix
-	else if (navigator.appVersion.indexOf("X11")!=-1) DOWNLOAD_DIR = '/home/';
-	//linux
-	else if (navigator.appVersion.indexOf("Linux")!=-1) DOWNLOAD_DIR = '/home/';
-	//default
-	else DOWNLOAD_DIR = '/Users/Iva/Downloads/';
-	*/
+	var DOWNLOAD_DIR = ''; //directory to download to
+
+	if (process.platform == 'win32') {DOWNLOAD_DIR = '/Users/computer/Downloads/'; //windows
+	}else if (process.platform == 'darwin') {DOWNLOAD_DIR = '/Users/computer/Downloads/'; //mac
+	}else if (process.platform == 'linux') {DOWNLOAD_DIR = '/Users/computer/Downloads/'; //linux}
+	}else DOWNLOAD_DIR == '/Users/Iva/Downloads/'; //default
 	
 	//TARGET variable on cluster should be set to /home/ldasilva/target/
 	var file_name = url.parse(file_url).pathname.split('/').pop();

@@ -5,7 +5,6 @@
 from flask import Flask, jsonify, request, redirect, url_for, send_from_directory
 import subprocess
 
-import os
 import errno
 import json
 from cross_domain import *
