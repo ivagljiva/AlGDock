@@ -107,8 +107,8 @@
     });*/
 
     $("#saveLigands").click(function() {
-
-      alert("AQII");
+		console.log('Saving ligands');
+      //alert("AQII"); //opens a useless alert popup
       if($("#tableLigand input:checked").length > 0){       //If there's at least one checklist checked
         var html= "Ligand(s) Selected:";
         $('#tableLigand tbody tr').each(function() {        //See which one is checked and add the name
