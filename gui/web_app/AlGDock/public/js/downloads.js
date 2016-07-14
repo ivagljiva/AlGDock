@@ -34,6 +34,17 @@ exports.download_file = function(email, prot, lig) {
 	var file_url = "http://localhost:5000/api/v1.0/download/" + email + "/"+prot+"/"+lig; //file path on cluster to download
 	// This must be changed so it is no longer hardcoded. Do a 'Save As' prompt?:
 	var DOWNLOAD_DIR = '/Users/Iva/Downloads/'; //directory to download to
+	//windows
+	if (navigator.appVersion.indexOf("Win")!=-1) DOWNLOAD_DIR = 'C:/';
+	//mac
+	else if (navigator.appVersion.indexOf("Mac")!=-1) DOWNLOAD_DIR = 'Users/';
+	//unix
+	else if (navigator.appVersion.indexOf("X11")!=-1) DOWNLOAD_DIR = '/home/';
+	//linux
+	else if (navigator.appVersion.indexOf("Linux")!=-1) DOWNLOAD_DIR = '/home/';
+	//default
+	else DOWNLOAD_DIR = '/Users/Iva/Downloads/';
+	
 	//TARGET variable on cluster should be set to /home/ldasilva/target/
 	var file_name = url.parse(file_url).pathname.split('/').pop();
 	filename += '.gz';
