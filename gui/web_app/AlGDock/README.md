@@ -1,5 +1,8 @@
 # Web Application
 
+## Introduction
+This application made in [nodejs](https://nodejs.org/en/) was made in order to communicate with the [Flask](http://flask.pocoo.org/) application listening on CCB cluster. A SSH connection is required to be established between them. The web pages will make HTTP requests and will expect an response in JSON. The files for the Flask application are [here](https://github.com/luizcieslak/AlGDock/tree/master/gui/api)
+
 ## Files and folders
 * [app.js](https://github.com/luizcieslak/AlGDock/blob/master/gui/web_app/AlGDock/app.js) - The primary control script for the web application.
 * [public](https://github.com/luizcieslak/AlGDock/tree/master/gui/web_app/AlGDock/public) - JS and CSS files used in the web pages.
