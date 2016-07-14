@@ -10,6 +10,7 @@
     <button id="btnSelectLigand" class="btn btn-default big-button right" data-toggle="modal" data-target="#ligandModal">Select Ligand(s)</button>
   </div>
   <a href="/prerun" type="button" class="btn btn-primary center-block">Continue</a>
+  <button id="runBtn" type="button" class="btn btn-default">Temporary Run</button> <!-- Temporary run button - so we can dock without needing to transfer selected proteins and ligand to pre-run page -->
 </div>
 <br>
 <!-- Modals -->

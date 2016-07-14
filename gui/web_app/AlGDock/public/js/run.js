@@ -124,8 +124,8 @@
   // and call the run function in REST.py to run the docking software on these files
   $("#runBtn").click(function() {
     var email, selectedLigand, selectedProtein;
-    selectedProtein = $("#proteinDropdownBtn").html();
-    selectedLigand = $("#ligandDropdownBtn").html();
+    selectedProtein = $("#btnSelectProtein").html();
+    selectedLigand = $("#btnSelectLigand").html();
     email = document.cookie.split(';')[1].split('=')[1];
     if (selectedProtein !== "Protein" && selectedLigand !== "Ligand Library" && selectedLigand !== "Create Ligand Library") {
       // see run() in REST.py

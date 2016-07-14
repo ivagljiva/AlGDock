@@ -1,3 +1,5 @@
+// Source code for the selection modules on selection.hjs
+
 (function(window) {
   //foo data
   var addLigandToLibrary, displaySvg, ligandSearch, molViewDisplay, populateLigands, populateProteins, selectedLigand, selectedProtein, proteins, ligands, populateProteinTable, populateLigandTable;
@@ -50,7 +52,7 @@
             var name = $(this).find("td").eq(1).html();
             html += checked ? "<br>"+name : "";
         });
-        $("#btnSelectProtein").html(html);
+        $("#btnSelectProtein").html(html);	//add the selected proteins to the button text
       }else{
         $("#btnSelectProtein").html("Select protein(s)");
       }
@@ -113,7 +115,7 @@
             var name = $(this).find("td").eq(1).html();
             html += checked ? "<br>"+name : "";
         });
-        $("#btnSelectLigand").html(html);
+        $("#btnSelectLigand").html(html); 	//add the selected ligands to the button text
       }else{
         $("#btnSelectLigand").html("Select ligand(s)");
       }
