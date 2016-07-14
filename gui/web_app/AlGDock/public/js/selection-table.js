@@ -2,7 +2,8 @@
 
 (function(window) {
   //foo data
-  var addLigandToLibrary, displaySvg, ligandSearch, molViewDisplay, populateLigands, populateProteins, selectedLigand, selectedProtein, proteins, ligands, populateProteinTable, populateLigandTable;
+  var addLigandToLibrary, displaySvg, ligandSearch, molViewDisplay, populateLigands, populateProteins, selectedLigand, selectedProtein, proteins, ligands, populateProteinTable, populateLigandTable, 
+  selectedLigands=[], selectedProteins=[]; //for temp run button
 
   populateProteins = function(proteinJson){
     proteinJson = JSON.parse(proteinJson);
@@ -51,7 +52,10 @@
         $('#tableProtein tbody tr').each(function() {        //See which one is checked and add the name
             var checked = $(this).find("input").is(":checked");
             var name = $(this).find("td").eq(1).html();
-            html += checked ? "<br>"+name : "";
+            if(checked){
+              html += "<br>"+name;
+              selectedProteins.push(name);
+}
         });
         $("#btnSelectProtein").html(html);	//add the selected proteins to the button text
       }else{
@@ -107,14 +111,17 @@
     });*/
 
     $("#saveLigands").click(function() {
-
-      alert("AQII");
+		console.log('Saving ligands');
+      //alert("AQII"); //opens a useless alert popup
       if($("#tableLigand input:checked").length > 0){       //If there's at least one checklist checked
         var html= "Ligand(s) Selected:";
         $('#tableLigand tbody tr').each(function() {        //See which one is checked and add the name
             var checked = $(this).find("input").is(":checked");
             var name = $(this).find("td").eq(1).html();
-            html += checked ? "<br>"+name : "";
+            if(checked){
+              html += "<br>"+name;
+              selectedLigands.push(name);
+}
         });
         $("#btnSelectLigand").html(html); 	//add the selected ligands to the button text
       }else{
@@ -122,6 +129,16 @@
       }
     });
   }
+// temp run button
+  $("#btnRun").click(function() { //TODO: validation for this button
+    var email = document.cookie.split(';')[1].split('=')[1];
+    for(i=0; i<selectedProteins.length; i++){
+      for(j=0; j<selectedLigands.length; j++){
+        console.log(selectedProteins[i]+" "+selectedLigands[j]+" "+email);
+        httpGet(restAddr + "/api/v1.0/run/" + selectedProteins[i] + "/" + selectedLigands[j] + "/" + email, displayMessage);
+      }
+    }
+});
 
 })(window);
 

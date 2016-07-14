@@ -128,6 +128,7 @@ router.get('/pre-run', function(req, res, next) {
 // Renders selection.hjs page
 // We probably won't need this once we restructure
 router.get('/selection/', valid_user, function(req, res, next) {
+	console.log('Navigating to selection page');
     res.render('selection',
         {
           title: 'AlGDock | Selection',
