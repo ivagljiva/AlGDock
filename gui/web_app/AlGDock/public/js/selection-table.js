@@ -45,6 +45,7 @@
       $("#tableProtein").stupidtable();
 
     $("#saveProteins").click(function() {
+      console.log("Saving proteins");
       if($("#tableProtein input:checked").length > 0){       //If there's at least one checklist checked
         var html= "Protein(s) Selected:";
         $('#tableProtein tbody tr').each(function() {        //See which one is checked and add the name

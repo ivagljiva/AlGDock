@@ -122,10 +122,17 @@
   
   // When the run button is pressed, obtain the protein and ligand selections (and the user's email)
   // and call the run function in REST.py to run the docking software on these files
-  $("#runBtn").click(function() {
+  $("#RunBtn").click(function() {
     var email, selectedLigand, selectedProtein;
-    selectedProtein = $("#btnSelectProtein").html();
-    selectedLigand = $("#btnSelectLigand").html();
+    // Get the text on the selection buttons:
+    var protString = $("#btnSelectProtein").html(); 
+    var ligString = $("#btnSelectLigand").html();
+    console.log("LigString is ", ligString, " and protString is ", protString);
+    // Get just the protein and ligand names from this text:
+    selectedProtein = protString.replace("Protein(s) Selected:\n", "");
+    selectedLigand = ligString.replace("Ligand(s)%20Selected:%3Cbr%3E", "");
+    console.log("Lig is ", selectedLigand, " and prot is ", selectedProtein);
+    
     email = document.cookie.split(';')[1].split('=')[1];
     if (selectedProtein !== "Protein" && selectedLigand !== "Ligand Library" && selectedLigand !== "Create Ligand Library") {
       // see run() in REST.py
