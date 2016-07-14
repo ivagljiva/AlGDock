@@ -10,8 +10,10 @@ echo "TARGET is ${TARGET}"
 export ALGDOCKHOME=/home/iveseli/AlGDock	# This directory contains the scripts required by this pipeline
 echo "ALGDOCKHOME is ${ALGDOCKHOME}"
 
-# load modeller environment
+# load module environments
 module load modeller/9.14
+module load canopy/1.5.0
+module load ambertools/14
 
 # default sequence file name:
 SEQUENCE_FILE="seq.ali"

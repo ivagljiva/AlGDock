@@ -9,6 +9,7 @@
     <button id="btnSelectProtein" type="button" class="btn btn-default big-button left" data-toggle="modal" data-target="#proteinModal">Select protein(s)</button>
     <button id="btnSelectLigand" class="btn btn-default big-button right" data-toggle="modal" data-target="#ligandModal">Select Ligand(s)</button>
   </div>
+  <button id="btnRun" type="button" class="btn btn-default">Temporary Run</button> <!-- temporary run button -->
   <a href="/prerun" type="button" class="btn btn-primary center-block">Continue</a>
 </div>
 <br>

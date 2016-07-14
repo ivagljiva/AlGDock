@@ -53,8 +53,9 @@ exports.download_file = function(email, prot, lig) {
 	console.log("The file URL is " + file_url);
 	console.log("The file name is " + file_name);
 	var file = fs.createWriteStream(DOWNLOAD_DIR + 	file_name);
+	// This calls the download() function in REST.py
 	var request = http.get(file_url, function(response) {
-		response.pipe(file);
+		response.pipe(file); // file gets the data that is sent in the return statement in download() in REST.py
 		console.log(file_name + ' downloaded to ' + DOWNLOAD_DIR);
 	});
 };
