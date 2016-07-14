@@ -49,7 +49,7 @@ exports.download_file = function(email, prot, lig) {
 	
 	//TARGET variable on cluster should be set to /home/ldasilva/target/
 	var file_name = url.parse(file_url).pathname.split('/').pop();
-	filename += '.gz';
+	file_name += '.gz';
 	console.log("The file URL is " + file_url);
 	console.log("The file name is " + file_name);
 	var file = fs.createWriteStream(DOWNLOAD_DIR + 	file_name);
