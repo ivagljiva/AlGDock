@@ -90,9 +90,10 @@
 	<!-- Buttons that route to other screens -->
     <div class="container">
     </div>
-    <a href="/selection" class="button1 centered">Run Docking</a> <!-- Pedro --> <!-- Iva re-routed this to /selection -->
+    <a href="/selection" class="button1 centered">Run Docking</a> <!-- Pedro --> 
     <a href="/jobs" class="button1 centered">Jobs</a> <!-- Pedro -->
     <a href="/pre-run" class="button1 centered">Confirmation</a> <!-- Christopher -->
+    <a href="/axure-home" class="button1 centered">Axure Home</a> <!-- Iva, to test if Axure html can be rendered like the .hjs views -->
     </div>
 
     <!-- Custom Javascript -->

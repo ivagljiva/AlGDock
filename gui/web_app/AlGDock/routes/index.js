@@ -71,7 +71,7 @@ router.get('/', valid_user, function(req, res, next) {
           alert: 'This email is already in use. Did you forget your password?',
           user: req.cookies.user
         });
-});
+}); 
 
 // Login page - added by Christopher
 // When browsers try to access 'localhost:3000/login'
@@ -110,6 +110,17 @@ router.get('/test', function(req, res, next) {
         });
 });
 
+// Axure Home page HTML - added by Iva
+// This is a test to see if rendering Axure's generated html works
+// It works if you change the .html file extension to .hjs, but without any styles
+// Still need to fix access to the source js and css styles so that it renders properly
+// May require a different templating engine than hjs, but I'm not sure
+    res.render('0_1_0_0_home',
+    	{
+    		title: 'AlGDock | Axure Home',
+    		user: req.cookies.user
+    	});
+}); 
 
 // Pre-run page - added by Christopher
 // This is a duplicate to Pedro's pre-run route (see below)

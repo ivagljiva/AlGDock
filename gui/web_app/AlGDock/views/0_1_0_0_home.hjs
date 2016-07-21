@@ -1,0 +1,867 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>0.1.0.0 HOME</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/0_1_0_0_home/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/ie.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="files/0_1_0_0_home/data.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u66" class="ax_default box_1">
+        <div id="u66_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u67" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u68" class="ax_default box_1">
+        <div id="u68_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u69" class="text" style="display: none; visibility: hidden">
+          <p><span></span></p>
+        </div>
+      </div>
+
+      <!-- ALGDOCK (Rectangle) -->
+      <div id="u70" class="ax_default logo" data-label="ALGDOCK">
+        <div id="u70_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u71" class="text" style="visibility: visible;">
+          <p><span>ALGDOCK</span></p>
+        </div>
+      </div>
+
+      <!-- Title 1 (Rectangle) -->
+      <div id="u72" class="ax_default heading_2" data-label="Title 1">
+        <div id="u72_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u73" class="text" style="visibility: visible;">
+          <p><span>About</span></p>
+        </div>
+      </div>
+
+      <!-- Title 2 (Shape) -->
+      <div id="u74" class="ax_default heading_2" data-label="Title 2">
+        <img id="u74_img" class="img " src="images/0_1_0_0_home/title_2_u74.png"/>
+        <!-- Unnamed () -->
+        <div id="u75" class="text" style="visibility: visible;">
+          <p><span>Publication</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u76" class="ax_default heading_2">
+        <div id="u76_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u77" class="text" style="visibility: visible;">
+          <p><span>Tutorials</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u78" class="ax_default heading_2">
+        <div id="u78_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u79" class="text" style="visibility: visible;">
+          <p><span>Contact Us</span></p>
+        </div>
+      </div>
+
+      <!-- Title 1 (Rectangle) -->
+      <div id="u80" class="ax_default heading_2" data-label="Title 1">
+        <div id="u80_div" class=""></div>
+        <!-- Unnamed () -->
+        <div id="u81" class="text" style="visibility: visible;">
+          <p><span>Run Tutorial again &gt;&gt;</span></p>
+        </div>
+      </div>
+
+      <!-- Select Menus (Dynamic Panel) -->
+      <div id="u82" class="ax_default" data-label="Select Menus">
+        <div id="u82_state0" class="panel_state" data-label="Select Proteins">
+          <div id="u82_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u83" class="ax_default button">
+              <img id="u83_img" class="img " src="images/0_1_0_0_home/u83.png"/>
+              <!-- Unnamed () -->
+              <div id="u84" class="text" style="visibility: visible;">
+                <p style="font-size:24px;"><span>Select Protein</span></p><p style="font-size:18px;"><span><br></span></p><p style="font-size:18px;"><span>text text </span></p><p style="font-size:18px;"><span>text text</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u85" class="ax_default button">
+              <img id="u85_img" class="img " src="images/0_1_0_0_home/u85.png"/>
+              <!-- Unnamed () -->
+              <div id="u86" class="text" style="visibility: visible;">
+                <p style="font-size:24px;"><span>Select Ligands</span></p><p style="font-size:18px;"><span><br></span></p><p style="font-size:18px;"><span>text text </span></p><p style="font-size:18px;"><span>text text</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u87" class="ax_default button">
+              <img id="u87_img" class="img " src="images/0_1_0_0_home/u85.png"/>
+              <!-- Unnamed () -->
+              <div id="u88" class="text" style="visibility: visible;">
+                <p style="font-size:24px;"><span>Run Docking</span></p><p style="font-size:18px;"><span><br></span></p><p style="font-size:18px;"><span>text text </span></p><p style="font-size:18px;"><span>text text</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u89" class="ax_default button">
+              <img id="u89_img" class="img " src="images/0_1_0_0_home/u85.png"/>
+              <!-- Unnamed () -->
+              <div id="u90" class="text" style="visibility: visible;">
+                <p style="font-size:24px;"><span>View Jobs</span></p><p style="font-size:18px;"><span><br></span></p><p style="font-size:18px;"><span>text text </span></p><p style="font-size:18px;"><span>text text</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Paragraph) -->
+            <div id="u91" class="ax_default paragraph">
+              <img id="u91_img" class="img " src="images/0_1_0_0_home/u91.png"/>
+              <!-- Unnamed () -->
+              <div id="u92" class="text" style="visibility: visible;">
+                <p><span>Select Protein</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Horizontal Line) -->
+            <div id="u93" class="ax_default line">
+              <img id="u93_img" class="img " src="images/0_1_0_0_home/u93.png"/>
+              <!-- Unnamed () -->
+              <div id="u94" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u95" class="ax_default checkbox">
+              <label for="u95_input">
+                <!-- Unnamed () -->
+                <div id="u96" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Protein 1</span></p>
+                </div>
+              </label>
+              <input id="u95_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u97" class="ax_default checkbox">
+              <label for="u97_input">
+                <!-- Unnamed () -->
+                <div id="u98" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Protein 2</span></p>
+                </div>
+              </label>
+              <input id="u97_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u99" class="ax_default checkbox">
+              <label for="u99_input">
+                <!-- Unnamed () -->
+                <div id="u100" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Protein 3</span></p>
+                </div>
+              </label>
+              <input id="u99_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u101" class="ax_default checkbox">
+              <label for="u101_input">
+                <!-- Unnamed () -->
+                <div id="u102" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Protein 4</span></p>
+                </div>
+              </label>
+              <input id="u101_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u103" class="ax_default checkbox">
+              <label for="u103_input">
+                <!-- Unnamed () -->
+                <div id="u104" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Protein 1</span></p>
+                </div>
+              </label>
+              <input id="u103_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u105" class="ax_default checkbox">
+              <label for="u105_input">
+                <!-- Unnamed () -->
+                <div id="u106" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Protein 2</span></p>
+                </div>
+              </label>
+              <input id="u105_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u107" class="ax_default checkbox">
+              <label for="u107_input">
+                <!-- Unnamed () -->
+                <div id="u108" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Protein 3</span></p>
+                </div>
+              </label>
+              <input id="u107_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Paragraph) -->
+            <div id="u109" class="ax_default paragraph">
+              <img id="u109_img" class="img " src="images/0_1_0_0_home/u109.png"/>
+              <!-- Unnamed () -->
+              <div id="u110" class="text" style="visibility: visible;">
+                <p><span>OR</span></p><p><span><br></span></p><p><span>Upload Protein</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Horizontal Line) -->
+            <div id="u111" class="ax_default line">
+              <img id="u111_img" class="img " src="images/0_1_0_0_home/u93.png"/>
+              <!-- Unnamed () -->
+              <div id="u112" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Placeholder) -->
+            <div id="u113" class="ax_default placeholder">
+              <img id="u113_img" class="img " src="images/0_1_0_0_home/u113.png"/>
+              <!-- Unnamed () -->
+              <div id="u114" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u115" class="ax_default ax_default_hidden" style="display: none; visibility: hidden">
+              <div id="u115_state0" class="panel_state" data-label="State1">
+                <div id="u115_state0_content" class="panel_state_content">
+
+                  <!-- Unnamed (Paragraph) -->
+                  <div id="u116" class="ax_default paragraph">
+                    <img id="u116_img" class="img " src="images/0_1_0_0_home/u91.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u117" class="text" style="visibility: visible;">
+                      <p><span>3D Protein</span></p>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Horizontal Line) -->
+                  <div id="u118" class="ax_default line">
+                    <img id="u118_img" class="img " src="images/0_1_0_0_home/u93.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u119" class="text" style="display: none; visibility: hidden">
+                      <p><span></span></p>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Placeholder) -->
+                  <div id="u120" class="ax_default placeholder">
+                    <img id="u120_img" class="img " src="images/0_1_0_0_home/u120.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u121" class="text" style="display: none; visibility: hidden">
+                      <p><span></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="u115_state1" class="panel_state" data-label="empty" style="display: none; visibility: hidden;">
+                <div id="u115_state1_content" class="panel_state_content">
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Hot Spot) -->
+            <div id="u122" class="ax_default">
+            </div>
+
+            <!-- Unnamed (Hot Spot) -->
+            <div id="u123" class="ax_default">
+            </div>
+          </div>
+        </div>
+        <div id="u82_state1" class="panel_state" data-label="Select Ligands" style="display: none; visibility: hidden;">
+          <div id="u82_state1_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u124" class="ax_default button">
+              <img id="u124_img" class="img " src="images/0_1_0_0_home/u83.png"/>
+              <!-- Unnamed () -->
+              <div id="u125" class="text" style="visibility: visible;">
+                <p style="font-size:24px;"><span>Select Protein</span></p><p style="font-size:18px;"><span><br></span></p><p style="font-size:18px;"><span>text text </span></p><p style="font-size:18px;"><span>text text</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u126" class="ax_default button">
+              <img id="u126_img" class="img " src="images/0_1_0_0_home/u85.png"/>
+              <!-- Unnamed () -->
+              <div id="u127" class="text" style="visibility: visible;">
+                <p style="font-size:24px;"><span>Select Protein</span></p><p style="font-size:18px;"><span><br></span></p><p style="font-size:18px;"><span>text text </span></p><p style="font-size:18px;"><span>text text</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u128" class="ax_default button">
+              <img id="u128_img" class="img " src="images/0_1_0_0_home/u85.png"/>
+              <!-- Unnamed () -->
+              <div id="u129" class="text" style="visibility: visible;">
+                <p style="font-size:24px;"><span>Run Docking</span></p><p style="font-size:18px;"><span><br></span></p><p style="font-size:18px;"><span>text text </span></p><p style="font-size:18px;"><span>text text</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u130" class="ax_default button">
+              <img id="u130_img" class="img " src="images/0_1_0_0_home/u85.png"/>
+              <!-- Unnamed () -->
+              <div id="u131" class="text" style="visibility: visible;">
+                <p style="font-size:24px;"><span>View Jobs</span></p><p style="font-size:18px;"><span><br></span></p><p style="font-size:18px;"><span>text text </span></p><p style="font-size:18px;"><span>text text</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Paragraph) -->
+            <div id="u132" class="ax_default paragraph">
+              <img id="u132_img" class="img " src="images/0_1_0_0_home/u91.png"/>
+              <!-- Unnamed () -->
+              <div id="u133" class="text" style="visibility: visible;">
+                <p><span>Ligand Library</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Horizontal Line) -->
+            <div id="u134" class="ax_default line">
+              <img id="u134_img" class="img " src="images/0_1_0_0_home/u134.png"/>
+              <!-- Unnamed () -->
+              <div id="u135" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u136" class="ax_default checkbox">
+              <label for="u136_input">
+                <!-- Unnamed () -->
+                <div id="u137" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Ligand 1</span></p>
+                </div>
+              </label>
+              <input id="u136_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u138" class="ax_default checkbox">
+              <label for="u138_input">
+                <!-- Unnamed () -->
+                <div id="u139" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Ligand 2</span></p>
+                </div>
+              </label>
+              <input id="u138_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u140" class="ax_default checkbox">
+              <label for="u140_input">
+                <!-- Unnamed () -->
+                <div id="u141" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Ligand 3</span></p>
+                </div>
+              </label>
+              <input id="u140_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u142" class="ax_default checkbox">
+              <label for="u142_input">
+                <!-- Unnamed () -->
+                <div id="u143" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Ligand 4</span></p>
+                </div>
+              </label>
+              <input id="u142_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u144" class="ax_default checkbox">
+              <label for="u144_input">
+                <!-- Unnamed () -->
+                <div id="u145" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Ligand 1</span></p>
+                </div>
+              </label>
+              <input id="u144_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u146" class="ax_default checkbox">
+              <label for="u146_input">
+                <!-- Unnamed () -->
+                <div id="u147" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Ligand 2</span></p>
+                </div>
+              </label>
+              <input id="u146_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Checkbox) -->
+            <div id="u148" class="ax_default checkbox">
+              <label for="u148_input">
+                <!-- Unnamed () -->
+                <div id="u149" class="text" style="visibility: visible;">
+                  <p><span>&nbsp;Ligand 3</span></p>
+                </div>
+              </label>
+              <input id="u148_input" type="checkbox" value="checkbox"/>
+            </div>
+
+            <!-- Unnamed (Paragraph) -->
+            <div id="u150" class="ax_default paragraph">
+              <img id="u150_img" class="img " src="images/0_1_0_0_home/u109.png"/>
+              <!-- Unnamed () -->
+              <div id="u151" class="text" style="visibility: visible;">
+                <p><span>OR</span></p><p><span><br></span></p><p><span>Upload Ligand Library</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Horizontal Line) -->
+            <div id="u152" class="ax_default line">
+              <img id="u152_img" class="img " src="images/0_1_0_0_home/u93.png"/>
+              <!-- Unnamed () -->
+              <div id="u153" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Placeholder) -->
+            <div id="u154" class="ax_default placeholder">
+              <img id="u154_img" class="img " src="images/0_1_0_0_home/u113.png"/>
+              <!-- Unnamed () -->
+              <div id="u155" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u156" class="ax_default ax_default_hidden" style="display: none; visibility: hidden">
+              <div id="u156_state0" class="panel_state" data-label="State1">
+                <div id="u156_state0_content" class="panel_state_content">
+
+                  <!-- Unnamed (Paragraph) -->
+                  <div id="u157" class="ax_default paragraph">
+                    <img id="u157_img" class="img " src="images/0_1_0_0_home/u91.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u158" class="text" style="visibility: visible;">
+                      <p><span>Ligands</span></p>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Horizontal Line) -->
+                  <div id="u159" class="ax_default line">
+                    <img id="u159_img" class="img " src="images/0_1_0_0_home/u134.png"/>
+                    <!-- Unnamed () -->
+                    <div id="u160" class="text" style="display: none; visibility: hidden">
+                      <p><span></span></p>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Radio Button) -->
+                  <div id="u161" class="ax_default radio_button">
+                    <label for="u161_input">
+                      <!-- Unnamed () -->
+                      <div id="u162" class="text" style="visibility: visible;">
+                        <p><span>&nbsp; Ligand</span></p>
+                      </div>
+                    </label>
+                    <input id="u161_input" type="radio" value="radio" name="u161"/>
+                  </div>
+
+                  <!-- Unnamed (Radio Button) -->
+                  <div id="u163" class="ax_default radio_button">
+                    <label for="u163_input">
+                      <!-- Unnamed () -->
+                      <div id="u164" class="text" style="visibility: visible;">
+                        <p><span>&nbsp; Ligand</span></p>
+                      </div>
+                    </label>
+                    <input id="u163_input" type="radio" value="radio" name="u163"/>
+                  </div>
+
+                  <!-- Unnamed (Radio Button) -->
+                  <div id="u165" class="ax_default radio_button">
+                    <label for="u165_input">
+                      <!-- Unnamed () -->
+                      <div id="u166" class="text" style="visibility: visible;">
+                        <p><span>&nbsp; Ligand</span></p>
+                      </div>
+                    </label>
+                    <input id="u165_input" type="radio" value="radio" name="u165"/>
+                  </div>
+
+                  <!-- Unnamed (Radio Button) -->
+                  <div id="u167" class="ax_default radio_button">
+                    <label for="u167_input">
+                      <!-- Unnamed () -->
+                      <div id="u168" class="text" style="visibility: visible;">
+                        <p><span>&nbsp; Ligand</span></p>
+                      </div>
+                    </label>
+                    <input id="u167_input" type="radio" value="radio" name="u167"/>
+                  </div>
+
+                  <!-- Unnamed (Radio Button) -->
+                  <div id="u169" class="ax_default radio_button">
+                    <label for="u169_input">
+                      <!-- Unnamed () -->
+                      <div id="u170" class="text" style="visibility: visible;">
+                        <p><span>&nbsp; Ligand</span></p>
+                      </div>
+                    </label>
+                    <input id="u169_input" type="radio" value="radio" name="u169"/>
+                  </div>
+
+                  <!-- Unnamed (Radio Button) -->
+                  <div id="u171" class="ax_default radio_button">
+                    <label for="u171_input">
+                      <!-- Unnamed () -->
+                      <div id="u172" class="text" style="visibility: visible;">
+                        <p><span>&nbsp; Ligand</span></p>
+                      </div>
+                    </label>
+                    <input id="u171_input" type="radio" value="radio" name="u171"/>
+                  </div>
+
+                  <!-- Unnamed (Radio Button) -->
+                  <div id="u173" class="ax_default radio_button">
+                    <label for="u173_input">
+                      <!-- Unnamed () -->
+                      <div id="u174" class="text" style="visibility: visible;">
+                        <p><span>&nbsp; Ligand</span></p>
+                      </div>
+                    </label>
+                    <input id="u173_input" type="radio" value="radio" name="u173"/>
+                  </div>
+                </div>
+              </div>
+              <div id="u156_state1" class="panel_state" data-label="empty" style="display: none; visibility: hidden;">
+                <div id="u156_state1_content" class="panel_state_content">
+                </div>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u175" class="ax_default button">
+              <img id="u175_img" class="img " src="images/0_1_0_0_home/u83.png"/>
+              <!-- Unnamed () -->
+              <div id="u176" class="text" style="visibility: visible;">
+                <p style="font-size:24px;"><span>Select Ligands</span></p><p style="font-size:18px;"><span><br></span></p><p style="font-size:18px;"><span>text text </span></p><p style="font-size:18px;"><span>text text</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Hot Spot) -->
+            <div id="u177" class="ax_default">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u178" class="ax_default">
+        <div id="u178_state0" class="panel_state" data-label="Open">
+          <div id="u178_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u179" class="ax_default box_1">
+              <div id="u179_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u180" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u181" class="ax_default label">
+              <div id="u181_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u182" class="text" style="visibility: visible;">
+                <p><span>My Summary</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Image) -->
+            <div id="u183" class="ax_default image">
+              <img id="u183_img" class="img " src="images/0_1_0_0_home/u183.png"/>
+              <!-- Unnamed () -->
+              <div id="u184" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u185" class="ax_default label">
+              <div id="u185_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u186" class="text" style="visibility: visible;">
+                <p><span>My Jobs</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u187" class="ax_default label">
+              <div id="u187_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u188" class="text" style="visibility: visible;">
+                <p><span>12</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u189" class="ax_default label">
+              <div id="u189_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u190" class="text" style="visibility: visible;">
+                <p><span>view jobs</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Horizontal Line) -->
+            <div id="u191" class="ax_default line">
+              <img id="u191_img" class="img " src="images/0_1_0_0_home/u191.png"/>
+              <!-- Unnamed () -->
+              <div id="u192" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Horizontal Line) -->
+            <div id="u193" class="ax_default line">
+              <img id="u193_img" class="img " src="images/0_1_0_0_home/u191.png"/>
+              <!-- Unnamed () -->
+              <div id="u194" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u195" class="ax_default label">
+              <div id="u195_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u196" class="text" style="visibility: visible;">
+                <p><span>My Proteins</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u197" class="ax_default label">
+              <div id="u197_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u198" class="text" style="visibility: visible;">
+                <p><span>10</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u199" class="ax_default label">
+              <div id="u199_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u200" class="text" style="visibility: visible;">
+                <p><span>view proteins</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u201" class="ax_default label">
+              <div id="u201_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u202" class="text" style="visibility: visible;">
+                <p><span>+ add</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u203" class="ax_default label">
+              <div id="u203_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u204" class="text" style="visibility: visible;">
+                <p><span>+ add</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u205" class="ax_default label">
+              <div id="u205_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u206" class="text" style="visibility: visible;">
+                <p><span>My Ligands</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u207" class="ax_default label">
+              <div id="u207_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u208" class="text" style="visibility: visible;">
+                <p><span>12</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u209" class="ax_default label">
+              <div id="u209_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u210" class="text" style="visibility: visible;">
+                <p><span>view&nbsp; ligands</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Horizontal Line) -->
+            <div id="u211" class="ax_default line">
+              <img id="u211_img" class="img " src="images/0_1_0_0_home/u191.png"/>
+              <!-- Unnamed () -->
+              <div id="u212" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u213" class="ax_default heading_2">
+              <div id="u213_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u214" class="text" style="visibility: visible;">
+                <p><span>Hi, Prof. Minh </span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Hot Spot) -->
+            <div id="u215" class="ax_default">
+            </div>
+
+            <!-- Unnamed (Horizontal Line) -->
+            <div id="u216" class="ax_default line">
+              <img id="u216_img" class="img " src="images/0_1_0_0_home/u191.png"/>
+              <!-- Unnamed () -->
+              <div id="u217" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u218" class="ax_default label">
+              <div id="u218_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u219" class="text" style="visibility: visible;">
+                <p><span>My Publications</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u220" class="ax_default label">
+              <div id="u220_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u221" class="text" style="visibility: visible;">
+                <p><span>10</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u222" class="ax_default label">
+              <div id="u222_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u223" class="text" style="visibility: visible;">
+                <p><span>view publications</span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u224" class="ax_default label">
+              <div id="u224_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u225" class="text" style="visibility: visible;">
+                <p><span>+ add</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="u178_state1" class="panel_state" data-label="Closed" style="display: none; visibility: hidden;">
+          <div id="u178_state1_content" class="panel_state_content">
+
+            <!-- Unnamed (Image) -->
+            <div id="u226" class="ax_default image">
+              <img id="u226_img" class="img " src="images/0_1_0_0_home/u183.png"/>
+              <!-- Unnamed () -->
+              <div id="u227" class="text" style="display: none; visibility: hidden">
+                <p><span></span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u228" class="ax_default heading_2">
+              <div id="u228_div" class=""></div>
+              <!-- Unnamed () -->
+              <div id="u229" class="text" style="visibility: visible;">
+                <p><span>Hi, Prof. Minh </span></p>
+              </div>
+            </div>
+
+            <!-- Unnamed (Hot Spot) -->
+            <div id="u230" class="ax_default">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

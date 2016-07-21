@@ -38,7 +38,7 @@ exports.download_file = function(email, prot, lig) {
 	if (process.platform == 'win32') {DOWNLOAD_DIR = '/Users/computer/Downloads/'; //windows
 	}else if (process.platform == 'darwin') {DOWNLOAD_DIR = '/Users/computer/Downloads/'; //mac
 	}else if (process.platform == 'linux') {DOWNLOAD_DIR = '/Users/computer/Downloads/'; //linux}
-	}else DOWNLOAD_DIR == '/Users/Iva/Downloads/'; //default
+	}else DOWNLOAD_DIR == '/Users/Iva/Downloads/'; //default - works only on Iva's computer
 	
 	//TARGET variable on cluster should be set to /home/ldasilva/target/
 	var file_name = url.parse(file_url).pathname.split('/').pop();

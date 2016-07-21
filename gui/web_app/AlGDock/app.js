@@ -12,7 +12,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var hogan = require('hjs');
+var hogan = require('hjs'); // needed for rendering .hjs templates into html
+
 
 var app = express();
 
@@ -20,8 +21,11 @@ var app = express();
 mongoose.connect('mongodb://localhost/algdock');
 
 // view engine setup - for res.render()
-app.set('views', path.join(__dirname, 'views')); //  sets all html templates to be in views/ directory
+app.set('views', path.join(__dirname, 'views')); //  sets all .hjs templates to be in views/ directory
+//NOTE: to render Axure html, you need to change the file extensions to .hjs!
+//app.set('views', path.join(__dirname, 'html_1/algdock_recovered')); // sets .hjs templates to be in this directory
 app.set('view engine', 'hjs');	//html templates are in .hjs format
+
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

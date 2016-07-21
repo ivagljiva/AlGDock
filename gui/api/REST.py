@@ -15,7 +15,8 @@ ALLOWED_EXTENSIONS = set(['mol', 'smi'])
 try:
 	# TARGET is the folder that contains the protein files, ligand files, and results files
 	# It needs to be set properly so that the REST service can navigate to the correct directory on the cluster to access these files
-    TARGET = os.environ['TARGET'] # This should be set to /home/ldasilva/target/ for downloading to work
+	# all users should have permission to create folders in the target/users/directory or running the software will fail at the mkdir stage
+    TARGET = os.environ['TARGET'] 
 except Exception:
     print 'export TARGET=<path to data>'
     exit(1)
