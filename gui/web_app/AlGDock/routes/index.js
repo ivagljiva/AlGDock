@@ -115,6 +115,7 @@ router.get('/test', function(req, res, next) {
 // It works if you change the .html file extension to .hjs, but without any styles
 // Still need to fix access to the source js and css styles so that it renders properly
 // May require a different templating engine than hjs, but I'm not sure
+router.get('/axure-home', function(req, res, next) {
     res.render('0_1_0_0_home',
     	{
     		title: 'AlGDock | Axure Home',
